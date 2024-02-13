@@ -20,7 +20,7 @@ export default function ComponentGrid() {
       </button>
       <Popover
         content={
-          <div className="w-full rounded-md bg-white p-2 sm:w-40">
+          <div className="w-full rounded-md bg-balck p-2 sm:w-40">
             <button className="flex w-full items-center justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100 active:bg-gray-200">
               Item 1
             </button>
