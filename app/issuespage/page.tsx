@@ -51,7 +51,7 @@ const IssuesPage = async () => {
           <Table.Header>
             <Table.Row>
               <Table.ColumnHeaderCell>ID</Table.ColumnHeaderCell>
-              <Table.ColumnHeaderCell className="hidden md:table-cell text-center">Description</Table.ColumnHeaderCell>
+              <Table.ColumnHeaderCell className="hidden md:table-cell text-center">Title</Table.ColumnHeaderCell>
 
               <Table.ColumnHeaderCell className="hidden md:table-cell text-center">Status</Table.ColumnHeaderCell>
               <Table.ColumnHeaderCell className="hidden md:table-cell text-end justify-center">Priority</Table.ColumnHeaderCell>
@@ -60,18 +60,18 @@ const IssuesPage = async () => {
           <Table.Body>
             {issues.map((issue) => (
               <Table.Row key={issue.id}>
-                <Table.Cell className=''>
+                <Table.Cell className='text-center'>
                   <Link href={`/issues/${issue.id}`}>
-                    {issue.title}
+                    {issue.id}
                   </Link>
-                  <div className=" ">
-                    <IssueStatusBadge status={issue.status} />
-                  </div>
                 </Table.Cell>
-                <Table.Cell className="hidden md:table-cell">
+                <Table.Cell className="text-center">
+                  {issue.title}</Table.Cell>
+                <Table.Cell className="hidden md:table-cell text-center">
                   <IssueStatusBadge status={issue.status} />
                 </Table.Cell>
-                <Table.Cell className="hidden md:table-cell">{issue.createdAt.toDateString()}</Table.Cell>
+                <Table.Cell className="hidden md:table-cell text-end justify-center">
+                  {issue.priority}</Table.Cell>
               </Table.Row>
             ))}
           </Table.Body>
