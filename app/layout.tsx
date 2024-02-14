@@ -31,7 +31,7 @@ export default async function RootLayout({
         </main>
         </Theme>
         <Footer />
-        <Analytics />
+        {/* <Analytics /> */}
       </body>
     </html>
   );

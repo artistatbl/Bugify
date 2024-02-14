@@ -21,7 +21,7 @@ export default function NavBar({ session }: { session: Session | null }) {
         } z-30 transition-all`}
       >
         <div className="mx-5 flex h-16 max-w-screen-xl items-center justify-between w-full">
-          <Link href="/" passHref>
+          <Link legacyBehavior href="/" passHref>
             <a className="flex items-center font-display text-2xl"> {/* Changed div to a */}
               <Image
                 src="/logo.png"
@@ -50,4 +50,3 @@ export default function NavBar({ session }: { session: Session | null }) {
     </>
   );
 }
-''
