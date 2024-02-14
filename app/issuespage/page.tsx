@@ -8,23 +8,25 @@ import prisma from 'prisma/client';
 import delay from 'delay';
 import IssueStatusBadge from '@/components/issues/IssuesStatusBadge';
 import IssuesAction from '../issues/IssuesAction';
-import RootLayout from './RootLayout';
+import IssuesRootLayout from './IssuesRootLayout';
 import dynamic from 'next/dynamic'
+import Nav from '@/components/layout/nav';
 
 
 
 
 const IssuesPage = async () => {
   const issues = await prisma.issue.findMany();
-  await delay(800);
+  //await delay(800);
 
   return (
 
+<>
 
- 
 
 	
-	<RootLayout>
+	<IssuesRootLayout>
+  {/* <Nav /> */}
 		
   
 
@@ -79,7 +81,9 @@ const IssuesPage = async () => {
       </div>
       </main>
    
-    </RootLayout>
+    </IssuesRootLayout>
+    </>
+ 
 	 
   );
   

@@ -1,16 +1,13 @@
-/** @type {import('next').NextConfig} 
- * 
-*/
+/** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ["lh3.googleusercontent.com", ""],
+    // Define loader for specific domains
+    loader: 'default',
+    // Set domains for image optimization
+    domains: ['lh3.googleusercontent.com', ''],
   },
-  // viewport:{
-  //   themeColor: "#fff",
-  // },
-
 };
 
 module.exports = nextConfig;
