@@ -4,6 +4,7 @@ import delay from 'delay';
 import { Card, Flex, Heading, Text } from '@radix-ui/themes';
 import IssueStatusBadge from '@/components/issues/IssuesStatusBadge';
 import ReactMarkdown from 'react-markdown';
+import IssuesNavBar from '@/components/layout/issuesbar';
 
 
 
@@ -24,10 +25,11 @@ const IssueDetailPage = async ({ params }: Props) => {
   console.log(issue);
 
   return (
-    <main>
+    <>
+    <IssuesNavBar/>
       
      
-      <div className="max-w-5xl mx-auto px-4 py-5">
+      <div className="z-10 flex flex-col w-full md:pr-24 md:pl-24 lg:pr-28 lg:pl-28 min-h-screen">
         <div className="mb-8">
           <div className="mb-5">
             <Heading as="h1" className="text-4xl font-bold">
@@ -53,8 +55,9 @@ const IssueDetailPage = async ({ params }: Props) => {
           <ReactMarkdown>{issue.description}</ReactMarkdown>
         </Card>
       </div>
-      </main>
+      
     
+    </>
   );
 };
 
