@@ -1,6 +1,8 @@
-import {z} from "zod";
+import { z } from 'zod';
 
 export const createIssueSchema = z.object({
-	title: z.string().min(1, 'Title is Required.').max(255),
-	description: z.string().min(1, 'Description is Required')
+  title: z.string().min(1, 'Title is required'),
+  description: z.string().min(1, 'Description is required'),
+  status: z.enum(['OPEN', 'IN_PROGRESS', 'CLOSED']),
+  priority: z.enum(['LOW', 'MEDIUM', 'HIGH']),
 });

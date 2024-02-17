@@ -24,14 +24,14 @@ export default function IssuesNavBar() {
               />
             </a>
           </Link>
-          <Link legacyBehavior href="/issues" passHref>
-            <a className="ml-5">
-              <p>Issues</p>
+          <Link legacyBehavior href="/dashboard" passHref>
+            <a className="ml-5 text-lg font-medium">
+              <p>Dashboard</p>
             </a>
           </Link>
-          <Link legacyBehavior href="/dashboard" passHref>
-            <a className="">
-              <p>Dashboard</p>
+          <Link legacyBehavior href="/issuespage" passHref>
+            <a className="text-lg font-medium">
+              <p>Issues</p>
             </a>
           </Link>
         </div>

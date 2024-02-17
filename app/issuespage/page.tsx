@@ -42,7 +42,7 @@ const IssuesPage = async () => {
             focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 dark:border-gray-800 
             dark:bg-gray-950 dark:hover:bg-gray-950 dark:hover:text-gray-50
             dark:focus-visible:ring-gray-300"
-            href="#"
+            href="/issues/new"
           >
             New Bug
           </Link>
@@ -51,9 +51,9 @@ const IssuesPage = async () => {
           <Table.Root variant="surface">
             <Table.Header>
               <Table.Row>
-                <Table.ColumnHeaderCell className='text-center'>ID</Table.ColumnHeaderCell>
-                <Table.ColumnHeaderCell className="hidden md:table-cell text-center">Title</Table.ColumnHeaderCell>
-                <Table.ColumnHeaderCell className="hidden md:table-cell text-center">Status</Table.ColumnHeaderCell>
+                <Table.ColumnHeaderCell className='hidden md:table-cell text-center'>Issues</Table.ColumnHeaderCell>
+                <Table.ColumnHeaderCell className=" text-center">Title</Table.ColumnHeaderCell>
+                <Table.ColumnHeaderCell className=" text-center">Status</Table.ColumnHeaderCell>
                 <Table.ColumnHeaderCell className="hidden md:table-cell text-end justify-center">Priority</Table.ColumnHeaderCell>
               </Table.Row>
             </Table.Header>
@@ -62,13 +62,13 @@ const IssuesPage = async () => {
                 <Table.Row key={issue.id}>
                   <Table.Cell className='text-center'>
                     <Link href={`/issues/${issue.id}`} legacyBehavior>
-                      {issue.id}
+                    {`issue-${issue.id}`}
                     </Link>
                   </Table.Cell>
                   <Table.Cell className="hidden md:table-cell text-center">
                     {issue.title}
                   </Table.Cell>
-                  <Table.Cell className="hidden md:table-cell text-center">
+                  <Table.Cell className=" text-center">
                     <IssueStatusBadge status={issue.status} />
                   </Table.Cell>
                   <Table.Cell className="hidden md:table-cell text-end justify-center">

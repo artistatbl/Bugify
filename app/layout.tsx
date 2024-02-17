@@ -26,7 +26,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
     <body className={cx(sfPro.variable, inter.variable)}>
-      <div className="fixed h-screen w-full bg-gradient-to-br from-indigo-50 via-white to-cyan-100" />
+      <div className="fixed h-screen w-full bg-gradient-to-bl from-sky-200  via-rose-200 to-cyan-200" />
       {/* <Suspense fallback="...">
        <IssuesNavBar />
       </Suspense> */}
