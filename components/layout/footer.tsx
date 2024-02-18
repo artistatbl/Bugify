@@ -1,4 +1,4 @@
-import { BuyMeACoffee } from "../shared/icons";
+import Image from "next/image";
 
 
 export default function Footer() {

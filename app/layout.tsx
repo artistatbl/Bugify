@@ -7,7 +7,10 @@ import Footer from "@/components/layout/footer";
 import { Suspense } from "react";
 import { Theme, ThemePanel } from "@radix-ui/themes";
 import '@radix-ui/themes/styles.css';
-import IssuesNavBar from "@/components/layout/issuesbar";
+import { ThemeProvider } from "next-themes";
+
+
+
 
 
 export const metadata = {
@@ -24,17 +27,23 @@ export default async function RootLayout({
    children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html  lang="en">
     <body className={cx(sfPro.variable, inter.variable)}>
-      <div className="fixed h-screen w-full bg-gradient-to-bl from-sky-200  via-rose-200 to-cyan-200" />
+      <div className="fixed h-screen w-full  " />
       {/* <Suspense fallback="...">
        <IssuesNavBar />
       </Suspense> */}
-      <Theme>
+
+ 
+      <Theme appearance="light" accentColor="sky" grayColor="olive" radius="medium" scaling="110%">
       <main className="flex min-h-screen w-full flex-col items-center justify-center py-32">
         {children}
       </main>
+      <ThemePanel />
       </Theme>
+
+     
+      
       <Footer />
       
       {/* <Analytics /> */}
@@ -46,3 +55,5 @@ export default async function RootLayout({
      
   );
 }
+
+
