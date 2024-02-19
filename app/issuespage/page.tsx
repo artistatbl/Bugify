@@ -1,6 +1,6 @@
 // app/dashboard/page.tsx
 // 'use client';
-import { Table } from '@radix-ui/themes';
+import { Button, ScrollArea, Table } from '@radix-ui/themes';
 import React, { useState, useEffect, Suspense } from 'react';
 import delay from 'delay';
 import Link from 'next/link';
@@ -8,10 +8,14 @@ import prisma from 'prisma/client';
 import IssueStatusBadge from '@/components/issues/IssuesStatusBadge';
 import IssuePriorityBadge from '@/components/issues/IssuesPriorityBadge';
 import IssuesNavBar from '@/components/layout/issuesbar';
+import { getServerSession } from 'next-auth';
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 
 
 const IssuesPage = async () => {
+  const session = await getServerSession(authOptions);
+
   const issues = await prisma.issue.findMany();
   await delay(800);
 
@@ -23,8 +27,12 @@ const IssuesPage = async () => {
       
 <>
 <Suspense fallback="...">
-<IssuesNavBar />
+<IssuesNavBar session={session}  />
+
 </Suspense>
+
+
+
 
 
 
@@ -36,17 +44,12 @@ const IssuesPage = async () => {
 
         <div className="flex items-center gap-4 mb-4">
           <h1 className="text-3xl font-bold tracking-tighter">Bug Logs</h1>
-          <Link 
-            className="inline-flex items-center h-8 border  text-white rounded-md border-gray-200 bg-white px-3 
-            text-sm font-medium shadow-sm transition-colors hover:bg-gray-100 hover:text-gray-900
-            focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 dark:border-gray-800 
-            dark:bg-gray-950 dark:hover:bg-gray-950 dark:hover:text-gray-50
-            dark:focus-visible:ring-gray-300"
-            href="/issues/new"
-          >
-            New Bug
-          </Link>
+        
+          <Button > <Link href='/issues/new'> </Link>New Bug</Button>
         </div>
+      
+
+        
         <div className="">
           <Table.Root variant="surface">
             <Table.Header>
@@ -80,6 +83,7 @@ const IssuesPage = async () => {
           </Table.Root>
         </div>
 
+   
 
 
       </div>

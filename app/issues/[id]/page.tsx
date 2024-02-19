@@ -10,6 +10,8 @@ import { Label } from '@/components/components/ui/label';
 import {formatDistanceToNow} from 'date-fns'
 import { Button } from '@/components/components/ui/button';
 import IssuePriorityBadge from '@/components/issues/IssuesPriorityBadge';
+import { getServerSession } from 'next-auth';
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 
 
@@ -23,8 +25,8 @@ interface Props {
 }
 
 const IssueDetailPage = async ({ params }: Props) => {
- // if (typeof params.id !== 'string') notFound();
-
+ 
+ const session = await getServerSession(authOptions);
   const issue = await prisma.issue.findUnique({
     where: { id: parseInt(params.id) as  number},
   });
@@ -34,7 +36,7 @@ const IssueDetailPage = async ({ params }: Props) => {
 
   return (
     <>
-      <IssuesNavBar />
+     <IssuesNavBar session={session}  />
 
 
       <div className="z-10 mx-auto max-w-6xl px-10 sm:px-8  md:px-10 lg:px-14 xl space-y-10 ">

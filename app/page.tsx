@@ -4,9 +4,9 @@ import WebVitals from "@/components/home/web-vitals";
 import ComponentGrid from "@/components/home/component-grid";
 import Image from "next/image";
 import { nFormatter } from "@/lib/utils";
-import { Button } from "@radix-ui/themes";
 import Nav from "@/components/layout/nav";
 import { Suspense } from "react";
+import { Button } from "@radix-ui/themes";
 
 
 export default async function Home() {
@@ -54,7 +54,6 @@ export default async function Home() {
           <a
             className="group flex max-w-fit items-center justify-center space-x-2 rounded-full border border-black bg-black px-5 py-2 text-sm text-white transition-colors hover:bg-white hover:text-black"
             href={DEPLOY_URL}
-            target="_blank"
             rel="noopener noreferrer"
           >
 
@@ -111,11 +110,11 @@ const features = [
     description:
       "Visualize bug trends and statuses with our built-in Dashboard integration.",
     demo: (
-      <a href={DEPLOY_URL} className="bg-gradient-to-tr from-stone-200   to-cyan-300 p-3 rounded-lg border border-black shadow-xl text-black "
+      <a href={DEPLOY_URL} className=" p-3 rounded-lg border bg-blue-400 border-black shadow-xl text-black "
         style={{ animationDelay: "0.1s", animationFillMode: "forwards" }}
 
       >
-        <Button radius="large" variant="soft">View Dashboard</Button>
+        <Button >View Dashboard</Button>
       </a>
     ),
   },

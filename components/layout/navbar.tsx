@@ -5,6 +5,7 @@ import useScroll from "@/lib/hooks/use-scroll";
 import { useSignInModal } from "./sign-in-modal";
 import UserDropdown from "./user-dropdown";
 import { Session } from "next-auth";
+import { Button } from "@radix-ui/themes";
 
 export default function NavBar({ session }: { session: Session | null }) {
   const { SignInModal, setShowSignInModal } = useSignInModal();
@@ -37,12 +38,15 @@ export default function NavBar({ session }: { session: Session | null }) {
             {session ? (
               <UserDropdown session={session} />
             ) : (
-              <button
-                className="rounded-full border border-black bg-black p-1.5 px-4 text-sm text-white transition-all hover:bg-white hover:text-black"
-                onClick={() => setShowSignInModal(true)}
+          
+              <Button   className="rounded-full border cursor-pointer border-black bg-black p-1.5 px-4 text-sm text-white transition-all hover:bg-black hover:text-white"
+              
+              onClick={() => setShowSignInModal(true)}
               >
-                Sign In
-              </button>
+
+                sign In
+
+              </Button>
             )}
           </div>
         </div>

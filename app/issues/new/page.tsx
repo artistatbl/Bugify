@@ -4,9 +4,11 @@
 import React, { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useSession } from 'next-auth/react';
-import { Button, TextField } from '@radix-ui/themes';
+import { Button, Callout, TextField } from '@radix-ui/themes';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
+import { getServerSession } from 'next-auth';
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 import { useRouter } from 'next/navigation';
 import SimpleMDE from "react-simplemde-editor";
@@ -19,6 +21,7 @@ import Spinner from '@/components/issues/Spinner';
 import { Textarea } from '@/components/components/ui/textarea';
 import "easymde/dist/easymde.min.css";
 import { createIssueSchema } from '@/app/validationSchemas'; // Adjust the import path as necessary
+import { InfoCircledIcon } from '@radix-ui/react-icons';
 
 
 
@@ -39,8 +42,11 @@ const priorityOptions = [
 
 type IssueForm = z.infer<typeof createIssueSchema>;
 
-const IssueFormPage = () => {
+const IssueFormPage =  async () => {
+const session = await getServerSession(authOptions);
+
   const router = useRouter();
+  
   const { register, handleSubmit, control, formState: { errors } } = useForm<IssueForm>({
     resolver: zodResolver(createIssueSchema)
   });
@@ -60,13 +66,18 @@ const IssueFormPage = () => {
 
   return (
     <>
-      <IssuesNavBar />
-	 <form onSubmit={onSubmit} className="z-10 min-h-screen py-8 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
-  <div className='z-10 bg-white shadow-xl border-t-4 border-b-4 border-gray-900 rounded-xl mx-auto px-4 pt-6 pb-8 sm:max-w-xl md:max-w-2xl lg:max-w-3xl xl:max-w-4xl'>
+      <IssuesNavBar session={session}  />
+	 <form onSubmit={onSubmit} className="z-10 flex flex-col w-full pr-5 pl-5 md:pr-10 md:pl-10 lg:pr-20 lg:pl-20 min-h-screen">
+  <div className='z-10 bg-white shadow-2xl rounded-lg  border-t-4 border-b-4 border-gray-900 p-10'>
     <div className='mb-4'>
       <Label className='text-xl font-medium tracking-tighter sm:text-lg' htmlFor="title">Title</Label>
       <TextField.Input {...register('title')} placeholder="Issues Title" className="w-full" />
-      {errors.title && <p className='text-red-500 text-center mt-2'>{errors.title.message}</p>}
+	 
+
+
+	 {errors.title && <p className='text-red-500 text-center mt-2'>{errors.title.message}</p>}
+
+	
     </div>
     <div className='mb-4'>
       <Label className='text-xl font-medium tracking-tighter sm:text-lg' htmlFor="description">Description</Label>
