@@ -16,11 +16,13 @@ model Issue {
   title            String   @db.VarChar(255)
   description      String   @db.Text
   status           Status   @default(OPEN)
-    priority    Priority @default(MEDIUM)
+  priority    Priority @default(MEDIUM)
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
+  userId           String   @db.VarChar(255)
+  user             User     @relation(fields: [userId], references: [id], name: "creator")
   assignedToUserId String?  @db.VarChar(255)
-  assignedToUser   User?    @relation(fields: [assignedToUserId], references: [id])
+  assignedToUser   User?    @relation(fields: [assignedToUserId], references: [id], name: "assignee")
 }
 
 enum Status {
@@ -69,7 +71,8 @@ model User {
   image          String?
   accounts       Account[]
   sessions       Session[]
-  assignedIssues Issue[]
+  createdIssues  Issue[]   @relation("creator") // Add this line for issues created by the user
+  assignedIssues Issue[]   @relation("assignee") // Adjust this line to represent issues assigned to the user
 }
 
 model VerificationToken {
