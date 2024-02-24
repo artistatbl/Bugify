@@ -7,6 +7,7 @@ CREATE TABLE `Issue` (
     `priority` ENUM('LOW', 'MEDIUM', 'HIGH') NOT NULL DEFAULT 'MEDIUM',
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` DATETIME(3) NOT NULL,
+    `userId` VARCHAR(255) NOT NULL,
     `assignedToUserId` VARCHAR(255) NULL,
 
     PRIMARY KEY (`id`)

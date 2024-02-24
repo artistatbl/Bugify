@@ -1,3 +1,4 @@
+
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
 import cx from "classnames";
@@ -8,6 +9,7 @@ import { Suspense } from "react";
 import { Theme, ThemePanel } from "@radix-ui/themes";
 import '@radix-ui/themes/styles.css';
 import { ThemeProvider } from "next-themes";
+import { SessionProvider } from "next-auth/react";
 
 
 
@@ -24,35 +26,40 @@ export const metadata = {
 export default async function RootLayout({
   children,
 }: {
-   children: React.ReactNode;
+  children: React.ReactNode;
 }) {
   return (
-    <html  lang="en">
-    <body className={cx(sfPro.variable, inter.variable)}>
-      <div className="fixed h-screen w-full  " />
-      {/* <Suspense fallback="...">
+
+    <html lang="en">
+
+
+      <body className={cx(sfPro.variable, inter.variable)}>
+        <div className="fixed h-screen w-full  " />
+        {/* <Suspense fallback="...">
        <IssuesNavBar />
       </Suspense> */}
 
- 
-      <Theme appearance="light" accentColor="sky" grayColor="olive" radius="medium" scaling="110%">
-      <main className="flex min-h-screen w-full flex-col items-center justify-center py-32">
-        {children}
-      </main>
-      {/* <ThemePanel /> */}
-      </Theme>
 
-     
-      
-      <Footer />
-      
-      <Analytics />
-    </body>
-  </html>
-    
- 
-       
-     
+
+        <Theme appearance="light" accentColor="sky" grayColor="olive" radius="medium" scaling="110%">
+          <main className="flex min-h-screen w-full flex-col items-center justify-center py-32">
+            {children}
+          </main>
+          {/* <ThemePanel /> */}
+        </Theme>
+
+
+
+        <Footer />
+
+        <Analytics />
+      </body>
+    </html>
+
+
+
+
+
   );
 }
 
