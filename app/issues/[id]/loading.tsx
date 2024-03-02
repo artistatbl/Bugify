@@ -1,7 +1,6 @@
 
 
 import { Card, Flex, Heading, Text, TextField, TextFieldRoot } from '@radix-ui/themes';
-import IssuesNavBar from '@/components/layout/issuesbar';
 import { Label } from '@/components/components/ui/label';
 import { Input } from '@/components/components/ui/input';
 import { Button } from '@/components/components/ui/button';
@@ -16,7 +15,7 @@ const LoadingIssuesDetailPage =  () => {
 
   return (
     <>
-      <IssuesNavBar />
+ 
 
 
       <div className="z-10 mx-auto max-w-6xl px-10 sm:px-8  md:px-10 lg:px-14 xl space-y-10 ">

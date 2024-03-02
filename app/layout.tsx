@@ -1,5 +1,5 @@
 
-import "./globals.css";
+import "@/app/globals.css";
 import { Analytics } from "@vercel/analytics/react";
 import cx from "classnames";
 import { sfPro, inter } from "./fonts";
@@ -8,8 +8,11 @@ import Footer from "@/components/layout/footer";
 import { Suspense } from "react";
 import { Theme, ThemePanel } from "@radix-ui/themes";
 import '@radix-ui/themes/styles.css';
-import { ThemeProvider } from "next-themes";
 import { SessionProvider } from "next-auth/react";
+import { ThemeProvider } from "@/components/components/ui/theme-provider";
+
+import { Toaster } from "@/components/components/ui/toaster";
+import { ModeToggle } from "@/components/components/ui/darkmode";
 
 
 
@@ -24,37 +27,57 @@ export const metadata = {
 };
 
 export default async function RootLayout({
-  children,
+  children, 
 }: {
   children: React.ReactNode;
+  
 }) {
   return (
 
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning >
+
+  
 
 
       <body className={cx(sfPro.variable, inter.variable)}>
+        <ThemeProvider
+         attribute="class"
+         defaultTheme="light"
+         enableSystem
+         disableTransitionOnChange
+        >
+          
+
         <div className="fixed h-screen w-full  " />
-        {/* <Suspense fallback="...">
-       <IssuesNavBar />
-      </Suspense> */}
+      
+
+        <Theme  accentColor="sky" grayColor="olive" radius="medium" scaling="110%">
+       
 
 
 
-        <Theme appearance="light" accentColor="sky" grayColor="olive" radius="medium" scaling="110%">
           <main className="flex min-h-screen w-full flex-col items-center justify-center py-32">
+            
+
             {children}
           </main>
-          {/* <ThemePanel /> */}
+          
+        
+
+          <Toaster />
         </Theme>
+          
+    
 
 
 
         <Footer />
 
         <Analytics />
+        </ThemeProvider >
       </body>
     </html>
+   
 
 
 

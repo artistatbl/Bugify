@@ -10,6 +10,7 @@ import {
 } from "react";
 import { LoadingDots } from "@/components/shared/icons";
 import Image from "next/image";
+import { useToast } from "@/lib/hooks/use-toast";
 
 
 const SignInModal = ({
@@ -20,6 +21,16 @@ const SignInModal = ({
   setShowSignInModal: Dispatch<SetStateAction<boolean>>;
 }) => {
   const [signInClicked, setSignInClicked] = useState(false);
+  const {toast } = useToast()
+
+  const handleSignInClick = async () => {
+    setSignInClicked(true);
+    // Use the signIn function with a callbackUrl to redirect after sign in
+    
+    await signIn("google", { callbackUrl: "/issuespage" });
+   
+    // No need to manually set signInClicked to false here since the page will redirect
+  };
 
   return (
     <Modal showModal={showSignInModal} setShowModal={setShowSignInModal}>
@@ -49,10 +60,7 @@ const SignInModal = ({
                 ? "cursor-not-allowed border-gray-200 bg-gray-100"
                 : "border border-gray-200 bg-white text-black hover:bg-gray-50"
             } flex h-10 w-full items-center justify-center space-x-3 rounded-md border text-sm shadow-sm transition-all duration-75 focus:outline-none`}
-            onClick={() => {
-              setSignInClicked(true);
-              signIn("google");
-            }}
+            onClick={handleSignInClick}
           >
             {signInClicked ? (
               <LoadingDots color="#808080" />
@@ -83,6 +91,6 @@ export function useSignInModal() {
 
   return useMemo(
     () => ({ setShowSignInModal, SignInModal: SignInModalCallback }),
-    [setShowSignInModal, SignInModalCallback],
+    [setShowSignInModal, SignInModalCallback]
   );
 }
