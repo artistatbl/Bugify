@@ -8,33 +8,89 @@ generator client {
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
-  relationMode = "prisma"
 }
 
-model Issue {
-  id               Int      @id @default(autoincrement())
-  title            String   @db.VarChar(255)
-  description      String   @db.Text
-  status           Status   @default(OPEN)
-  priority    Priority @default(MEDIUM)
-  createdAt        DateTime @default(now())
-  updatedAt        DateTime @updatedAt
-  userId           String   @db.VarChar(255)
-  user             User     @relation(fields: [userId], references: [id], name: "creator")
-  assignedToUserId String?  @db.VarChar(255)
-  assignedToUser   User?    @relation(fields: [assignedToUserId], references: [id], name: "assignee")
+// Enum for user roles
+enum Role {
+  ADMIN
+  USER
 }
 
+// Enum for issue statuses
 enum Status {
   OPEN
   IN_PROGRESS
   CLOSED
 }
+
+// Enum for issue priorities
 enum Priority {
   LOW
   MEDIUM
   HIGH
 }
+
+model Organization {
+  id          Int      @id @default(autoincrement())
+  name        String
+  users       User[]   @relation("UserOrganization")
+  issues      Issue[]
+  invitations Invitation[] // Add this line to represent the relation back to Invitation
+
+}
+
+model User {
+  id              String    @id @default(cuid())
+  name            String?
+  email           String    @unique
+  emailVerified   DateTime?
+  image           String?
+  role            Role      @default(USER)
+  organizationId  Int?      @db.Int
+  organization    Organization? @relation(fields: [organizationId], references: [id], name: "UserOrganization")
+  createdIssues   Issue[]   @relation("IssueCreator")
+  assignedIssues  Issue[]   @relation("IssueAssignee")
+  comments        Comment[]
+  accounts        Account[] // Add this line to represent the relation back to Account
+  sessions        Session[] // Add this line to represent the relation back to Session
+}
+
+model Issue {
+  id               Int         @id @default(autoincrement())
+  title            String      @db.VarChar(255)
+  description      String      @db.Text
+  status           Status      @default(OPEN)
+  priority         Priority    @default(MEDIUM)
+  createdAt        DateTime    @default(now())
+  updatedAt        DateTime    @updatedAt
+  organizationId   Int
+  organization     Organization @relation(fields: [organizationId], references: [id])
+  userId           String
+  user             User        @relation(fields: [userId], references: [id], name: "IssueCreator")
+  assignedToUserId String?     @db.VarChar(255)
+  assignedToUser   User?       @relation(fields: [assignedToUserId], references: [id], name: "IssueAssignee")
+  comments         Comment[]
+}
+
+model Comment {
+  id        Int      @id @default(autoincrement())
+  content   String
+  issueId   Int
+  issue     Issue    @relation(fields: [issueId], references: [id])
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+}
+
+model Invitation {
+  id              Int           @id @default(autoincrement())
+  email           String
+  organizationId  Int
+  organization    Organization  @relation(fields: [organizationId], references: [id])
+  code            String        @unique
+  accepted        Boolean       @default(false)
+  createdAt       DateTime      @default(now())
+}
+
 
 model Account {
   id                String  @id @default(cuid())
@@ -61,18 +117,6 @@ model Session {
   userId       String
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-}
-
-model User {
-  id             String    @id @default(cuid())
-  name           String?
-  email          String?   @unique
-  emailVerified  DateTime?
-  image          String?
-  accounts       Account[]
-  sessions       Session[]
-  createdIssues  Issue[]   @relation("creator") // Add this line for issues created by the user
-  assignedIssues Issue[]   @relation("assignee") // Adjust this line to represent issues assigned to the user
 }
 
 model VerificationToken {

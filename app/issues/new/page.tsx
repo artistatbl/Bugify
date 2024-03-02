@@ -1,4 +1,4 @@
-'use client';
+'use client'
 
 // IssueFormPage.jsx or IssueFormPage.tsx
 import React, { useState } from 'react';
@@ -14,7 +14,6 @@ import { useRouter } from 'next/navigation';
 import SimpleMDE from "react-simplemde-editor";
 import Select from '@/components/issues/Select';
 import { z } from 'zod';
-import IssuesNavBar from '@/components/layout/issuesbar';
 import { Label } from '@/components/components/ui/label';
 import Link from 'next/link';
 import Spinner from '@/components/issues/Spinner';
@@ -42,10 +41,9 @@ const priorityOptions = [
 
 type IssueForm = z.infer<typeof createIssueSchema>;
 
-const IssueFormPage =  async () => {
-const session = await getServerSession(authOptions);
-
-  const router = useRouter();
+const IssueFormPage =   () => {
+  // const { data: session } = useSession();
+  const router = useRouter(); 
   
   const { register, handleSubmit, control, formState: { errors } } = useForm<IssueForm>({
     resolver: zodResolver(createIssueSchema)
@@ -66,7 +64,7 @@ const session = await getServerSession(authOptions);
 
   return (
     <>
-      <IssuesNavBar session={session}  />
+     
 	 <form onSubmit={onSubmit} className="z-10 flex flex-col w-full pr-5 pl-5 md:pr-10 md:pl-10 lg:pr-20 lg:pl-20 min-h-screen">
   <div className='z-10 bg-white shadow-2xl rounded-lg  border-t-4 border-b-4 border-gray-900 p-10'>
     <div className='mb-4'>

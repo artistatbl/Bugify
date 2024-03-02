@@ -5,13 +5,13 @@ import delay from 'delay';
 import {  Text } from '@radix-ui/themes';
 import IssueStatusBadge from '@/components/issues/IssuesStatusBadge';
 import ReactMarkdown from 'react-markdown';
-import IssuesNavBar from '@/components/layout/issuesbar';
 import { Label } from '@/components/components/ui/label';
 import {formatDistanceToNow} from 'date-fns'
 import { Button } from '@/components/components/ui/button';
 import IssuePriorityBadge from '@/components/issues/IssuesPriorityBadge';
 import { getServerSession } from 'next-auth';
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import SideNav from '@/components/layout/side-nav';
 
 
 
@@ -26,7 +26,7 @@ interface Props {
 
 const IssueDetailPage = async ({ params }: Props) => {
  
- const session = await getServerSession(authOptions);
+//  const session = await getServerSession(authOptions);
   const issue = await prisma.issue.findUnique({
     where: { id: parseInt(params.id) as  number},
   });
@@ -36,7 +36,7 @@ const IssueDetailPage = async ({ params }: Props) => {
 
   return (
     <>
-     <IssuesNavBar session={session}  />
+     {/* <SideNav session={session}  /> */}
 
 
       <div className="z-10 mx-auto max-w-6xl px-10 sm:px-8  md:px-10 lg:px-14 xl space-y-10 ">

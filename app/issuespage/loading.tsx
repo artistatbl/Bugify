@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { Button } from '@radix-ui/themes';
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
-import IssuesNavBar from '@/components/layout/issuesbar';
+import Header from '@/components/layout/issues-header';
 
 
 
@@ -17,7 +17,7 @@ const LoadingIssuesPage = () => {
 	<>
 	
 <Suspense fallback="...">
-<IssuesNavBar {...{ session: null }} />
+<Header {...{ session: null }} />
 </Suspense>
 
 
@@ -79,5 +79,4 @@ const LoadingIssuesPage = () => {
 }
 
 export default LoadingIssuesPage
-
 

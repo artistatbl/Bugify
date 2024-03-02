@@ -1,5 +1,5 @@
 import Card from "@/components/home/card";
-import { DEPLOY_URL } from "@/lib/constants";
+// import { DEPLOY_URL } from "@/lib/constants";
 import WebVitals from "@/components/home/web-vitals";
 import ComponentGrid from "@/components/home/component-grid";
 import Image from "next/image";
@@ -36,13 +36,14 @@ export default async function Home() {
                11.1805C1.50785 11.04 1.42901 10.7334 1.56949 10.4956Z" fill="currentColor" fillRule="evenodd" clipRule="evenodd"></path></svg>
         </a>
         <h1
-          className="animate-fade-up bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center font-display text-5xl font-bold tracking-[-0.02em] text-transparent opacity-0 drop-shadow-sm [text-wrap:balance] md:text-7xl md:leading-[5rem]"
-          style={{ animationDelay: "0.15s", animationFillMode: "forwards" }}
-        >
-          Track and fix bugs faster.
-        </h1>
+  className="animate-fade-up bg-gradient-to-br-light dark:bg-gradient-to-br-dark  bg-clip-text text-center font-display text-5xl font-bold tracking-[-0.02em] text-transparent opacity-0 drop-shadow-sm [text-wrap:balance] theme-gradient md:text-7xl md:leading-[5rem] md:tracking-[-0.04em]"
+  style={{ animationDelay: "0.15s", animationFillMode: "forwards" }}
+>
+  Track and fix bugs faster.
+</h1>
+
         <p
-          className="mt-6 animate-fade-up text-center text-gray-500 opacity-0 [text-wrap:balance] md:text-xl"
+          className="mt-6 animate-fade-up text-center text-gray-500 opacity-0 [text-wrap:balance] md:text-xl dark:text-gray-400 "
           style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
         >
           Bugify is the best way to track,log and manage your software development bugs. Let your team focus on shipping features insteadof managing insfrastructure with automated CI/CD.
@@ -53,7 +54,7 @@ export default async function Home() {
         >
           <a
             className="group flex max-w-fit items-center justify-center space-x-2 rounded-full border border-black bg-black px-5 py-2 text-sm text-white transition-colors hover:bg-white hover:text-black"
-            href={DEPLOY_URL}
+            // href={DEPLOY_URL}
             rel="noopener noreferrer"
           >
 
@@ -63,21 +64,10 @@ export default async function Home() {
 
             <p>View Dashboard</p>
           </a>
-          {/* <a
-            className="flex max-w-fit items-center justify-center space-x-2 rounded-full border border-gray-300 bg-white px-5 py-2 text-sm text-gray-600 shadow-md transition-colors hover:border-gray-800"
-            href="https://github.com/steven-tey/precedent"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Github />
-            <p>
-              <span className="hidden sm:inline-block">Star on</span> GitHub{" "}
-              <span className="font-semibold">{nFormatter(stars)}</span>
-            </p>
-          </a> */}
+          
         </div>
       </div>
-      <div className="my-10 grid w-full max-w-screen-xl animate-fade-up grid-cols-1 gap-5 px-5 md:grid-cols-3 xl:px-0">
+      <div className="my-10 grid w-full max-w-screen-xl animate-fade-up grid-cols-1 gap-5 px-5 md:grid-cols-3 xl:px-0 2xl:gap-10 ">
         {features.map(({ title, description, demo, }) => (
           <Card
             key={title}
@@ -110,7 +100,7 @@ const features = [
     description:
       "Visualize bug trends and statuses with our built-in Dashboard integration.",
     demo: (
-      <a href={DEPLOY_URL} className=" p-3 rounded-lg border bg-blue-400 border-black shadow-xl text-black "
+      <a href="/dashboard" className=" p-3 rounded-lg border bg-blue-400 border-black shadow-xl text-black dark:text-white"
         style={{ animationDelay: "0.1s", animationFillMode: "forwards" }}
 
       >

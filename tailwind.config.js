@@ -2,16 +2,24 @@
 const plugin = require("tailwindcss/plugin");
 
 module.exports = {
+  darkMode: ["class"],
   content: ["./app/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
   future: {
     hoverOnlyWhenSupported: true,
   },
+ 
+
   theme: {
     extend: {
       fontFamily: {
         display: ["var(--font-sf)", "system-ui", "sans-serif"],
         default: ["var(--font-inter)", "system-ui", "sans-serif"],
       },
+      backgroundImage: {
+        'gradient-to-br-light': 'linear-gradient(to bottom right, black, #1c1917)', // Light theme gradient
+        'gradient-to-br-dark': 'linear-gradient(to bottom right, white, #f5f5f4)', // Dark theme gradient
+      },
+  
       animation: {
         // Fade up and down
         "fade-up": "fade-up 0.5s",

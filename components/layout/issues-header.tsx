@@ -8,7 +8,7 @@ import { useSignInModal } from "./sign-in-modal";
 import { Session } from "next-auth";
 import { Button } from "@radix-ui/themes";
 
-export default function IssuesNavBar({ session }: { session: Session | null }) {
+export default function Header({ session }: { session: Session | null }) {
   const { SignInModal, setShowSignInModal } = useSignInModal();
   const isScrolled = useScroll(50);
 
