@@ -1,7 +1,6 @@
 import Card from "@/components/home/card";
 // import { DEPLOY_URL } from "@/lib/constants";
 import WebVitals from "@/components/home/web-vitals";
-import ComponentGrid from "@/components/home/component-grid";
 import Image from "next/image";
 import { nFormatter } from "@/lib/utils";
 import Nav from "@/components/layout/nav";
@@ -75,7 +74,7 @@ export default async function Home() {
             description={description}
             demo={
               title === "Beautiful, reusable components" ? (
-                <ComponentGrid />
+                <WebVitals />
               ) : (
                 demo
               )
