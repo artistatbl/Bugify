@@ -1,7 +1,7 @@
 import React from 'react'
 import NavBar from '@/components/layout/navbar'
 import { getServerSession } from 'next-auth'
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import  authOptions  from "@/app/auth/authOptions";
 import Header from '@/components/layout/issues-header';
 import { formatDistance } from 'date-fns';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/components/ui/card';

@@ -8,8 +8,8 @@ import prisma from 'prisma/client';
 import IssueStatusBadge from '@/components/issues/IssuesStatusBadge';
 import IssuePriorityBadge from '@/components/issues/IssuesPriorityBadge';
 import { getServerSession } from 'next-auth';
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import Header from '@/components/layout/issues-header';
+import  authOptions  from "@/app/auth/authOptions";
 
 
 

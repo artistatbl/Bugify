@@ -8,7 +8,7 @@ import { Button, Callout, TextField } from '@radix-ui/themes';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
 import { getServerSession } from 'next-auth';
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import  authOptions  from "@/app/auth/authOptions";
 
 import { useRouter } from 'next/navigation';
 import SimpleMDE from "react-simplemde-editor";
