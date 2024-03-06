@@ -9,8 +9,7 @@ import { Label } from '@/components/components/ui/label';
 import {formatDistanceToNow} from 'date-fns'
 import { Button } from '@/components/components/ui/button';
 import IssuePriorityBadge from '@/components/issues/IssuesPriorityBadge';
-import { getServerSession } from 'next-auth';
-import  authOptions  from "@/app/auth/authOptions";
+
 
 
 

@@ -7,8 +7,6 @@ import { useSession } from 'next-auth/react';
 import { Button, Callout, TextField } from '@radix-ui/themes';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
-import { getServerSession } from 'next-auth';
-import  authOptions  from "@/app/auth/authOptions";
 
 import { useRouter } from 'next/navigation';
 import SimpleMDE from "react-simplemde-editor";
@@ -20,9 +18,10 @@ import Spinner from '@/components/issues/Spinner';
 import { Textarea } from '@/components/components/ui/textarea';
 import "easymde/dist/easymde.min.css";
 import { createIssueSchema } from '@/app/validationSchemas'; // Adjust the import path as necessary
-import { InfoCircledIcon } from '@radix-ui/react-icons';
 import Header from '@/components/layout/issues-header';
+import dynamic from 'next/dynamic';
 
+const SimpleMDE = dynamic(() => import("react-simplemde-editor"), { ssr: false });
 
 
 
