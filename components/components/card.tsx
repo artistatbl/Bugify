@@ -3,6 +3,7 @@
  * @see https://v0.dev/t/8sN6GDU4PqY
  */
 import { CardTitle, CardHeader, CardContent, Card } from "@/components/components/ui/card"
+import { JSX, SVGProps } from "react"
 
 export function card() {
   return (
@@ -60,7 +61,7 @@ export function card() {
 }
 
 
-function DollarSignIcon(props) {
+function DollarSignIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -81,7 +82,7 @@ function DollarSignIcon(props) {
 }
 
 
-function UsersIcon(props) {
+function UsersIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -104,7 +105,7 @@ function UsersIcon(props) {
 }
 
 
-function CreditCardIcon(props) {
+function CreditCardIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -125,7 +126,7 @@ function CreditCardIcon(props) {
 }
 
 
-function ActivityIcon(props) {
+function ActivityIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
