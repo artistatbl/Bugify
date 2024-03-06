@@ -3,19 +3,20 @@ import Image from "next/image";
 import Link from "next/link";
 import useScroll from "@/lib/hooks/use-scroll";
 import UserDropdown from "./user-dropdown";
-import { useSignInModal } from "./sign-in-modal";
+
 
 import { Session } from "next-auth";
 import { Button } from "@radix-ui/themes";
+import { ModeToggle } from "../components/ui/darkmode";
 
 export default function Header({ session }: { session: Session | null }) {
-  const { SignInModal, setShowSignInModal } = useSignInModal();
+
   const isScrolled = useScroll(50);
 
   return (
     <>
       <div
-        className={`fixed top-0 w-full flex justify-center ${isScrolled ? "border-b border-gray-200 bg-white/50 backdrop-blur-2xl" : "bg-white/0"} z-30 transition-all`}>
+        className={`fixed rounded-full pr-10 pl-10 top-0 w-full h-16 flex justify-center ${isScrolled ? "border-b border-black dark:border-white pl-10 rounded-full  backdrop-blur-2xl" : "bg-white  dark:bg-black  dark:text-white border-b border-black dark:border-white" } z-30 transition-all`}>
         <div className="flex w-full h-16 max-w-screen-xl justify-between items-center px-5 ">
           {/* Left part of the Navbar: Logo and Links */}
           <div className="flex items-center space-x-5">
@@ -31,23 +32,27 @@ export default function Header({ session }: { session: Session | null }) {
               </a>
             </Link>
             <Link legacyBehavior href="/dashboard" passHref>
-              <a className="text-lg font-medium">
+              <a className="text-lg font-medium dark:text-white">
                 <p>Dashboard</p>
               </a>
             </Link>
             <Link legacyBehavior href="/issuespage" passHref>
-              <a className="text-lg font-medium">
+              <a className="text-lg font-medium dark:text-white">
                 <p>Issues</p>
               </a>
             </Link>
           </div>
           
           {/* Right part of the Navbar: Session/User Dropdown */}
-          <div>
+          <div className=" flex items-center space-x-4 ">
             {session && (
               <UserDropdown session={session} />
             )}
+		  
+		 <ModeToggle />
+
           </div>
+		
         </div>
       </div>
     </>

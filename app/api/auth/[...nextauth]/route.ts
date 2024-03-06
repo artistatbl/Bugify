@@ -13,18 +13,32 @@ export const authOptions: NextAuthOptions = {
   ],
   
 callbacks: {
+  async signIn({ user, account, profile, email, credentials }) {
+   const now = new Date();
+   await prisma.user.update({
+     where: {
+       id: user.id,
+     },
+     data: {
+       lastLogin: now,
+     },
+   })
+    return true;
+  },
   async session({ session, user }) {
-    //console.log("Session:", session);
-    console.log("User:", user);
-    // Add user ID to the session
+    // Attach additional user information (e.g., lastLogin) to the session object
     if (user?.id) {
       session.user.id = user.id;
+      //session.user.role = user.role;
+      // Fetch the updated lastLogin from the database
+      const updatedUser = await prisma.user.findUnique({
+        where: { id: user.id },
+      });
+      session.user.lastLogin = updatedUser?.lastLogin;
     }
-    console.log("Session:", user.id);
     return session;
-  },
 }
- 
+}
 
 };
 

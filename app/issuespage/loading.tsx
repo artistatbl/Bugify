@@ -1,7 +1,8 @@
 import { Table } from '@radix-ui/themes'
 import React, { Suspense } from 'react'
 import Link from 'next/link';
-
+import { getServerSession } from 'next-auth';
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { Button } from '@radix-ui/themes';
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
@@ -10,14 +11,16 @@ import Header from '@/components/layout/issues-header';
 
 
 
-const LoadingIssuesPage = () => {
+const LoadingIssuesPage = async () => {
+
+  const session = await getServerSession(authOptions);
 
 	const issues = [1,2,3,4,5,6,7,8,9,10];
   return (
 	<>
 	
 <Suspense fallback="...">
-<Header {...{ session: null }} />
+<Header {...{ session: session }} />
 </Suspense>
 
 

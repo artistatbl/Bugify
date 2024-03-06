@@ -21,6 +21,7 @@ import { Textarea } from '@/components/components/ui/textarea';
 import "easymde/dist/easymde.min.css";
 import { createIssueSchema } from '@/app/validationSchemas'; // Adjust the import path as necessary
 import { InfoCircledIcon } from '@radix-ui/react-icons';
+import Header from '@/components/layout/issues-header';
 
 
 
@@ -64,6 +65,7 @@ const IssueFormPage =   () => {
 
   return (
     <>
+    <Header session={null} />
      
 	 <form onSubmit={onSubmit} className="z-10 flex flex-col w-full pr-5 pl-5 md:pr-10 md:pl-10 lg:pr-20 lg:pl-20 min-h-screen">
   <div className='z-10 bg-white shadow-2xl rounded-lg  border-t-4 border-b-4 border-gray-900 p-10'>
