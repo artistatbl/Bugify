@@ -70,6 +70,7 @@
     "@types/ms": "^0.7.32",
     "autoprefixer": "^10.4.16",
     "concurrently": "^7.6.0",
+    "eslint-config-prettier": "^9.1.0",
     "postcss": "^8.4.31",
     "prettier": "^2.8.8",
     "prettier-plugin-tailwindcss": "^0.2.8",
