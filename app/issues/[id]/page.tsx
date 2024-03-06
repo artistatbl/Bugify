@@ -11,7 +11,6 @@ import { Button } from '@/components/components/ui/button';
 import IssuePriorityBadge from '@/components/issues/IssuesPriorityBadge';
 import { getServerSession } from 'next-auth';
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import SideNav from '@/components/layout/side-nav';
 
 
 

@@ -6,6 +6,7 @@ import { nFormatter } from "@/lib/utils";
 import Nav from "@/components/layout/nav";
 import { Suspense } from "react";
 import { Button } from "@radix-ui/themes";
+import { DEPLOY_URL } from "@/lib/constants";
 
 
 export default async function Home() {
@@ -52,8 +53,8 @@ export default async function Home() {
           style={{ animationDelay: "0.3s", animationFillMode: "forwards" }}
         >
           <a
-            className="group flex max-w-fit items-center justify-center space-x-2 rounded-full border border-black bg-black px-5 py-2 text-sm text-white transition-colors hover:bg-white hover:text-black"
-            // href={DEPLOY_URL}
+            className="group cursor-pointer flex max-w-fit items-center justify-center space-x-2 rounded-full border border-black bg-black px-5 py-2 text-sm text-white transition-colors hover:bg-white hover:text-black"
+            href={DEPLOY_URL}
             rel="noopener noreferrer"
           >
 

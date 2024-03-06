@@ -23,11 +23,20 @@ const SignInModal = ({
   const [signInClicked, setSignInClicked] = useState(false);
   const {toast } = useToast()
 
+
+  
   const handleSignInClick = async () => {
     setSignInClicked(true);
-    // Use the signIn function with a callbackUrl to redirect after sign in
-    
+
+       
     await signIn("google", { callbackUrl: "/issuespage" });
+
+    // toast({
+    //   title: 'Logged in',
+    //   description: 'You have successfully logged in.',
+    //   duration: 2000,
+    //  }) 
+  
    
     // No need to manually set signInClicked to false here since the page will redirect
   };
