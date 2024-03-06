@@ -9,7 +9,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
 
 import { useRouter } from 'next/navigation';
-import SimpleMDE from "react-simplemde-editor";
 import Select from '@/components/issues/Select';
 import { z } from 'zod';
 import { Label } from '@/components/components/ui/label';
