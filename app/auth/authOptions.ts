@@ -26,10 +26,9 @@ const authOptions: NextAuthOptions = {
 	    if (dbUser) {
 		 // Add custom claims to JWT. These will be persisted across sessions
 		 token.id = dbUser.id;
-		//  token.email = dbUser.email;
 		 token.role = dbUser.role;
 		 token.lastLogin = new Date; // Store as string
-		//  token.name = dbUser.name;
+		
 	    }
 	  }
 	  return token;
@@ -40,7 +39,9 @@ const authOptions: NextAuthOptions = {
 	  session.user.email = token.email ?? session.user.email; 
 	  session.user.role = token.role ?? session.user.role; // Fallback to existing email if not in token
 	  session.user.lastLogin = token.lastLogin ? new Date(token.lastLogin) : new Date(); 
-	  session.user.name = token.name ?? session.user.name; // Convert back to Date object or use current date
+	  session.user.name = token.name ?? session.user.name; 
+	  session.user.image = token.image ?? session.user.image; 
+	  // Convert back to Date object or use current date
 	  return session;
 	},
    },
