@@ -15,58 +15,34 @@ const authOptions: NextAuthOptions = {
     strategy: 'jwt',
   },
   callbacks: {
-	// Handle sign-in events
-	// Refactored signIn function to handle sign-in events and update lastLogin field
-
-async signIn({ user, account, profile, email, credentials }) {
-	try {
-	  // First, check if the user exists in the database
-	  const existingUser = await prisma.user.findUnique({
-	    where: {
-		 id: user.id,
-	    },
-	  });
-   
-	  // If the user exists, proceed to update the lastLogin field
-	  if (existingUser) {
-	    await prisma.user.update({
+	async jwt({ token, user }) {
+	  // If user is defined, this is a sign-in
+	  if (user) {
+	    const dbUser = await prisma.user.findUnique({
 		 where: {
-		   id: user.id,
-		 },
-		 data: {
-		   lastLogin: new Date(),
+		   email: user.email,
 		 },
 	    });
-	  } else {
-	    // Optionally, handle the case where the user does not exist if needed
-	    console.log(`User with ID ${user.id} not found.`);
+	    if (dbUser) {
+		 // Add custom claims to JWT. These will be persisted across sessions
+		 token.id = dbUser.id;
+		//  token.email = dbUser.email;
+		 token.role = dbUser.role;
+		 token.lastLogin = new Date; // Store as string
+		//  token.name = dbUser.name;
+	    }
 	  }
-	  return true;
-	} catch (error) {
-	  console.error('Error in signIn callback:', error);
-	  return false; // Return false to indicate a failed sign-in attempt
-	}
-   },	   
-	async session({ session, user }) {
-		try {
-		  // Attach additional user information (e.g., lastLogin) to the session object
-		  if (user?.id) {
-		    session.user.id = user.id;
-		    // Fetch the updated lastLogin from the database
-		    const updatedUser = await prisma.user.findUnique({
-			 where: { id: user.id },
-		    });
-		    if (updatedUser) {
-			 session.user.lastLogin = updatedUser.lastLogin;
-		    }
-		  }
-		  return session;
-		} catch (error) {
-		  console.error('Session error:', error);
-		  return session; // Return the session object even in case of an error
-		}
-	   },
-	 },
-    };
-
-export default authOptions;
+	  return token;
+	},
+	async session({ session, token }) {
+	  // Assign the custom claims from JWT to the session object
+	  session.user.id = token.id as string; // Ensure the type matches
+	  session.user.email = token.email ?? session.user.email; 
+	  session.user.role = token.role ?? session.user.role; // Fallback to existing email if not in token
+	  session.user.lastLogin = token.lastLogin ? new Date(token.lastLogin) : new Date(); 
+	  session.user.name = token.name ?? session.user.name; // Convert back to Date object or use current date
+	  return session;
+	},
+   },
+ };
+ export default authOptions

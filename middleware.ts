@@ -1,18 +1,18 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import { useToast } from './lib/hooks/use-toast';
 
-// List of protected routes
 export function middleware(request: NextRequest) {
-  const isProtectedRoute = ['/', '/'].includes(request.nextUrl.pathname);
+  // Define the list of protected routes
+  const protectedRoutes = ['/dashboard', '/issuespage'];
+  const isProtectedRoute = protectedRoutes.includes(request.nextUrl.pathname) || /\/issues\/\d+/.test(request.nextUrl.pathname);
 
   if (isProtectedRoute) {
-      const session = request.cookies.get('next-auth.session-token');
-      if (!session) {
-          const loginUrl = new URL('/login', request.url);
-          loginUrl.searchParams.append('redirected', 'true'); // Append query parameter
-          return NextResponse.redirect(loginUrl);
-      }
+    const session = request.cookies.get('next-auth.session-token');
+    if (!session) {
+      const loginUrl = new URL('/login', request.nextUrl.origin);
+      loginUrl.searchParams.append('redirected', 'true'); // Append query parameter
+      return NextResponse.redirect(loginUrl);
+    }
   }
 
   return NextResponse.next();

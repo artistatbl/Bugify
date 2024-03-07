@@ -13,6 +13,10 @@ import { Button } from '@radix-ui/themes';
 const page =  async ( ) =>{
 	const session = await getServerSession(authOptions);
   
+  if (session?.user?.role !== 'ADMIN') {
+    throw new Error('you are not authorized to view this page');
+  }
+
 
 
   return (
@@ -22,15 +26,18 @@ const page =  async ( ) =>{
   <main className="z-10 flex flex-col w-full pr-5 pl-5 md:pr-10 md:pl-10 lg:pr-20 lg:pl-20 min-h-screen ">
     <div>
       <div>
+        
         <h1 className="text-xl font-bold tracking-tighter sm:text-xl md:text-xl">Welcome Back, {session?.user?.name}! 
         </h1>
         <p className='text-gray-500 dark:text-gray-500 font-extralight'>
   What would you like to do today? Your last login was on {
     session?.user?.lastLogin ?
     formatDistanceToNow(new Date(session.user.lastLogin), { addSuffix: true }) :
-    'a while ago' // Fallback text in case lastLogin is undefined
+    '' // Fallback text in case lastLogin is undefined
   }.
 </p>
+
+<p> {session?.user?.role}</p>
 
 
 
