@@ -7,16 +7,17 @@ import { formatDistance, formatDistanceToNow } from 'date-fns';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/components/ui/card';
 import { ActivityIcon, BarChart, ChevronDownIcon, CreditCardIcon, DollarSignIcon, UsersIcon } from 'lucide-react';
 import { Button } from '@radix-ui/themes';
+import prisma from 'prisma/client';
 
 
 
 const page =  async ( ) =>{
 	const session = await getServerSession(authOptions);
-  
-  if (session?.user?.role !== 'ADMIN') {
-    throw new Error('you are not authorized to view this page');
-  }
-
+   
+  const user = await prisma.user.findUnique({
+    where: { email: session!.user!.email },
+  });
+ 
 
 
   return (
@@ -27,17 +28,18 @@ const page =  async ( ) =>{
     <div>
       <div>
         
-        <h1 className="text-xl font-bold tracking-tighter sm:text-xl md:text-xl">Welcome Back, {session?.user?.name}! 
+        <h1 className="text-xl font-bold tracking-tighter sm:text-xl md:text-xl">Welcome Back, {user?.name}! 
         </h1>
         <p className='text-gray-500 dark:text-gray-500 font-extralight'>
   What would you like to do today? Your last login was on {
     session?.user?.lastLogin ?
-    formatDistanceToNow(new Date(session.user.lastLogin), { addSuffix: true }) :
+    formatDistanceToNow(new Date(session?.user.lastLogin), { addSuffix: true }) :
     '' // Fallback text in case lastLogin is undefined
   }.
 </p>
+<p> </p>
 
-<p> {session?.user?.role}</p>
+
 
 
 

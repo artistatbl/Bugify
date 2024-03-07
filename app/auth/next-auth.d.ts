@@ -29,6 +29,6 @@ declare module 'next-auth' {
       name: string
       image: string
 
-    } 
+    } & DefaultSession['user'];
   }
 }
