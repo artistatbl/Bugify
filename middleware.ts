@@ -4,7 +4,7 @@ import { useToast } from './lib/hooks/use-toast';
 
 // List of protected routes
 export function middleware(request: NextRequest) {
-  const isProtectedRoute = ['/dashboard', '/issuespage'].includes(request.nextUrl.pathname);
+  const isProtectedRoute = ['/', '/'].includes(request.nextUrl.pathname);
 
   if (isProtectedRoute) {
       const session = request.cookies.get('next-auth.session-token');

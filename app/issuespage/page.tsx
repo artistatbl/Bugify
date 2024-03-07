@@ -38,7 +38,7 @@ const IssuesPage = async () => {
         <div className="z-10 flex flex-col w-full pr-5 pl-5 md:pr-10 md:pl-10 lg:pr-20 lg:pl-20 min-h-screen ">
           <div className="flex items-center gap-4 mb-4">
             <h1 className="text-3xl font-bold tracking-tighter">Bug Logs</h1>
-            <Button> <Link href='/issues/new'>New  Bug</Link></Button>
+            <Button> <Link href='/issues/new'>New here Bug</Link></Button>
           </div>
           <div className="">
             <Table.Root variant="surface">
