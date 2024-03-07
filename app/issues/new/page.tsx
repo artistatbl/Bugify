@@ -19,6 +19,8 @@ import "easymde/dist/easymde.min.css";
 import { createIssueSchema } from '@/app/validationSchemas'; // Adjust the import path as necessary
 import Header from '@/components/layout/issues-header';
 import dynamic from 'next/dynamic';
+import { getServerSession } from 'next-auth/next'
+import  authOptions  from "@/app/auth/authOptions";
 
 const SimpleMDE = dynamic(() => import("react-simplemde-editor"), { ssr: false });
 
@@ -38,11 +40,11 @@ const priorityOptions = [
 
 type IssueForm = z.infer<typeof createIssueSchema>;
 
-const IssueFormPage =   ({ session }: { session: Session | null }) => {
+const IssueFormPage =    () => {
 
 
 
-   //const session  = await getServerSession(authOptions);// Retrieve the session data
+  // const session  = await getServerSession(authOptions);// Retrieve the session data
   const router = useRouter();
   
   // Form setup with react-hook-form remains unchanged
@@ -60,12 +62,12 @@ const IssueFormPage =   ({ session }: { session: Session | null }) => {
       // Include organizationId in the submission data
       const submissionData = {
         ...data,
-        organizationId: session?.user?.organizationId, 
-        userId: session?.user?.id,
+       // organizationId: session?.user?.organizationId, 
+       // userId: session?.user?.id,
         
         // Add this line
       };
-      console.log(session?.user?.organizationId),
+      //console.log(session?.user?.organizationId),
 
       // Use axios to submit the form data, including the organizationId
       await axios.post('/api/issues/', submissionData);
@@ -81,7 +83,7 @@ const IssueFormPage =   ({ session }: { session: Session | null }) => {
 
   return (
     <>
-    <Header session={session} />
+    <Header session={null} />
      
 	 <form onSubmit={onSubmit} className="z-10 flex flex-col w-full pr-5 pl-5 md:pr-10 md:pl-10 lg:pr-20 lg:pl-20 min-h-screen">
   <div className='z-10 bg-white shadow-2xl rounded-lg  border-t-4 border-b-4 border-gray-900 p-10'>
