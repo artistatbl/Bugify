@@ -17,7 +17,7 @@ const authOptions: NextAuthOptions = {
   callbacks: {
 	async jwt({ token, user }) {
 	  // If user is defined, this is a sign-in
-	  if (user) {
+	  if (user?.email) {
 	    const dbUser = await prisma.user.findUnique({
 		 where: {
 		   email: user.email,
