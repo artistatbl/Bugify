@@ -16,36 +16,37 @@ const authOptions: NextAuthOptions = {
   },
   callbacks: {
 	// Handle sign-in events
-	async signIn({ user }) {
-		try {
-		  // First, check if the user exists in the database
-		  const existingUser = await prisma.user.findUnique({
-		    where: {
-			 id: user.id,
-		    },
-		  });
-	   
-		  // If the user exists, proceed to update the lastLogin field
-		  if (existingUser) {
-		    const now = new Date();
-		    await prisma.user.update({
-			 where: {
-			   id: user.id,
-			 },
-			 data: {
-			   lastLogin: now,
-			 },
-		    });
-		  } else {
-		    // Optionally, handle the case where the user does not exist if needed
-		    console.log(`User with ID ${user.id} not found.`);
-		  }
-		  return true;
-		} catch (error) {
-		  console.error('Error in signIn callback:', error);
-		  return false; // Return false to indicate a failed sign-in attempt
-		}
-	   },	   
+	// Refactored signIn function to handle sign-in events and update lastLogin field
+
+async signIn({ user, account, profile, email, credentials }) {
+	try {
+	  // First, check if the user exists in the database
+	  const existingUser = await prisma.user.findUnique({
+	    where: {
+		 id: user.id,
+	    },
+	  });
+   
+	  // If the user exists, proceed to update the lastLogin field
+	  if (existingUser) {
+	    await prisma.user.update({
+		 where: {
+		   id: user.id,
+		 },
+		 data: {
+		   lastLogin: new Date(),
+		 },
+	    });
+	  } else {
+	    // Optionally, handle the case where the user does not exist if needed
+	    console.log(`User with ID ${user.id} not found.`);
+	  }
+	  return true;
+	} catch (error) {
+	  console.error('Error in signIn callback:', error);
+	  return false; // Return false to indicate a failed sign-in attempt
+	}
+   },	   
 	async session({ session, user }) {
 		try {
 		  // Attach additional user information (e.g., lastLogin) to the session object

@@ -3,10 +3,11 @@ import NavBar from '@/components/layout/navbar'
 import { getServerSession } from 'next-auth'
 import  authOptions  from "@/app/auth/authOptions";
 import Header from '@/components/layout/issues-header';
-import { formatDistance } from 'date-fns';
+import { formatDistance, formatDistanceToNow } from 'date-fns';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/components/ui/card';
 import { ActivityIcon, BarChart, ChevronDownIcon, CreditCardIcon, DollarSignIcon, UsersIcon } from 'lucide-react';
 import { Button } from '@radix-ui/themes';
+
 
 
 const page =  async ( ) =>{
@@ -23,9 +24,15 @@ const page =  async ( ) =>{
       <div>
         <h1 className="text-xl font-bold tracking-tighter sm:text-xl md:text-xl">Welcome Back, {session?.user?.name}! 
         </h1>
-        
         <p className='text-gray-500 dark:text-gray-500 font-extralight'>
-          What would you like to do today? Your last login was on {formatDistance(new Date(session?.user?.lastLogin), new Date(), { addSuffix: true })}</p>
+  What would you like to do today? Your last login was on {
+    session?.user?.lastLogin ?
+    formatDistanceToNow(new Date(session.user.lastLogin), { addSuffix: true }) :
+    'a while ago' // Fallback text in case lastLogin is undefined
+  }.
+</p>
+
+
 
       </div>
     </div>
