@@ -38,7 +38,7 @@ const user = await prisma.user.findUnique(
                 <CardDescription>{user?.email}</CardDescription>
                 <Badge className="w-20 justify-center">{user?.role}</Badge>
               </div>
-              <div className="sm:pb-0 pb-5 sm:pl-3">
+              <div className="sm:pb-0 pb-5 sm:pl-3 pl-0">
                 <Avatar className="w-20 h-20 border">
                   <AvatarImage src={user?.image!}/>
                   <AvatarFallback className="bg-slate-200 text-slate-800">DP</AvatarFallback>
