@@ -17,7 +17,7 @@ export default async function Home() {
         </Suspense>
       <div className="z-10 w-full max-w-xl px-5 xl:px-0">
         <a
-          href="https://twitter.com/steventey/status/1613928948915920896"
+          href="https://bugify.vercel.app/issuespage"
           target="_blank"
           rel="noreferrer"
           className="mx-auto mb-5 flex max-w-fit animate-fade-up items-center justify-center space-x-2 overflow-hidden rounded-full bg-gray-200 px-14 py-2 transition-colors hover:bg-gray-500 border-b-[3px] border-gray-200"
@@ -116,7 +116,6 @@ const features = [
       <div className="flex items-center justify-center space-x-20">
 
         <Image alt="Auth.js logo" src="/authjs.webp" width={80} height={80} />
-        {/* <Image alt="Prisma logo" src="/prisma.svg" width={50} height={50} /> */}
       </div>
     ),
   },

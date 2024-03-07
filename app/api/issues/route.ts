@@ -18,8 +18,10 @@ export async function POST(request: NextRequest) {
 		   description: body.description,
 		   status: body.status, // Include 'status' from the request body
 		   priority: body.priority, // Include 'priority' from the request body
-		   organizationId: body.organizationId,
+		   //organizationId: body.organizationId,
+		   organizationId: body.organizationId || null,
 		   userId: body.userId,
+		   
 
 	    },
 	});
@@ -33,7 +35,7 @@ export async function POST(request: NextRequest) {
 	    priority: newIssue.priority, // Include 'priority' in the response
 	    organizationId: newIssue.organizationId,
 	    userId: newIssue.userId,
-	    // Include any other fields you need in the response
+	    
 	};
  
 	return NextResponse.json(responsePayload, { status: 201 });

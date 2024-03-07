@@ -41,6 +41,11 @@ export default function Header({ session }: { session: Session | null }) {
                 <p>Issues</p>
               </a>
             </Link>
+            <Link legacyBehavior href="/profile" passHref>
+              <a className="text-lg font-medium dark:text-white">
+                <p>Profile</p>
+              </a>
+            </Link>
           </div>
           
           {/* Right part of the Navbar: Session/User Dropdown */}

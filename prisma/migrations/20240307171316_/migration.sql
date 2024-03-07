@@ -1,12 +1,4 @@
 -- CreateTable
-CREATE TABLE `Organization` (
-    `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `name` VARCHAR(191) NOT NULL,
-
-    PRIMARY KEY (`id`)
-) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-
--- CreateTable
 CREATE TABLE `User` (
     `id` VARCHAR(191) NOT NULL,
     `name` VARCHAR(191) NULL,
@@ -14,7 +6,7 @@ CREATE TABLE `User` (
     `emailVerified` DATETIME(3) NULL,
     `image` VARCHAR(191) NULL,
     `lastLogin` DATETIME(3) NULL,
-    `role` ENUM('ADMIN', 'USER') NOT NULL DEFAULT 'USER',
+    `role` ENUM('USER', 'ADMIN') NOT NULL DEFAULT 'USER',
     `organizationId` INTEGER NULL,
 
     UNIQUE INDEX `User_email_key`(`email`),
@@ -23,14 +15,14 @@ CREATE TABLE `User` (
 
 -- CreateTable
 CREATE TABLE `Issue` (
-    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `id` VARCHAR(191) NOT NULL,
     `title` VARCHAR(255) NOT NULL,
     `description` TEXT NOT NULL,
-    `status` ENUM('OPEN', 'IN_PROGRESS', 'CLOSED') NOT NULL DEFAULT 'OPEN',
-    `priority` ENUM('LOW', 'MEDIUM', 'HIGH') NOT NULL DEFAULT 'MEDIUM',
+    `status` ENUM('OPEN', 'IN_PROGRESS', 'CLOSED', 'OVERDUE', 'COMPLETED', 'CANCELLED', 'REOPENED', 'NOT_STARTED') NOT NULL DEFAULT 'OPEN',
+    `priority` ENUM('LOW', 'MEDIUM', 'HIGH', 'MORNAL', 'CRITICAL') NOT NULL DEFAULT 'MEDIUM',
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` DATETIME(3) NOT NULL,
-    `organizationId` INTEGER NOT NULL,
+    `organizationId` INTEGER NULL,
     `userId` VARCHAR(191) NOT NULL,
     `assignedToUserId` VARCHAR(255) NULL,
 
@@ -39,17 +31,27 @@ CREATE TABLE `Issue` (
 
 -- CreateTable
 CREATE TABLE `Comment` (
-    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `id` VARCHAR(191) NOT NULL,
     `content` VARCHAR(191) NOT NULL,
-    `issueId` INTEGER NOT NULL,
+    `issueId` VARCHAR(191) NOT NULL,
     `userId` VARCHAR(191) NOT NULL,
+
+    INDEX `Comment_issueId_idx`(`issueId`),
+    INDEX `Comment_userId_idx`(`userId`),
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `Organization` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(191) NOT NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
 CREATE TABLE `Invitation` (
-    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `id` VARCHAR(191) NOT NULL,
     `email` VARCHAR(191) NOT NULL,
     `organizationId` INTEGER NOT NULL,
     `code` VARCHAR(191) NOT NULL,

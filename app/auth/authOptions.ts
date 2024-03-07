@@ -19,14 +19,19 @@ const authOptions: NextAuthOptions = {
 	  // If user is defined, this is a sign-in
 	  if (user?.email) {
 	    const dbUser = await prisma.user.findUnique({
-		 where: {
-		   email: user.email,
-		 },
+		 where: {email: user.email},
+		   include: { organization: true},
+
+		 
+		 
 	    });
+	     token.organizationId = dbUser?.organizationId || null;
 	    if (dbUser) {
 		 // Add custom claims to JWT. These will be persisted across sessions
 		 token.id = dbUser.id;
 		 token.role = dbUser.role;
+		 token.origination = dbUser.organizationId;
+		 token.email = dbUser.email;
 		 token.lastLogin = new Date; // Store as string
 		
 	    }
@@ -41,6 +46,7 @@ const authOptions: NextAuthOptions = {
 	  session.user.lastLogin = token.lastLogin ? new Date(token.lastLogin) : new Date(); 
 	  session.user.name = token.name ?? session.user.name; 
 	  session.user.image = token.image ?? session.user.image; 
+	  session.user.organizationId = token.organizationId ?? session.user.organizationId;
 	  // Convert back to Date object or use current date
 	  return session;
 	},
