@@ -21,9 +21,9 @@ import Header from '@/components/layout/issues-header';
 import dynamic from 'next/dynamic';
 import { getServerSession } from 'next-auth/next'
 import  authOptions  from "@/app/auth/authOptions";
-import "easymde/dist/easymde.min.css";
-import SimpleMDE from "react-simplemde-editor";
-// const SimpleMDE = dynamic(() => import("react-simplemde-editor"), { ssr: false });
+// import "easymde/dist/easymde.min.css";
+// import SimpleMDE from "react-simplemde-editor";
+const SimpleMDE = dynamic(() => import("react-simplemde-editor"), { ssr: false });
 
 
 
@@ -31,12 +31,19 @@ const statusOptions = [
   { value: 'OPEN', label: 'Open' },
   { value: 'IN_PROGRESS', label: 'In Progress' },
   { value: 'CLOSED', label: 'Closed' },
+  { value: 'OVERDUE', label: 'Overdue' },
+  { value: 'CANCELLED', label: 'Cancelled' },
+  { value: 'COMPLETED', label: 'Completed' },
+  { value: 'REOPENED', label: 'Reopened' },
+  { value: 'NOT_STARTED', label: 'Not Started' },
 ];
 
 const priorityOptions = [
   { value: 'LOW', label: 'Low' },
   { value: 'MEDIUM', label: 'Medium' },
   { value: 'HIGH', label: 'High' },
+  { value: 'MORNAL', label: 'Mornal' },
+  { value: 'CRITICAL', label: 'Critical' },
 ];
 
 type IssueForm = z.infer<typeof createIssueSchema>;
