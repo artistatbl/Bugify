@@ -40,26 +40,31 @@ const IssuesPage = async () => {
             <h1 className="text-3xl font-bold tracking-tighter">Bug Logs</h1>
             <Button> <Link href='/issues/new'>New here Bug</Link></Button>
           </div>
-          <div className="">
+
+
+          <div className="grid gap-6 sm:gap-3 sm:grid-cols-2">
             <Table.Root variant="surface">
               <Table.Header>
                 <Table.Row>
-                  <Table.ColumnHeaderCell className='hidden md:table-cell text-center'>Issues</Table.ColumnHeaderCell>
-                  <Table.ColumnHeaderCell className=" text-center">Title</Table.ColumnHeaderCell>
+                  <Table.ColumnHeaderCell className='hidden md:table-cell text-center'>Title</Table.ColumnHeaderCell>
+                  <Table.ColumnHeaderCell className=" text-center">Description</Table.ColumnHeaderCell>
                   <Table.ColumnHeaderCell className=" text-center">Status</Table.ColumnHeaderCell>
                   <Table.ColumnHeaderCell className="hidden md:table-cell text-end justify-center">Priority</Table.ColumnHeaderCell>
                 </Table.Row>
               </Table.Header>
+
+
               <Table.Body>
+
                 {issues.map((issue) => (
                   <Table.Row key={issue.id}>
                     <Table.Cell className='text-center'>
                       <Link href={`/issues/${issue.id}`} legacyBehavior>
-                        {`issue-${issue.id}`}
+                        {`${issue.title}`}
                       </Link>
                     </Table.Cell>
                     <Table.Cell className="hidden md:table-cell text-center">
-                      {issue.title}
+                      {issue.description}
                     </Table.Cell>
                     <Table.Cell className=" text-center">
                       <IssueStatusBadge status={issue.status} />
@@ -70,6 +75,8 @@ const IssuesPage = async () => {
                   </Table.Row>
                 ))}
               </Table.Body>
+
+              
             </Table.Root>
           </div>
         </div>

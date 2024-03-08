@@ -60,6 +60,7 @@
     "tailwindcss-animate": "^1.0.7",
     "typescript": "5.2.2",
     "use-debounce": "^9.0.4",
+    "uuid": "^9.0.1",
     "vaul": "^0.6.8",
     "zod": "^3.22.4"
   },
@@ -69,6 +70,7 @@
     "@tailwindcss/line-clamp": "^0.4.4",
     "@tailwindcss/typography": "^0.5.10",
     "@types/ms": "^0.7.32",
+    "@types/uuid": "^9.0.8",
     "autoprefixer": "^10.4.16",
     "concurrently": "^7.6.0",
     "eslint-config-prettier": "^9.1.0",

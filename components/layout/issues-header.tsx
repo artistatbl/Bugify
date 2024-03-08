@@ -32,24 +32,24 @@ export default function Header({ session }: { session: Session | null }) {
               </a>
             </Link>
             <Link legacyBehavior href="/dashboard" passHref>
-              <a className="text-lg font-medium dark:text-white">
+              <a className="text-lg font-medium dark:text-white hidden md:block">
                 <p>Dashboard</p>
               </a>
             </Link>
             <Link legacyBehavior href="/issuespage" passHref>
-              <a className="text-lg font-medium dark:text-white">
+              <a className="text-lg font-medium dark:text-white hidden md:block">
                 <p>Issues</p>
               </a>
             </Link>
             <Link legacyBehavior href="/profile" passHref>
-              <a className="text-lg font-medium dark:text-white">
+              <a className="text-lg font-medium dark:text-white hidden md:block">
                 <p>Profile</p>
               </a>
             </Link>
           </div>
           
           {/* Right part of the Navbar: Session/User Dropdown */}
-          <div className=" flex items-center space-x-4 ">
+          <div className=" flex items-center space-x-4  justify-center ">
             {session && (
               <UserDropdown session={session} />
             )}

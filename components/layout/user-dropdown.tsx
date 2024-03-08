@@ -8,6 +8,9 @@ import Image from "next/image";
 import { Session } from "next-auth";
 import { useRouter } from 'next/navigation'; // Import useRouter from next/router
 import { useToast } from "@/lib/hooks/use-toast";
+import { DropdownMenu } from "../components/ui/dropdown-menu";
+import { TextAlignMiddleIcon } from "@radix-ui/react-icons";
+import { DropdownMenuItemIndicator, DropdownMenuSeparator } from "@radix-ui/react-dropdown-menu";
 
 export default function UserDropdown({ session }: { session: Session }) {
   const { email, image } = session?.user || {};
@@ -38,21 +41,76 @@ export default function UserDropdown({ session }: { session: Session }) {
           <div className="w-full rounded-md bg-white  dark:bg-black p-2 sm:w-56">
             <div className="p-2">
               {session?.user?.name && (
-                <p className="truncate text-sm font-medium text-gray-900 dark:text-white">
+                <p className="truncate text-sm font-medium text-gray-900 border-b  border-black dark:text-white">
                   {session?.user?.name}
                 </p>
               )}
-              <p className="truncate text-sm text-gray-500 dark:text-gray-300">
+              <p className="truncate text-sm text-gray-500 mt-1 dark:text-gray-300">
                 {session?.user?.email}
               </p>
             </div>
             <button
-              className="relative flex w-full cursor-not-allowed items-center justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100 dark:hover:bg-gray-600"
+              className="relative flex w-full cursor-not-allowed items-center  justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 "
             >
          
               <a
                 href="/dashboard"
-                className="inline-flex w-full cursor-pointer items-center justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100 dark:hover:bg-gray-600"
+                className="inline-flex w-full cursor-pointer items-center  border-b-2  border-black dark:border-white justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100 dark:hover:bg-gray-600"
+                role="button" // Add role="button" for accessibility
+              >
+       
+                <TextAlignMiddleIcon className="h-4 w-4" />
+                <span className="text-sm">Create Organization</span> {/* Use <span> instead of <p> for inline elements */}
+              </a>
+            </button>
+
+            <button
+              className="relative flex w-full cursor-not-allowed items-center  justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 "
+            >
+         
+              <a
+                href="/issuespage"
+                className="inline-flex w-full cursor-pointer items-center  border-b-2  border-black dark:border-white justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100 dark:hover:bg-gray-600"
+                role="button" // Add role="button" for accessibility
+              >
+       
+                <TextAlignMiddleIcon className="h-4 w-4" />
+                <span className="text-sm">View Issues</span> {/* Use <span> instead of <p> for inline elements */}
+              </a>
+            </button>
+
+
+            <button
+              className="relative flex w-full cursor-not-allowed items-center  justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 "
+            >
+         
+              <a
+                href="/profile"
+                className="inline-flex w-full cursor-pointer items-center  border-b-2  border-black dark:border-white justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100 dark:hover:bg-gray-600"
+                role="button" // Add role="button" for accessibility
+              >
+       
+                <TextAlignMiddleIcon className="h-4 w-4" />
+                <span className="text-sm">Profile</span> {/* Use <span> instead of <p> for inline elements */}
+              </a>
+            </button>
+
+
+
+
+
+
+
+
+
+
+            <button
+              className="relative flex w-full cursor-not-allowed items-center justify-start space-x-2 rounded-md p-2 text-left  text-sm transition-all duration-75 "
+            >
+         
+              <a
+                href="/dashboard"
+                className="inline-flex w-full cursor-pointer items-center justify-start space-x-2 rounded-md p-2  border-b-2  border-black dark:border-white text-left text-sm transition-all duration-75 hover:bg-gray-100 dark:hover:bg-gray-600"
                 role="button" // Add role="button" for accessibility
               >
        
@@ -61,9 +119,15 @@ export default function UserDropdown({ session }: { session: Session }) {
               </a>
             </button>
 
+           
+
+
+
+
+
 
             <button
-              className="relative flex w-full items-center justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100 dark:hover:bg-gray-600"
+              className="relative flex w-full items-center justify-start space-x-2 border-b-2 border-black dark:border-white rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100 dark:hover:bg-gray-600"
               onClick={handleLogout}
             >
               <LogOut className="h-4 w-4" />
@@ -79,7 +143,7 @@ export default function UserDropdown({ session }: { session: Session }) {
       >
         <button
           onClick={() => setOpenPopover(!openPopover)}
-          className="flex h-8 w-8 items-center justify-center overflow-hidden rounded-full border border-gray-300 transition-all duration-75 focus:outline-none active:scale-95 sm:h-9 sm:w-9"
+          className="flex h-8 w-8 items-center justify-center  overflow-hidden rounded-full border border-gray-300 transition-all duration-75 focus:outline-none active:scale-95 sm:h-9 sm:w-9"
         >
           <Image
             alt={email}

@@ -21,8 +21,9 @@ import Header from '@/components/layout/issues-header';
 import dynamic from 'next/dynamic';
 import { getServerSession } from 'next-auth/next'
 import  authOptions  from "@/app/auth/authOptions";
-
-const SimpleMDE = dynamic(() => import("react-simplemde-editor"), { ssr: false });
+import "easymde/dist/easymde.min.css";
+import SimpleMDE from "react-simplemde-editor";
+// const SimpleMDE = dynamic(() => import("react-simplemde-editor"), { ssr: false });
 
 
 
@@ -103,7 +104,7 @@ const IssueFormPage =    () => {
         name="description"
         control={control}
         render={({ field }) => (
-          <SimpleMDE placeholder='Describe the issue' value={field.value} onChange={field.onChange} />
+           <SimpleMDE placeholder='Describe the issue' value={field.value} onChange={field.onChange} />
         )}
       />
       {errors.description && <p className='text-red-500 text-center mt-2'>{errors.description.message}</p>}
