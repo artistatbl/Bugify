@@ -4,10 +4,12 @@ import React from 'react'
 
 const priorityMap: Record<
 Priority,	
- { label: string, color: 'red' | 'orange' | 'blue' }> = {
-	LOW: { label: 'Low', color: 'blue' },
-	MEDIUM: { label: 'Medium', color: 'orange' },
-	HIGH: { label: 'High', color: 'red' }
+ { label: string, color: 'red' | 'orange' | 'blue' | 'green' | 'purple' }> = {
+	LOW: { label: 'Low', color: 'green' },
+	MEDIUM: { label: 'Medium', color: 'blue' },
+	HIGH: { label: 'High', color: 'red' },
+	MORNAL: { label: 'Mornal', color: 'purple' },
+	CRITICAL: { label: 'Critical', color: 'red' }
 }
 
 const IssuePriorityBadge = ({ priority }: { priority: Priority }) => {
