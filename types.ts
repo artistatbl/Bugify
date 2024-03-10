@@ -3,27 +3,14 @@ import {Priority, Status, User, Role} from "@prisma/client";
 
 export interface Issue {
   id: string;
-  name: string;
+  title: string; // Assuming 'name' is the correct property you're using. If not, use 'title' or the appropriate field.
   description: string;
-  timeline: Date[];
   status: Status;
   priority: Priority;
   assignedToUserId?: string | null;
-  assignedToUser?: Users | null;
-  dueDate: Date;
+  assignedToUser?: Users | null; // Make sure this matches the correct interface for a user. It seems like it should be 'User' to align with your Prisma model.
   createdAt?: Date;
   updatedAt?: Date;
-}
-
-export interface Projects {
-  id: string;
-  name: string;
-  description: string;
-  industry: string | null;
-  rating: string | null;
-  members?: User[];
-  createAt?: Date;
-  updateAt?: Date;
 }
 
 export interface Users {

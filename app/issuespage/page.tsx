@@ -42,7 +42,7 @@ const IssuesPage = async () => {
           </div>
 
 
-          <div className="grid gap-6 sm:gap-3 sm:grid-cols-2">
+          <div className="">
             <Table.Root variant="surface">
               <Table.Header>
                 <Table.Row>

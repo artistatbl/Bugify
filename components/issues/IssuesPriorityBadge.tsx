@@ -1,24 +1,87 @@
-import { Priority } from '@prisma/client'
+import { Priority } from '@prisma/client';
 import { Badge } from '@radix-ui/themes'
-import React from 'react'
+import React, {ReactNode} from 'react';
 
-const priorityMap: Record<
-Priority,	
- { label: string, color: 'red' | 'orange' | 'blue' | 'green' | 'purple' }> = {
-	LOW: { label: 'Low', color: 'green' },
-	MEDIUM: { label: 'Medium', color: 'blue' },
-	HIGH: { label: 'High', color: 'red' },
-	MORNAL: { label: 'Mornal', color: 'purple' },
-	CRITICAL: { label: 'Critical', color: 'red' }
+import { SignalHighIcon, SignalIcon, SignalLowIcon, SignalMediumIcon } from 'lucide-react';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/components/ui/popover';
+interface ProjectPriority {
+  value: Priority;
+  label: string;
+  icon?: ReactNode;
+  className: string;
 }
 
-const IssuePriorityBadge = ({ priority }: { priority: Priority }) => {
-	return (
-		<Badge color={priorityMap[priority].color}>
-			{priorityMap[priority].label}
 
-		</Badge>
-	)
+export const projectPriorities: ProjectPriority[] = [
+  {
+    value: 'LOW',
+    label: 'Low Priority',
+    icon: <SignalLowIcon className="text-blue-600 dark:text-blue-500" strokeWidth={3}/>,
+    className: "text-blue-600 dark:text-blue-500"
+  },
+  {
+    value: 'MEDIUM',
+    label: 'Normal Priority',
+    icon: <SignalMediumIcon className="text-green-600 dark:text-green-500" strokeWidth={3}/>,
+    className: "text-green-600 dark:text-green-500"
+  },
+  {
+    value: 'HIGH',
+    label: 'High Priority',
+    icon: <SignalHighIcon className="text-amber-600 dark:text-amber-500" strokeWidth={3}/>,
+    className: "text-amber-600 dark:text-amber-500"
+  },
+  {
+    value: 'MORNAL',
+    label: 'Critical Priority',
+    icon: <SignalIcon className="text-red-600 dark:text-red-500" strokeWidth={3}/>,
+    className: "text-red-600 dark:text-red-500"
+  },
+
+
+  {
+    value: 'CRITICAL',
+    label: 'Critical Priority',
+    icon: <SignalIcon className="text-red-600 dark:text-red-500" strokeWidth={3}/>,
+    className: "text-red-600 dark:text-red-500"
+  },
+
+];
+
+interface PriorityProps {
+  priority: Priority;
+  className?: string;
 }
 
-export default IssuePriorityBadge
+const Priorities: React.FC<PriorityProps> = ({className, priority}) => {
+  const currentPriority = projectPriorities.find((projectPriority) => projectPriority.value === priority);
+
+  if (!currentPriority) {
+    return <p className="text-red-500">Invalid priority</p>;
+  }
+
+  return (
+      <Popover>
+        <PopoverTrigger
+            className={` ${className} ${currentPriority.className} flex gap-1 border-none items-center font-medium`}>
+          {currentPriority.icon}
+        </PopoverTrigger>
+        <PopoverContent className="w-auto p-2 text-xs">
+          <div>{currentPriority.label}</div>
+        </PopoverContent>
+      </Popover>
+  );
+};
+export const PrioritiesText: React.FC<PriorityProps> = ({priority}) => {
+  const currentPriority = projectPriorities.find((projectPriority) => projectPriority.value === priority);
+
+  if (!currentPriority) {
+    return <p className="text-red-500">Invalid priority</p>;
+  }
+
+  return (
+      <div className={`${currentPriority.className}`}>{currentPriority.label}</div>
+  );
+};
+
+export default Priorities;

@@ -21,7 +21,9 @@ export async function POST(request: NextRequest) {
 		   status: body.status, // Assumes 'status' is included in the request body
 		   priority: body.priority, // Assumes 'priority' is included in the request body
 		   organizationId: body.organizationId || null, // Handle optional organizationId
-		   userId: body.userId, // Assumes 'userId' is provided in the request body
+		   userId: body.userId, 
+		   assignedToUserId: body.assignedToUserId, 
+		   // Assumes 'userId' is provided in the request body
 	    },
 	});
    
@@ -34,6 +36,11 @@ export async function POST(request: NextRequest) {
 	    priority: newIssue.priority,
 	    organizationId: newIssue.organizationId,
 	    userId: newIssue.userId,
+	    createdAt: newIssue.createdAt,
+	    updatedAt: newIssue.updatedAt,
+	    assignedToUser: newIssue.assignedToUserId,
+	    assignedToUserId: newIssue.assignedToUserId,
+	    
 	};
    
 	return NextResponse.json(responsePayload, { status: 201 });

@@ -11,6 +11,10 @@ import {Badge} from "@/components/components/ui/badge";
 //import UserProjectFeatures from "@/app/components/UserProjectFeatures";
 import {getServerSession} from "next-auth";
 import authOptions from "@/app/auth/authOptions";
+import IssuePriorityBadge from './IssuesPriorityBadge';
+import IssueStatusBadge from './IssuesStatusBadge';
+import UserIssueFeatures from './UserIssueFeatures';
+import { formatDistanceToNow } from 'date-fns';
 
 interface IssueCardProps {
   issue: Issue;
@@ -28,7 +32,7 @@ const IssueCard: React.FC<IssueCardProps> = async ({issue}) => {
           <CardHeader className="relative">
             <CardTitle className="mr-12 text-md -mb-1 truncate">
               <Link href={`/projects/${issue.id}`} className="focus:underline hover:underline">
-                {issue.name}
+                {issue.title}
               </Link>
             </CardTitle>
             <CardDescription className="mr-10 truncate">{issue.description}</CardDescription>
@@ -57,30 +61,24 @@ const IssueCard: React.FC<IssueCardProps> = async ({issue}) => {
                     </div>
                   </PopoverContent>
                 </Popover>
-            ) : 
-		//   (
-          //       <div className="absolute right-6 top-6">
-          //         {isAssignedToCurrentUser && <IssueDetail issue={issue}/>}
-          //       </div>
-          //   )
+            ) : (
+              <div className="absolute right-6 top-6">
+                  {isAssignedToCurrentUser && <UserIssueFeatures issue={issue}/>}
+                </div>
+           )}
 
-		<div>
-			
-		</div>
-		  
-		  }
           </CardHeader>
           <CardContent>
             <div className="flex justify-between items-center">
               <div className="overflow-hidden w-[85%]">
-                {/* <FrameworkList frameworks={project.frameworks}/> */}
               </div>
-              {/* <Priorities priority={project.priority}/> */}
+              <IssuePriorityBadge priority={issue.priority}/>
             </div>
           </CardContent>
           <CardFooter className="gap-1 justify-between">
-            {/* <Statues className="text-xs" status={project.status}/> */}
-            {/* <DueDate dueDate={project.dueDate}/> */}
+            <IssueStatusBadge status={issue.status}/>
+            <p className="text-sm text-muted-foreground"> {issue.assignedToUser?.name}</p>
+
           </CardFooter>
         </Card>
       </div>

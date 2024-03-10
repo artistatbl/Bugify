@@ -9,7 +9,7 @@ export default function Footer() {
          project by{" "}
         <a
           className=" font-bold text-gray-600 underline-offset-2 transition-colors hover:underline"
-          href="https://twitter.com/steventey"
+          href="https://twitter.com"
           target="_blank"
           rel="noopener noreferrer"
         >
