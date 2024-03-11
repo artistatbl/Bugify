@@ -22,7 +22,7 @@ export const metadata = {
   title: "",
   description:
     "",
-  metadataBase: new URL("https://precedent.dev"),
+  metadataBase: new URL("https://bugify.vercel.app"),
   themeColor: "#FFF",
 };
 
@@ -56,7 +56,7 @@ export default async function RootLayout({
 
 
 
-          <main className="flex min-h-screen w-full flex-col items-center justify-center py-32">
+          <main className="flex min-h-screen w-full flex-col items-center justify-center py-28">
             
 
             {children}

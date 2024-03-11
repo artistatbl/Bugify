@@ -1,6 +1,7 @@
+// app/profile/page.tsx
 
 import Header from '@/components/layout/issues-header'
-import React from 'react'
+import React, { useState } from 'react'
 import { getServerSession } from 'next-auth/next'
 import  authOptions  from "@/app/auth/authOptions";
 import prisma from 'prisma/client'
@@ -11,13 +12,29 @@ import {Avatar, AvatarFallback, AvatarImage} from "@/components/components/ui/av
 import IssueCard from '@/components/issues/IssueCard';
 import { Reorder, useDragControls } from 'framer-motion';
 import delay from 'delay';
+import { HomeIcon } from 'lucide-react';
+import Link from 'next/link';
+import { Dialog, DialogTrigger } from '@/components/components/ui/dialog';
+import { Button } from '@/components/components/ui/button';
+import dynamic from 'next/dynamic';
+import CreateGround from './_components/CreateGround';
+
 
 
 const page =   async () => {
 
 
+ 
 
-  const session =  await getServerSession(authOptions)   
+  const session =  await getServerSession(authOptions)  
+
+
+
+  // const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+  // // Function to toggle the dialog visibility
+  // const toggleDialog = () => setIsDialogOpen(!isDialogOpen);
+  
   const user = await prisma.user.findUnique({
     where: { id: session!.user!.id},
     include: {
@@ -46,16 +63,30 @@ const page =   async () => {
    
 
     <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-5 ">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
         <div className="flex flex-col">
           <Card>
             <CardHeader
-                className="dark:bg-gray-400 bg-gray-200 flex sm:flex-row flex-col-reverse
+                className="dark:bg-black/20 bg-gray-200 flex sm:flex-row flex-col-reverse
                 justify-between sm:items-center   rounded-md rounded-b-none">
               <div className="flex flex-col gap-2">
                 <CardTitle>{session?.user?.name}</CardTitle>
                 <CardDescription> User {session?.user?.emailVerified ? 'Verified' : 'Not Verified!'}</CardDescription>
 
-                <CardDescription className="text-muted-foreground text-gray-700 font-extralight">{session?.user?.email}</CardDescription>
+                <CardDescription className="text-muted-foreground text-gray-700 font-extralight dark:text-white">{session?.user?.email}</CardDescription>
                 <Badge className="bg-gray-700  text-white justify-center">{user.role}</Badge>
               </div>
               <div className="sm:pb-0 pb-5 sm:pl-3 pl-0 ">
@@ -65,11 +96,11 @@ const page =   async () => {
                 </Avatar>
               </div>
             </CardHeader>
-            <CardContent className="p-3 sm:p-5 border-b-4 border-b-gray-900 dark:border-gray-200 rounded-md shadow-md  shadow-neutral- hover:bg-slate-500">
+            <CardContent className="p-3 sm:p-5 border-b-4 border-b-gray-900 dark:border-gray-200 rounded-md shadow-md  shadow-neutral-900 ">
               <div className="mt-3 ">
                 <div>
                   {user!.accounts.map(acc => (
-                      <div className="flex border-b border-b-gray-900" key={acc.id}>
+                      <div className="flex " key={acc.id}>
                         <div className="flex items-center gap-2 ">
                           <p className="text-sm text-muted-foreground">Account Logged by</p>
                           <ChevronDownIcon/>
@@ -79,12 +110,87 @@ const page =   async () => {
                   ))}
                 </div>
               </div>
+
+              <div className='bg-emerald-100 px-6 py-4 mt-4'>
+			<p className='font-semibold py-3 flex items-center gap-1.5 dark:text-black'>
+
+			<HomeIcon className='w-4 h-4 dark:text-black' /> Home
+      
+			</p>
+
+		</div>
+
+		<dl className='-my-3 divide-y divide-gray-100 px-6 py-4 text-sm leading-6 justify-center text-center'>
+            <div className='flex justify-between gap-x-4 py-3'>
+              <p className='text-zinc-500 '>
+                Your personal page. Come here to check in with your
+                favorite communities.
+              </p>
+            </div>
+
+          
+
+           
+
+            {/* <Link 
+              className='group flex gap-x-6 bg-zinc-200 rounded-lg p-4 text-sm leading-6 font-semibold text-zinc-900 text-center justify-center hover:bg-zinc-50'
+             
+              
+              href={`/create`}>
+              Create Ground
+            </Link> */}
+
+    {/* <Dialog>
+
+            <DialogTrigger>
+
+            <Button variant="outline" size="lg">
+              Create Ground
+            </Button>
+            </DialogTrigger>
+
+    </Dialog> */}
+
+      <CreateGround />
+
+
+
+
+
+          </dl>
+
+           
+
+
+
             </CardContent>
+      
+       
+    
           </Card>
+        
+
+           
+
+
+       
+
+
+
+
+     
+
+
+
+
+
+
         </div>
 
+     
 
-         <Card className="flex flex-col border-b-4 border-b-gray-900 dark:border-gray-200 shadow-md rounded-md shadow-neutral-950 hover:bg-slate-50">
+
+         <Card className="flex flex-col border-b-4 border-b-gray-900 dark:border-gray-200 shadow-md rounded-md shadow-neutral-950 ">
       <CardHeader>
         <CardTitle>Assigned Issues</CardTitle>
         <div className='flex flex-col font-light text-gray-400'>
@@ -103,22 +209,26 @@ const page =   async () => {
 
         )}
         {user.assignedIssues && user.assignedIssues.map((issue) => (
-          <IssueCard key={issue.id} issue={issue} />
+      
+         <IssueCard key={issue.id} issue={issue} />
         ))}
 
 </div>
 
-      
-        
-        
       </CardContent>
-    </Card> *
+    </Card> 
 
-      
-      
-      </div>
+    
+	
 
 
+
+
+
+
+
+
+     </div>
     </main>
     </div>
     </>

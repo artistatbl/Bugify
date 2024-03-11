@@ -15,6 +15,7 @@ import IssuePriorityBadge from './IssuesPriorityBadge';
 import IssueStatusBadge from './IssuesStatusBadge';
 import UserIssueFeatures from './UserIssueFeatures';
 import { formatDistanceToNow } from 'date-fns';
+import { Reorder } from 'framer-motion';
 
 interface IssueCardProps {
   issue: Issue;
@@ -22,66 +23,79 @@ interface IssueCardProps {
 
 const IssueCard: React.FC<IssueCardProps> = async ({issue}) => {
   const session = await getServerSession(authOptions)
-  const sessionUser = session?.user || null;
 
-  const isAssignedToCurrentUser = issue!.assignedToUserId === sessionUser?.id;
+  if (!issue || !session || !session.user) {
+    console.error('IssueCard: issue, session, or session.user is null or undefined')
+    return null
+  }
+
+  const setIssues = (issues: Issue[]) => {
+    console.log(issues)
+  }
+
+  const isAssignedToCurrentUser = issue.assignedToUserId === session.user.id
+  
 
   return (
-      <div>
-        <Card key={issue.id} className="hover:ring-[0.5px] ring-foreground duration-500  transition-all">
-          <CardHeader className="relative">
-            <CardTitle className="mr-12 text-md -mb-1 truncate">
-              <Link href={`/projects/${issue.id}`} className="focus:underline hover:underline">
-                {issue.title}
-              </Link>
-            </CardTitle>
-            <CardDescription className="mr-10 truncate">{issue.description}</CardDescription>
-            {issue.assignedToUser ? (
-                <Popover>
-                  <PopoverTrigger asChild>
-                    <Avatar className="absolute border right-5 top-5">
-                      <AvatarImage src={issue.assignedToUser?.image!}/>
-                      <AvatarFallback>DP</AvatarFallback>
-                    </Avatar>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-auto">
-                    <div className="flex flex-col space-y-4 items-center justify-center">
-                      <div className="flex justify-center flex-col space-y-2">
-                        <h4 className="text-sm font-semibold">{issue.assignedToUser?.name}</h4>
-                        <Badge className="text-[10px] w-20 justify-center">
-                          {issue.assignedToUser?.role}
-                        </Badge>
-                        <div className="flex items-center ">
-                          <EnvelopeClosedIcon className="mr-2 h-4 w-4 opacity-70"/>{" "}
-                          <span className="text-xs text-muted-foreground">
-                            {issue.assignedToUser?.email}
+    <div>
+   
+
+          <Card key={issue.id} className="hover:ring-[0.5px] ring-foreground duration-500  transition-all">
+            <CardHeader className="relative">
+              <CardTitle className="mr-12 text-md -mb-1 truncate">
+                <Link href={`/projects/${issue.id}`} className="focus:underline hover:underline">
+                  {issue.title}
+                </Link>
+              </CardTitle>
+              <CardDescription className="mr-10 truncate">{issue.description}</CardDescription>
+              {issue.assignedToUser ? (
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <Avatar className="absolute border right-5 top-5">
+                        <AvatarImage src={issue.assignedToUser?.image!}/>
+                        <AvatarFallback>DP</AvatarFallback>
+                      </Avatar>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto">
+                      <div className="flex flex-col space-y-4 items-center justify-center">
+                        <div className="flex justify-center flex-col space-y-2">
+                          <h4 className="text-sm font-semibold">{issue.assignedToUser?.name}</h4>
+                          <Badge className="text-[10px] w-20 justify-center">
+                            {issue.assignedToUser?.role}
+                          </Badge>
+                          <div className="flex items-center ">
+                            <EnvelopeClosedIcon className="mr-2 h-4 w-4 opacity-70"/>{" "}
+                            <span className="text-xs text-muted-foreground">
+                              {issue.assignedToUser?.email}
                             </span>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </PopoverContent>
-                </Popover>
-            ) : (
-              <div className="absolute right-6 top-6">
-                  {isAssignedToCurrentUser && <UserIssueFeatures issue={issue}/>}
+                    </PopoverContent>
+                  </Popover>
+              ) : (
+                <div className="absolute right-6 top-6">
+                    {isAssignedToCurrentUser && <UserIssueFeatures issue={issue}/>}
+                  </div>
+             )}
+
+            </CardHeader>
+            <CardContent>
+              
+            </CardContent>
+            <CardFooter className="gap-1 justify-between">
+              <IssueStatusBadge status={issue.status}/>
+              <p className="text-sm text-muted-foreground"> {issue.assignedToUser?.name}</p>
+
+              <div className="flex justify-between items-center">
+                <div className="overflow-hidden w-[85%]">
                 </div>
-           )}
-
-          </CardHeader>
-          <CardContent>
-            <div className="flex justify-between items-center">
-              <div className="overflow-hidden w-[85%]">
+                <IssuePriorityBadge priority={issue.priority}/>
               </div>
-              <IssuePriorityBadge priority={issue.priority}/>
-            </div>
-          </CardContent>
-          <CardFooter className="gap-1 justify-between">
-            <IssueStatusBadge status={issue.status}/>
-            <p className="text-sm text-muted-foreground"> {issue.assignedToUser?.name}</p>
 
-          </CardFooter>
-        </Card>
-      </div>
+            </CardFooter>
+          </Card>
+    </div>
   );
 };
 
