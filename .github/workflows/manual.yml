@@ -1,6 +1,5 @@
 name: Update Changelog
 
-# Triggers the workflow on push events for any branch in the repository.
 on: push
 
 jobs:
@@ -16,16 +15,17 @@ jobs:
         # Fetch all history for all tags and branches
         git fetch --prune --unshallow
         
-        # Append the new logs to CHANGELOG.md
-        echo "\n## [$(date +"%Y-%m-%d %H:%M:%S")] - Changes made by $GITHUB_ACTOR" >> CHANGELOG.md
-        git log -1 --pretty=format:'%h - %s' >> CHANGELOG.md
+        # Convert the last commit hash into a clickable URL.
+        COMMIT_URL="https://github.com/artistatbl/Bugify/commit/$(git log -1 --pretty=format:'%H')"
+        
+        # Append the new logs to CHANGELOG.md with a more readable date format and a clickable commit link.
+        echo -e "\n## [$(date +"%B, %d, %Y %H:%M:%S")] - Changes made by $GITHUB_ACTOR" >> CHANGELOG.md
+        echo -e "- [$(git log -1 --pretty=format:'%h')]($COMMIT_URL) - $(git log -1 --pretty=format:'%s')" >> CHANGELOG.md
         
     - name: Commit and push if changed
       run: |
         git config --global user.email "jdaly2991@gmail.com"
         git config --global user.name "artistatbl"
         git add CHANGELOG.md
-        # Only proceed if there's a change to commit
         git diff --staged --quiet || git commit -m "Update CHANGELOG.md"
-        git push --set-upstream https://${{secrets.PERSONAL_TOKEN}}@github.com/artistatbl/Bugify.git main
-
+        git push --set-upstream https://${{ secrets.PERSONAL_TOKEN }}@github.com/artistatbl/Bugify.git main
