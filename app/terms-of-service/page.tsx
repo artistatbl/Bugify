@@ -108,7 +108,7 @@ const page = () => {
           </ul>
 		<h3 className='font-light text-sm text-gray-500 mt-10'>
 			Last Update: September 27, 2022
-			<Code size='7'>Console.log</Code>
+			{/* <Code size='7'>Console.log</Code> */}
 		</h3>
         </div>
       </div>
