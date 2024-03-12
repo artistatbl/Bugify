@@ -1,3 +1,4 @@
+import ChangelogPage from "@/app/changelog/page";
 import Image from "next/image";
 
 
@@ -35,6 +36,19 @@ export default function Footer() {
         >
           Privacy Policy
         </a>
+        <span className="text-gray-500 mx-2 text-sm">•</span>
+
+       <a className="text-gray-500 text-md ml-2 font-bold cursor-pointer">
+
+
+       <ChangelogPage />
+
+       </a>
+
+     
+      
+
+        
       </div>
     </div>
   </div>
