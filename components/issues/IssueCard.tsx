@@ -43,7 +43,7 @@ const IssueCard: React.FC<IssueCardProps> = async ({issue}) => {
           <Card key={issue.id} className="hover:ring-[0.5px] ring-foreground duration-500  transition-all">
             <CardHeader className="relative">
               <CardTitle className="mr-12 text-md -mb-1 truncate">
-                <Link href={`/projects/${issue.id}`} className="focus:underline hover:underline">
+                <Link href={`/issues/${issue.id}`} className="focus:underline hover:underline">
                   {issue.title}
                 </Link>
               </CardTitle>
@@ -85,7 +85,10 @@ const IssueCard: React.FC<IssueCardProps> = async ({issue}) => {
             </CardContent>
             <CardFooter className="gap-1 justify-between">
               <IssueStatusBadge status={issue.status}/>
-              <p className="text-sm text-muted-foreground"> {issue.assignedToUser?.name}</p>
+            
+           
+            
+              {/* <p className="text-sm  text-black"> {issue.assignedToUser?.role}</p> */}
 
               <div className="flex justify-between items-center">
                 <div className="overflow-hidden w-[85%]">

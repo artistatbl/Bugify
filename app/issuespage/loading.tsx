@@ -8,6 +8,7 @@ import { Button } from '@radix-ui/themes';
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import Header from '@/components/layout/issues-header';
+import CreateIssue from './_component/CreateIssue';
 
 
 
@@ -35,16 +36,20 @@ const LoadingIssuesPage = async () => {
         <div className="flex items-center gap-4 mb-4">
           <h1 className="text-3xl font-bold tracking-tighter">Bug Logs</h1>
         
-          <Button > <Link href={"/issues/new"}> </Link>New Bug</Button>
+          <CreateIssue />
+
         </div>
         <div className="">
           <Table.Root variant="surface">
             <Table.Header>
               <Table.Row>
-                <Table.ColumnHeaderCell className='hidden md:table-cell text-center'>Issues</Table.ColumnHeaderCell>
-                <Table.ColumnHeaderCell className=" text-center">Title</Table.ColumnHeaderCell>
-                <Table.ColumnHeaderCell className=" text-center">Status</Table.ColumnHeaderCell>
-                <Table.ColumnHeaderCell className="hidden md:table-cell text-end justify-center">Priority</Table.ColumnHeaderCell>
+
+              <Table.ColumnHeaderCell className='text-center'>Title</Table.ColumnHeaderCell>
+                  <Table.ColumnHeaderCell className="  hidden md:table-cell text-center">Description</Table.ColumnHeaderCell>
+                  <Table.ColumnHeaderCell className="hidden md:table-cell text-right md:text-justify md:justify-center">Priority</Table.ColumnHeaderCell>
+
+                  <Table.ColumnHeaderCell className="text-center justify-center">Status</Table.ColumnHeaderCell>
+
               </Table.Row>
             </Table.Header>
             <Table.Body>

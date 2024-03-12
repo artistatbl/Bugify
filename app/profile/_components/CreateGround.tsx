@@ -16,7 +16,7 @@ const CreateGround = () => {
   return (
 	<Dialog>
 	<DialogTrigger asChild>
-	  <Button variant="outline">Create a Ground</Button>
+	  <Button className='bg-black dark:bg-white hover:bg-zinc-500 dark:text-black dark:hover:bg-zinc-900 dark:hover:text-white text-white font-bold py-2 px-4 rounded'>Create a Ground</Button>
 	</DialogTrigger>
 	<DialogContent className="max-w-[415px] sm:max-w-[450px]  md:max-w-2xl 2xl:max-w-3xl">
   <DialogHeader>
@@ -26,9 +26,9 @@ const CreateGround = () => {
     </DialogDescription>
   </DialogHeader>
   <div className="grid gap-4 py-4">
-    <div className='relative'>
+    <div className='relative dark:text-black '>
       <div className="grid grid-cols-4 items-center gap-4">
-        <p className='absolute text-sm left-0 w-8 inset-y-0 grid place-items-center text-zinc-400'>
+        <p className='absolute text-sm left-0 w-8 inset-y-0 grid place-items-center text-zinc-400 '>
           G/
         </p>
         <Input
@@ -40,7 +40,7 @@ const CreateGround = () => {
     </div>
   </div>
   <DialogFooter>
-    <Button variant="outline"  type="submit" className="bg-black hover:bg-gray-300 text-white font-bold py-2 px-4 rounded">Create Ground</Button>
+    <Button variant="outline"  type="submit" className="bg-black b hover:bg-gray-300 text-white font-bold py-2 px-4 rounded">Create Ground</Button>
   </DialogFooter>
 </DialogContent>
 

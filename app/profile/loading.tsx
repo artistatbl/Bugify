@@ -6,10 +6,11 @@ import {ChevronRightIcon} from "@radix-ui/react-icons";
 import {Skeleton} from "@/components/components/ui/skeleton";
 
 
-import {SignalHighIcon} from "lucide-react";
+import {HomeIcon, SignalHighIcon} from "lucide-react";
 import Header from '@/components/layout/issues-header';
 import { getServerSession } from 'next-auth';
 import authOptions from '../auth/authOptions';
+import CreateGround from './_components/CreateGround';
 
 const UserProfileSkeleton = async () => {
 
@@ -84,6 +85,33 @@ const UserProfileSkeleton = async () => {
                   </div>
                 </div>
               </div>
+
+              <div className='bg-emerald-100 px-6 py-4 mt-4'>
+                    <p className='font-semibold py-3 flex items-center gap-1.5 dark:text-black'>
+
+                      <HomeIcon className='w-4 h-4 dark:text-black' /> Home
+
+                    </p>
+
+                  </div>
+
+                  <dl className='-my-3 divide-y divide-gray-100 px-6 py-4 text-sm leading-6 justify-center text-center'>
+                    <div className='flex justify-between gap-x-4 py-3'>
+                      <p className='text-zinc-500 '>
+                        Your personal page. Come here to check in with your
+                        favorite communities.
+                      </p>
+                    </div>
+
+                    <CreateGround />
+                  </dl>
+
+
+
+
+
+
+
             </CardContent>
           </Card>
         </div>

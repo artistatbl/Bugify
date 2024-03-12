@@ -48,10 +48,12 @@ const IssuesPage = async () => {
             <Table.Root variant="surface">
               <Table.Header>
                 <Table.Row>
-                  <Table.ColumnHeaderCell className='hidden md:table-cell text-center'>Title</Table.ColumnHeaderCell>
-                  <Table.ColumnHeaderCell className=" text-center">Description</Table.ColumnHeaderCell>
-                  <Table.ColumnHeaderCell className=" text-center">Status</Table.ColumnHeaderCell>
-                  <Table.ColumnHeaderCell className="hidden md:table-cell text-end justify-center">Priority</Table.ColumnHeaderCell>
+                  <Table.ColumnHeaderCell className='text-center'>Title</Table.ColumnHeaderCell>
+                  <Table.ColumnHeaderCell className="  hidden md:table-cell text-center">Description</Table.ColumnHeaderCell>
+                  <Table.ColumnHeaderCell className="hidden md:table-cell text-right md:text-justify md:justify-center">Priority</Table.ColumnHeaderCell>
+
+                  <Table.ColumnHeaderCell className="text-center justify-center">Status</Table.ColumnHeaderCell>
+
                 </Table.Row>
               </Table.Header>
 
@@ -60,20 +62,21 @@ const IssuesPage = async () => {
 
                 {issues.map((issue) => (
                   <Table.Row key={issue.id}>
-                    <Table.Cell className='text-center'>
+                    <Table.Cell className=' text-center'>
                       <Link href={`/issues/${issue.id}`} legacyBehavior>
                         {`${issue.title}`}
                       </Link>
                     </Table.Cell>
-                    <Table.Cell className="hidden md:table-cell text-center">
+                    <Table.Cell className=" hidden md:table-cell text-center">
                       {issue.description}
                     </Table.Cell>
-                    <Table.Cell className=" text-center">
+                    <Table.Cell className="hidden md:table-cell  mr-5 text-center ">
+                      <IssuePriorityBadge  className=" text-center" priority={issue.priority} />
+                    </Table.Cell>
+                    <Table.Cell className=" text-center ">
                       <IssueStatusBadge status={issue.status} />
                     </Table.Cell>
-                    <Table.Cell className="hidden md:table-cell text-end justify-center">
-                      <IssuePriorityBadge priority={issue.priority} />
-                    </Table.Cell>
+                   
                   </Table.Row>
                 ))}
               </Table.Body>
