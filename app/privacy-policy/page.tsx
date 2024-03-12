@@ -61,7 +61,7 @@ const page = () => {
           <p>
             Your use of the website is also subject to the terms and conditions of the Shadcn privacy policy, which is
             incorporated by reference into these terms and conditions. The Shadcn privacy policy is available at
-            https://shadcn.com/privacy.
+            https://bugify.vercel.app/privacy-policy.
           </p>
           <h2>Limitation of Liability</h2>
           <p>

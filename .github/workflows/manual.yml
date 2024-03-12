@@ -1,32 +1,30 @@
-# This is a basic workflow that is manually triggered
+name: Update Changelog
 
-name: Manual workflow
+# Triggers the workflow on push events for any branch in the repository.
+on: push
 
-# Controls when the action will run. Workflow runs when manually triggered using the UI
-# or API.
-on:
-  workflow_dispatch:
-    # Inputs the workflow accepts.
-    inputs:
-      name:
-        # Friendly description to be shown in the UI instead of 'name'
-        description: 'Person to greet'
-        # Default value if no value is explicitly provided
-        default: 'World'
-        # Input has to be provided for the workflow to run
-        required: true
-        # The data type of the input
-        type: string
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "greet"
-  greet:
-    # The type of runner that the job will run on
+  build:
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    # Runs a single command using the runners shell
-    - name: Send greeting
-      run: echo "Hello ${{ inputs.name }}"
+    - name: Checkout repository
+      uses: actions/checkout@v2
+      
+    - name: Update CHANGELOG.md
+      run: |
+        # Fetch all history for all tags and branches
+        git fetch --prune --unshallow
+        
+        # Append the new logs to CHANGELOG.md
+        echo "\n## [$(date +"%Y-%m-%d %H:%M:%S")] - Changes made by $GITHUB_ACTOR" >> CHANGELOG.md
+        git log -1 --pretty=format:'%h - %s' >> CHANGELOG.md
+        
+    - name: Commit and push if changed
+      run: |
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        git config --global user.name "GitHub Actions"
+        git add CHANGELOG.md
+        # Only proceed if there's a change to commit
+        git diff --staged --quiet || git commit -m "Update CHANGELOG.md"
+        git push
