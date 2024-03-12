@@ -3,3 +3,6 @@
 
 ## [March, 12, 2024 01:13:52] - Changes made by artistatbl
 - [59f11cb](https://github.com/artistatbl/Bugify/commit/59f11cb65ff5cdd1bc5b5319660d0bace3249fc5) - removing the old changelog
+
+## [March, 12, 2024 16:02:34] - Changes made by artistatbl
+- [5545018](https://github.com/artistatbl/Bugify/commit/5545018de2ec1150c431104d870f457085863b94) - adding pop up changlog
