@@ -102,10 +102,10 @@ const page = () => {
           </p>
           <h2>Contact Information</h2>
           <p>If you have any questions about these terms, please contact us.</p>
-          <ul>
+          {/* <ul>
             <li>By email: contact@shadcn.com</li>
             <li>By visiting this page on our website: https://shadcn.com/contact</li>
-          </ul>
+          </ul> */}
         </div>
       </div>
     </div>
