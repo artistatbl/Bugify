@@ -6,3 +6,6 @@
 
 ## [March, 12, 2024 16:02:34] - Changes made by artistatbl
 - [5545018](https://github.com/artistatbl/Bugify/commit/5545018de2ec1150c431104d870f457085863b94) - adding pop up changlog
+
+## [March, 15, 2024 12:00:29] - Changes made by artistatbl
+- [6f4373f](https://github.com/artistatbl/Bugify/commit/6f4373f6f99bc087b93eb53306419db74a63364a) - upt -  typewritting text /  global
