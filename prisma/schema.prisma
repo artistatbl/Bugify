@@ -10,71 +10,6 @@ datasource db {
   url      = env("POSTGRES_URL")
 }
 
-model User {
-  id             String        @id @default(uuid())
-  name           String?
-  email          String        @unique
-  emailVerified  DateTime?
-  image          String?
-  lastLogin      DateTime?
-  role           Role          @default(USER)
-  organizationId String? // Changed type from Int? to String?
-  organization   Organization? @relation(fields: [organizationId], references: [id], name: "UserOrganization")
-  createdIssues  Issue[]       @relation("IssueCreator")
-  assignedIssues Issue[]       @relation("IssueAssignee")
-  comments       Comment[]
-  accounts       Account[]
-  sessions       Session[]
-}
-
-model Issue {
-  id               String        @unique @default(uuid())
-  title            String
-  description      String
-  status           Status        @default(OPEN)
-  priority         Priority      @default(MEDIUM)
-  createdAt        DateTime      @default(now())
-  updatedAt        DateTime      @updatedAt
-  organizationId   String? // Changed type from Int? to String?
-  organization     Organization? @relation(fields: [organizationId], references: [id])
-  userId           String
-  user             User          @relation(fields: [userId], references: [id], name: "IssueCreator")
-  assignedToUserId String?
-  assignedToUser   User?         @relation(fields: [assignedToUserId], references: [id], name: "IssueAssignee")
-  comments         Comment[]
-}
-
-model Comment {
-  id      String @id @default(uuid())
-  content String
-  issueId String
-  issue   Issue  @relation(fields: [issueId], references: [id])
-  userId  String
-  user    User   @relation(fields: [userId], references: [id])
-
-  @@index([issueId]) // Add an index to issueId for improved query performance
-  @@index([userId]) // Consider adding an index to userId as well, if you expect to query comments by user often
-}
-
-model Organization {
-  id          String       @id @default(cuid())
-  name        String
-  users       User[]       @relation("UserOrganization")
-  issues      Issue[]
-  invitations Invitation[]
-}
-
-model Invitation {
-  id             String       @id @default(cuid())
-  email          String
-  organizationId String // Changed type from Int to String
-  organization   Organization @relation(fields: [organizationId], references: [id])
-  code           String       @unique
-  accepted       Boolean      @default(false)
-  createdAt      DateTime     @default(now())
-}
-
-// Assuming definitions for Account and Session models.
 model Account {
   id                String  @id @default(cuid())
   userId            String
@@ -101,6 +36,78 @@ model Session {
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
+
+model User {
+  id             String        @id @default(cuid())
+  name           String?
+  email          String        @unique
+  username       String?       @unique
+  emailVerified  DateTime?
+  image          String?
+  lastLogin      DateTime?
+  role           Role          @default(USER)
+  organizationId String?
+  organization   Organization? @relation(fields: [organizationId], references: [id], name: "UserOrganization")
+  createdIssues  Issue[]       @relation("IssueCreator")
+  assignedIssues Issue[]       @relation("IssueAssignee")
+  comments       Comment[]
+  accounts       Account[]
+  sessions       Session[]
+}
+
+model Comment {
+  id        String    @id @default(uuid())
+  text      String
+  issueId   String
+  issue     Issue     @relation(fields: [issueId], references: [id])
+  userId    String
+  user      User      @relation(fields: [userId], references: [id])
+  // parentId  String?  @db.Uuid
+  replyToId String?
+  replyTo   Comment?  @relation("ReplyTo", fields: [replyToId], references: [id])
+  replies   Comment[] @relation("ReplyTo")
+  // @@index([parentId])
+
+  @@index([issueId])
+  @@index([userId])
+}
+
+model Issue {
+  id               String        @id @default(uuid())
+  title            String
+  description      String
+  status           Status        @default(OPEN)
+  priority         Priority      @default(MEDIUM)
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+  organizationId   String?
+  organization     Organization? @relation(fields: [organizationId], references: [id])
+  userId           String
+  user             User          @relation(fields: [userId], references: [id], name: "IssueCreator")
+  assignedToUserId String?
+  assignedToUser   User?         @relation(fields: [assignedToUserId], references: [id], name: "IssueAssignee")
+  comments         Comment[]
+}
+
+model Organization {
+  id          String       @id @default(cuid())
+  name        String
+  users       User[]       @relation("UserOrganization")
+  issues      Issue[]
+  invitations Invitation[]
+}
+
+model Invitation {
+  id             String       @id @default(cuid())
+  email          String
+  organizationId String // Changed type from Int to String
+  organization   Organization @relation(fields: [organizationId], references: [id])
+  code           String       @unique
+  accepted       Boolean      @default(false)
+  createdAt      DateTime     @default(now())
+}
+
+// Assuming definitions for Account and Session models.
 
 // Enum definitions assumed based on your schema's usage.
 enum Role {

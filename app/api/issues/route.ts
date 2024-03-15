@@ -21,8 +21,8 @@ export async function POST(request: NextRequest) {
 		   status: body.status, // Assumes 'status' is included in the request body
 		   priority: body.priority, // Assumes 'priority' is included in the request body
 		   organizationId: body.organizationId || null, // Handle optional organizationId
-		   userId: body.userId, 
-		   assignedToUserId: body.assignedToUserId, 
+		   userId: body.userId || null, // Handle optional userId
+		   assignedToUserId: body.assignedToUserId || null,
 		   // Assumes 'userId' is provided in the request body
 	    },
 	});

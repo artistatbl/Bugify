@@ -16,7 +16,7 @@ export default function Header({ session }: { session: Session | null }) {
   return (
     <>
       <div
-        className={`fixed rounded-full pr-10 pl-10 top-0 w-full h-16 flex justify-center ${isScrolled ? "border-b border-black dark:border-white pl-10 rounded-full  backdrop-blur-2xl" : "bg-white  dark:bg-black  dark:text-white border-b border-black dark:border-white" } z-30 transition-all`}>
+        className={`fixed rounded-full pr-10 pl-10 top-0 w-full h-16 flex justify-center  ${isScrolled ? "border-b border-black dark:border-white pl-10 rounded-full  backdrop-blur-2xl" : "bg-white  dark:bg-black  dark:text-white border-b border-black dark:border-white" } z-30 transition-all`}>
         <div className="flex w-full h-16 max-w-screen-xl justify-between items-center px-5 ">
           {/* Left part of the Navbar: Logo and Links */}
           <div className="flex items-center space-x-5">

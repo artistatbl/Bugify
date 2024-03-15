@@ -4,8 +4,8 @@ import Image from "next/image";
 
 export default function Footer() {
   return (
-    <div className="absolute w-full py-5 text-center ">
-    <div className="flex flex-col md:flex-row justify-center space-x-8 md:space-x-16">
+    <div className="absolute w-full py-5 text-center dark:bg-black bg-white   dark:bg-dot-white/[0.2] bg-dot-black/[0.2]    ">
+    <div className="flex flex-col  relative justify-center  text-center">
       <p className="text-gray-500 text-md  font-light">
          project by{" "}
         <a
@@ -35,15 +35,24 @@ export default function Footer() {
           rel="noopener noreferrer"
         >
           Privacy Policy
+
+
+          
         </a>
         <span className="text-gray-500 mx-2 text-sm">•</span>
 
-       <a className="text-gray-500 text-md ml-2 font-bold cursor-pointer">
+        <a className="relative justify-center text-center">
 
 
-       <ChangelogPage />
+        <ChangelogPage />
+        </a>
 
-       </a>
+       
+
+
+  
+
+       
 
      
       

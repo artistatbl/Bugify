@@ -7,6 +7,11 @@ export const createIssueSchema = z.object({
   priority: z.enum(["LOW", "MEDIUM", "HIGH", "NORMAL", "CRITICAL"]),
   organizationId: z.string().optional(),
   userId: z.string().optional(),
+  user: z.string().optional(),
+  assignedToUserId: z.string().optional(),
+  // organizationId: z.string().optional(),
+  // userId: z.string().optional(),
+
 });
 
 export const patchIssueSchema = z.object({
@@ -27,3 +32,16 @@ export const patchIssueSchema = z.object({
     .optional()
     .nullable(),
 });
+
+export const createGroundSchema = z.object({
+  name: z
+    .string()
+    .min(3, "Name is required.")
+    .max(255)
+    .optional(),
+});
+
+
+export type CreateIssueSchema = z.infer<typeof createIssueSchema>;
+export type PatchIssueSchema = z.infer<typeof patchIssueSchema>;
+export type CreateGroundSchema = z.infer<typeof createGroundSchema>;

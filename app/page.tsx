@@ -7,6 +7,8 @@ import Nav from "@/components/layout/nav";
 import { Suspense } from "react";
 import { Button } from "@radix-ui/themes";
 import { DEPLOY_URL } from "@/lib/constants";
+import { GlobeDemo } from "@/components/home/globe";
+import { TypewriterEffectSmoothDemo } from "@/components/home/typewriter-effect";
 
 
 export default async function Home() {
@@ -15,6 +17,7 @@ export default async function Home() {
        <Suspense fallback="...">
           <Nav />
         </Suspense>
+       
       <div className="z-10 w-full max-w-xl px-5 xl:px-0">
         <a
           href="https://bugify.vercel.app/issuespage"
@@ -35,15 +38,14 @@ export default async function Home() {
               10.3195C12.9833 10.1791 13.2899 10.2579 13.4304 10.4956C13.5709 10.7334 13.4921 11.04 13.2543 11.1805L7.75432 14.4305C7.59742 14.5232 7.4025 14.5232 7.24559 14.4305L1.74559
                11.1805C1.50785 11.04 1.42901 10.7334 1.56949 10.4956Z" fill="currentColor" fillRule="evenodd" clipRule="evenodd"></path></svg>
         </a>
-        <h1
-  className="animate-fade-up bg-gradient-to-br-light dark:bg-gradient-to-br-dark  bg-clip-text text-center font-display text-5xl font-bold tracking-[-0.02em] text-transparent opacity-0 drop-shadow-sm [text-wrap:balance] theme-gradient md:text-7xl md:leading-[5rem] md:tracking-[-0.04em]"
-  style={{ animationDelay: "0.15s", animationFillMode: "forwards" }}
->
-  Track and fix bugs faster.
-</h1>
+     
+
+<TypewriterEffectSmoothDemo />
+
+{/* <GlobeDemo /> */}
 
         <p
-          className="mt-6 animate-fade-up text-center text-gray-500 opacity-0 [text-wrap:balance] md:text-xl dark:text-gray-400 "
+          className="animate-fade-up text-center text-gray-500 opacity-0 [text-wrap:balance] md:text-xl dark:text-gray-400 "
           style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
         >
           Bugify is the best way to track,log and manage your software development bugs. Let your team focus on shipping features insteadof managing insfrastructure with automated CI/CD.
@@ -83,6 +85,7 @@ export default async function Home() {
           />
         ))}
       </div>
+    
     </>
   );
 }
@@ -117,6 +120,7 @@ const features = [
 
         <Image alt="Auth.js logo" src="/authjs.webp" width={80} height={80} />
       </div>
+      
     ),
   },
 ];

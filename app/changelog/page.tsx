@@ -22,7 +22,7 @@ const ChangelogPage = () => {
         <DialogTrigger asChild>
           {/* <Button variant="outline">View Changelog</Button> */}
           {/* <h1>View Changelog</h1> */}
-          <Code size='7'> v1.0</Code>
+          <Code size='2'> v1.0</Code>
 
         </DialogTrigger>
         <DialogContent className="max-w-[415px] sm:max-w-[450px] min-h-[50vh] md:max-w-2xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl">

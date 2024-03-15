@@ -56,22 +56,24 @@ export default async function RootLayout({
 
 
 
-          <main className="flex min-h-screen w-full flex-col items-center justify-center py-28">
+          <main className=" min-h-screen  flex-col  py-28  w-full dark:bg-black  dark:bg-dot-white/[0.3] bg-dot-black/[0.3]  flex items-center justify-center">
             
 
             {children}
+            
           </main>
           
         
 
           <Toaster />
+          <Footer />
         </Theme>
           
     
 
 
 
-        <Footer />
+    
 
         <Analytics />
         </ThemeProvider >

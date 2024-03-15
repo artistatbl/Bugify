@@ -20,7 +20,6 @@ import dynamic from 'next/dynamic';
 import CreateGround from './_components/CreateGround';
 
 
-
 const page = async () => {
 
 
@@ -55,8 +54,9 @@ const page = async () => {
 
   return (
     <>
+    
       <Header session={session} />
-      <div className='z-10 flex flex-col w-full min-h-screen'>
+      <div className='z-10 flex flex-col w-full min-h-screen '>
         <main className="flex flex-col w-full pr-5 pl-5 md:pr-10 md:pl-10 lg:pr-20 lg:pl-20 min-h-screen ">
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-5  ">
