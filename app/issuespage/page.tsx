@@ -11,6 +11,8 @@ import { getServerSession } from 'next-auth';
 import Header from '@/components/layout/issues-header';
 import  authOptions  from "@/app/auth/authOptions";
 import CreateIssue from './_component/CreateIssue';
+import ViewIssue from '../issues/[id]/_components/ViewIssue';
+import { Dialog, DialogTrigger } from '@/components/components/ui/dialog';
 
 
 
@@ -24,7 +26,7 @@ const IssuesPage = async () => {
   
     const issues = await prisma.issue.findMany({
       where: {
-        userId: session?.user?.id, // Use the userId to filter issues
+       // userId: session?.user?.id, // Use the userId to filter issues
       }
     });
   
@@ -35,6 +37,8 @@ const IssuesPage = async () => {
         <Suspense fallback="...">
           <Header session={session} />
         </Suspense>
+
+      
   
         <div className="z-10 flex flex-col w-full pr-5 pl-5 md:pr-10 md:pl-10 lg:pr-20 lg:pl-20 min-h-screen ">
           <div className="flex items-center gap-4 mb-4">
@@ -63,9 +67,16 @@ const IssuesPage = async () => {
                 {issues.map((issue) => (
                   <Table.Row key={issue.id}>
                     <Table.Cell className=' text-center'>
-                      <Link href={`/issues/${issue.id}`} legacyBehavior>
+                  
+
+                       {/* <Link href={`/issues/${issue.id}`} legacyBehavior>
                         {`${issue.title}`}
-                      </Link>
+                      </Link>  */}
+                      <ViewIssue
+                        params={{
+                          id: issue.id,
+                        }}
+                      />
                     </Table.Cell>
                     <Table.Cell className=" hidden md:table-cell text-center">
                       {issue.description}

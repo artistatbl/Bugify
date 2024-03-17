@@ -7,7 +7,6 @@ import Nav from "@/components/layout/nav";
 import { Suspense } from "react";
 import { Button } from "@radix-ui/themes";
 import { DEPLOY_URL } from "@/lib/constants";
-import { GlobeDemo } from "@/components/home/globe";
 import { TypewriterEffectSmoothDemo } from "@/components/home/typewriter-effect";
 
 
@@ -17,14 +16,16 @@ export default async function Home() {
        <Suspense fallback="...">
           <Nav />
         </Suspense>
-       
-      <div className="z-10 w-full max-w-xl px-5 xl:px-0">
+        
+
+      <div className="z-10 w-full max-w-xl  px-5 xl:px-0">
+    
         <a
           href="https://bugify.vercel.app/issuespage"
           target="_blank"
           rel="noreferrer"
           className="mx-auto mb-5 flex max-w-fit animate-fade-up items-center justify-center space-x-2 overflow-hidden rounded-full bg-gray-200 px-14 py-2 transition-colors hover:bg-gray-500 border-b-[3px] border-gray-200"
-        >
+          >
 
           <p className="text-sm font-semibold text-black">
             Log & track your bugs
@@ -36,29 +37,28 @@ export default async function Home() {
               10.4192L12.7456 7.31954C12.9833 7.17906 13.2899 7.2579 13.4304 7.49564C13.5709 7.73337 13.4921 8.03998 13.2543 8.18046L7.75432 11.4305C7.59742 11.5232 7.4025 11.5232 
               7.24559 11.4305L1.74559 8.18046C1.50786 8.03998 1.42901 7.73337 1.5695 7.49564ZM1.56949 10.4956C1.70998 10.2579 2.01658 10.1791 2.25432 10.3195L7.49996 13.4192L12.7456 
               10.3195C12.9833 10.1791 13.2899 10.2579 13.4304 10.4956C13.5709 10.7334 13.4921 11.04 13.2543 11.1805L7.75432 14.4305C7.59742 14.5232 7.4025 14.5232 7.24559 14.4305L1.74559
-               11.1805C1.50785 11.04 1.42901 10.7334 1.56949 10.4956Z" fill="currentColor" fillRule="evenodd" clipRule="evenodd"></path></svg>
+              11.1805C1.50785 11.04 1.42901 10.7334 1.56949 10.4956Z" fill="currentColor" fillRule="evenodd" clipRule="evenodd"></path></svg>
         </a>
      
 
 <TypewriterEffectSmoothDemo />
 
-{/* <GlobeDemo /> */}
 
         <p
           className="animate-fade-up text-center text-gray-500 opacity-0 [text-wrap:balance] md:text-xl dark:text-gray-400 "
           style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
-        >
+          >
           Bugify is the best way to track,log and manage your software development bugs. Let your team focus on shipping features insteadof managing insfrastructure with automated CI/CD.
         </p>
         <div
           className="mx-auto mt-6 flex animate-fade-up items-center justify-center space-x-5 opacity-0"
           style={{ animationDelay: "0.3s", animationFillMode: "forwards" }}
-        >
+          >
           <a
             className="group cursor-pointer flex max-w-fit items-center justify-center space-x-2 rounded-full border border-black bg-black px-5 py-2 text-sm text-white transition-colors hover:bg-white hover:text-black"
             href={DEPLOY_URL}
             rel="noopener noreferrer"
-          >
+            >
 
             <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
               <path fill="evenodd" d="M8.6 5.2A1 1 0 0 0 7 6v12a1 1 0 0 0 1.6.8l8-6a1 1 0 0 0 0-1.6l-8-6Z" clipRule="evenodd" />
@@ -68,23 +68,26 @@ export default async function Home() {
           </a>
           
         </div>
+    
       </div>
       <div className="my-10 grid w-full max-w-screen-xl animate-fade-up grid-cols-1 gap-5 px-5 md:grid-cols-3 xl:px-0 2xl:gap-10 ">
         {features.map(({ title, description, demo, }) => (
           <Card
-            key={title}
-            title={title}
-            description={description}
-            demo={
-              title === "Beautiful, reusable components" ? (
-                <WebVitals />
+          key={title}
+          title={title}
+          description={description}
+          demo={
+            title === "Beautiful, reusable components" ? (
+              <WebVitals />
               ) : (
                 demo
-              )
-            }
-          />
-        ))}
-      </div>
+                )
+              }
+              />
+              ))}
+      
+   
+        </div>
     
     </>
   );
@@ -95,17 +98,17 @@ const features = [
   {
     title: "Real-time Bug Tracking",
     description:
-      "Capture bugs as tey happen with real time reporting and notifications.",
+    "Capture bugs as tey happen with real time reporting and notifications.",
     demo: <WebVitals />,
   },
   {
     title: "Dashboard Integration",
     description:
-      "Visualize bug trends and statuses with our built-in Dashboard integration.",
+    "Visualize bug trends and statuses with our built-in Dashboard integration.",
     demo: (
       <a href="/dashboard" className=" p-3 rounded-lg border bg-blue-400 border-black shadow-xl text-black dark:text-white"
-        style={{ animationDelay: "0.1s", animationFillMode: "forwards" }}
-
+      style={{ animationDelay: "0.1s", animationFillMode: "forwards" }}
+      
       >
         <Button >View Dashboard</Button>
       </a>

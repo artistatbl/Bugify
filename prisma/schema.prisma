@@ -62,11 +62,11 @@ model Comment {
   issue     Issue     @relation(fields: [issueId], references: [id])
   userId    String
   user      User      @relation(fields: [userId], references: [id])
-  // parentId  String?  @db.Uuid
   replyToId String?
-  replyTo   Comment?  @relation("ReplyTo", fields: [replyToId], references: [id])
+  replyTo   Comment?  @relation("ReplyTo", fields: [replyToId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   replies   Comment[] @relation("ReplyTo")
-  // @@index([parentId])
+  commentId String?
+
 
   @@index([issueId])
   @@index([userId])

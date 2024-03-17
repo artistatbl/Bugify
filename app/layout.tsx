@@ -13,6 +13,7 @@ import { ThemeProvider } from "@/components/components/ui/theme-provider";
 
 import { Toaster } from "@/components/components/ui/toaster";
 import { ModeToggle } from "@/components/components/ui/darkmode";
+import Providers from "./Providers";
 
 
 
@@ -40,51 +41,33 @@ export default async function RootLayout({
 
 
       <body className={cx(sfPro.variable, inter.variable)}>
+      
         <ThemeProvider
+      
          attribute="class"
          defaultTheme="light"
          enableSystem
          disableTransitionOnChange
         >
-          
-
-        <div className="fixed h-screen w-full  " />
+            <div className="fixed h-screen w-full  " />
       
 
         <Theme  accentColor="sky" grayColor="olive" radius="medium" scaling="110%">
-       
-
-
-
+        <Providers>
+      
           <main className=" min-h-screen  flex-col  py-28  w-full dark:bg-black  dark:bg-dot-white/[0.3] bg-dot-black/[0.3]  flex items-center justify-center">
-            
-
             {children}
             
           </main>
-          
-        
-
+          </Providers>
           <Toaster />
           <Footer />
         </Theme>
-          
-    
-
-
-
-    
-
         <Analytics />
         </ThemeProvider >
+    
       </body>
     </html>
-   
-
-
-
-
-
   );
 }
 

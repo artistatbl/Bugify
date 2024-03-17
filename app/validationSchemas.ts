@@ -1,3 +1,4 @@
+import { text } from 'stream/consumers';
 import { z } from 'zod';
 
 export const createIssueSchema = z.object({
@@ -41,7 +42,14 @@ export const createGroundSchema = z.object({
     .optional(),
 });
 
+export const createCommentSchema = z.object({
+  issueId : z.string(),
+  text: z.string().min(1, "Content is required.").max(255),
+  replyToId: z.string().optional(),
+})
+
 
 export type CreateIssueSchema = z.infer<typeof createIssueSchema>;
 export type PatchIssueSchema = z.infer<typeof patchIssueSchema>;
 export type CreateGroundSchema = z.infer<typeof createGroundSchema>;
+export type CreateCommentSchema = z.infer<typeof createCommentSchema>;

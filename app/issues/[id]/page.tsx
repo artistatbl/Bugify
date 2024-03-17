@@ -9,6 +9,11 @@ import { Label } from '@/components/components/ui/label';
 import {formatDistanceToNow} from 'date-fns'
 import { Button } from '@/components/components/ui/button';
 import IssuePriorityBadge from '@/components/issues/IssuesPriorityBadge';
+import CreateComment from '../../comment/_component/CreateComment';
+import ViewComment from '@/app/comment/_component/ViewComment';
+import { getServerSession } from 'next-auth';
+import  authOptions  from "@/app/auth/authOptions";
+import Header from '@/components/layout/issues-header';
 
 
 
@@ -24,7 +29,7 @@ interface Props {
 
 const IssueDetailPage = async ({ params }: Props) => {
  
-//  const session = await getServerSession(authOptions);
+ const session = await getServerSession(authOptions);
   const issue = await prisma.issue.findUnique({
     where: { id: params.id },
   });
@@ -34,10 +39,10 @@ const IssueDetailPage = async ({ params }: Props) => {
 
   return (
     <>
-     {/* <SideNav session={session}  /> */}
+     <Header session={session}  />
 
 
-      <div className="z-10 mx-auto max-w-6xl px-10 sm:px-8  md:px-10 lg:px-14 xl space-y-10 ">
+      <div className="z-10 mx-auto max-w-6xl px-10 sm:px-8  md:px-10 lg:px-14 xl space-y-10 bg-zinc-100  dark:bg-zinc-800 p-10  rounded-2xl ">
         <div className="space-y-2">
           <h1 className='text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl'>{`Issue #${issue.id}`} </h1>
           <p className='text-gray-500 dark:text-gray-500 font-light'>
@@ -62,7 +67,7 @@ const IssueDetailPage = async ({ params }: Props) => {
 
           </div>
 
-          <div className='space-x-10'>
+          <div className='space-x-10  flex items-center'>
             <Label className='text-1xl font-bold tracking-tighter sm:text-lg' htmlFor="priority">Priority</Label>
             <IssuePriorityBadge priority={issue.priority} />
 
@@ -85,6 +90,13 @@ const IssueDetailPage = async ({ params }: Props) => {
           </ReactMarkdown>
         </div>
 
+	   {/* <CreateComment  issueId={issue.id}/> */}
+     {/* @ts-expect-error Async Server Component */}
+     <ViewComment issueId={issue?.id ?? issue.id}/>
+
+
+
+
         <div className="flex flex-col gap-2 min-[400px]:flex-row justify-center sm:justify-end">
           <Button className="w-[140px]" variant="outline">
             Edit
@@ -105,6 +117,5 @@ const IssueDetailPage = async ({ params }: Props) => {
 };
 
 export default IssueDetailPage;
-
 
 
