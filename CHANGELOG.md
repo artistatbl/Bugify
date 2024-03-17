@@ -12,3 +12,6 @@
 
 ## [March, 17, 2024 03:46:24] - Changes made by artistatbl
 - [8ba1c5e](https://github.com/artistatbl/Bugify/commit/8ba1c5eafcfdd719fdd25c05bc4f9e3d9e9832f6) - upt - comment features
+
+## [March, 17, 2024 03:50:28] - Changes made by artistatbl
+- [9526785](https://github.com/artistatbl/Bugify/commit/9526785c2d3e2adc93d45f0d8c6dde88daa45c87) - pro - deploy fix with prisma migration
