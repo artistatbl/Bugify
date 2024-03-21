@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
 import { Toaster, toast } from 'sonner'
+import { Loader2 } from "lucide-react"
 
 import { Label } from '@radix-ui/react-label';
 import { Textarea } from '@/components/components/ui/textarea';
@@ -22,9 +23,10 @@ interface CreateCommentProps {
 
 const CreateComment:FC<CreateCommentProps> = ({ issueId, replyToId  }) => {
   const [input, setInput] = useState<string>('');
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const router = useRouter();
 
-  const { mutate: comment, status } = useMutation({
+  const { mutate: comment} = useMutation({
     mutationFn: async (data: CreateCommentFormData) => {
       const res = await axios.post('/api/comment', data);
       return res.data;
@@ -32,6 +34,7 @@ const CreateComment:FC<CreateCommentProps> = ({ issueId, replyToId  }) => {
     onSuccess: () => {
       toast.success('Comment created successfully');
       setInput('');
+      setIsLoading(false);
       router.refresh();
     },
     onError: (error) => {
@@ -56,18 +59,26 @@ const CreateComment:FC<CreateCommentProps> = ({ issueId, replyToId  }) => {
         placeholder='What are your thoughts?'
       />
 
-      <div className='mt-2 flex justify-end'>
-      <Button
+    
+      
+    </div>
+    <div className='mt-2 flex   text-black  justify-end'>
+    <Button
   disabled={input.length === 0}
-  onClick={() => comment({ issueId, text: input, replyToId })}
-  //status={status}
-  >
+  onClick={() => {
+    setIsLoading(true);
+    comment({ issueId, text: input, replyToId });
+  }}
+>
+  {isLoading ? (
+    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+  ) : null}
   Post
 </Button>
-      </div>
     </div>
   </div>
 )
 }
 
 export default CreateComment;
+

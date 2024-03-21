@@ -18,7 +18,7 @@ import { createCommentSchema } from '@/app/validationSchemas';
 import { MessageSquare } from 'lucide-react';
 import { useSession } from 'next-auth/react'
 
-
+import { formatDistanceToNow } from 'date-fns';
 
 
 
@@ -57,10 +57,25 @@ const IssueComment: FC<IssueCommentProps> = ({
 	const { mutate: IssueComment, status } = useMutation({
 		mutationFn: async (data: CreateCommentFormData) => {
 			const res = await axios.post('/api/comment', data);
+			const mentionedUsers = data.text.match(/@([a-zA-Z0-9]+)/);
+			const noticatiocon = []
+
+			if (mentionedUsers){
+				for (const mention of mentionedUsers) {
+					const name = mention.slice(1);
+					noticatiocon.push(name)
+
+					if(noticatiocon.includes(comment.user.name ?? '')){
+						toast.success('Comment created successfully');
+						setIsReplying(false);
+						router.refresh();
+					}
+				}
+			}
 			return res.data;
 		},
 		onSuccess: () => {
-			toast.success('Comment created successfully');
+			toast.success('Comment');
 			setIsReplying(false);
 			router.refresh();
 		},
@@ -77,16 +92,17 @@ const IssueComment: FC<IssueCommentProps> = ({
 			<div className='flex items-center'>
 				<UserAvatar
 				 user={{
-					name: comment.user.name || null,
-					image: comment.user.image || null,
+					name: comment.user.name || '',
+					image: comment.user.image || '',
 				 }}
 				 className='w-6 h-6'
 				
 				/>
 				<div className='ml-2 flex items-center gap-x-2'>
-					<p className='text-sm font-medium'>{comment.user.name}</p>
-					{/* <p className='text-xs text-foreground/50'>
-						{formatDistanceToNow(new Date(comment[0].createdAt), { addSuffix: true })} */}
+					<p className='text-sm font-medium'>@{comment.user.name}</p>
+					<p className='max-h-40 mt-1 truncate text-xs text-zinc-500'>{formatDistanceToNow(new Date(comment.createdAt))} ago</p>
+          
+					
 				</div>
 			</div>
 			<p className='text-sm text-zinc-900 dark:text-white mt-2'>{comment.text}</p>
@@ -119,9 +135,9 @@ const IssueComment: FC<IssueCommentProps> = ({
 							onChange={(e) => {
 								setInput(e.target.value);
 							}}
-							rows={3}
-							placeholder='what do you think?'
-							// placeholder={`@${comment[0].user.name} `}
+							rows={1}
+					
+							placeholder={`@${comment.user.name} `}
 							/>
 							<div className='mt-2 flex justify-end gap-2'>
 								<Button
@@ -132,8 +148,11 @@ const IssueComment: FC<IssueCommentProps> = ({
 								</Button>
 							
 
-							<Button 
-							//isLoading={isloading}
+							<button 
+							type='submit'
+							className='font-extralight bg-blue-500 hover:bg-blue-600 text-white  text-xs rounded-lg py-2 px-5'
+							
+						
 							onClick={() => {
 								if(!input) return;
 								IssueComment({
@@ -145,10 +164,11 @@ const IssueComment: FC<IssueCommentProps> = ({
 								
 							}}>
 								Post
-							</Button>
+							</button>
 							</div>
 							</div>
 					</div>
+
 					
 
 					

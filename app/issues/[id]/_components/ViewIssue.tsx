@@ -11,8 +11,7 @@ import { Dialog, DialogContent, DialogTrigger } from '@/components/components/ui
 import Link from 'next/link';
 import "easymde/dist/easymde.min.css";
 import { MessageSquare } from 'lucide-react';
-
-
+import EditorOutput from '@/components/issues/EditorOutput';
 
 
 
@@ -25,6 +24,10 @@ interface Props {
   };
 }
 
+
+export const dynamic = 'force-dynamic'
+export const fetchCache = 'force-no-store'
+
 const ViewIssue = async ({ params }: Props) => {
 
  
@@ -36,9 +39,10 @@ const ViewIssue = async ({ params }: Props) => {
         select: {
           comments: true,
         },
-      }
+      },
+      assignedToUser: true,
     }
-  });
+  }) || null;
   if (!issue) notFound();
   await delay(500);
   console.log(issue);
@@ -55,23 +59,23 @@ const ViewIssue = async ({ params }: Props) => {
 
 
         </DialogTrigger>
-        <DialogContent className="max-w-[415px] sm:max-w-[450px] md:max-w-2xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl">
+        <DialogContent className="max-w-[415px] sm:max-w-[650px]  md:max-w-3xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl 3xl:max-w-7xl  border-zinc-900 border-b-2">
 
 
-          <div className="z-10 mx-auto max-w-6xl px-10 sm:px-8  md:px-10 lg:px-14 xl space-y-10 ">
-            <div className="space-y-2">
-              <h1 className='text-1xl font-bold tracking-tighter sm:text-2xl md:text-3xl'>{`Issue #${issue.id}`} </h1>
-              <p className='text-gray-500 dark:text-gray-500 font-light'>
+          <div className="z-10 px-2 sm:px-4 md:px-6 lg:px-8  space-y-5 ">
+            <div className=" relative  ">
+            <Text className='font-bold tracking-tighter text-2xl  sm:text-md'>{issue.title}</Text>
+
+              <p className='text-gray-500 dark:text-gray-500 font-light '>
+
                 opened {formatDistanceToNow(new Date(issue.createdAt), { addSuffix: true })}
               </p>
+
             </div>
 
 
             <div className="grid gap-4 md:grid-cols-1">
-              <div className="">
-                <Text className='text-md font-bold tracking-tighter sm:text-md'>{issue.title}</Text>
-              </div>
-
+           
 
 
               <div className=" space-x-10">
@@ -91,8 +95,9 @@ const ViewIssue = async ({ params }: Props) => {
               <div className='space-x-5'>
                 <Label className='text-1xl font-bold tracking-tighter sm:text-lg font' htmlFor="assignee">Assignee</Label>
 
-                <Text className=' text-gray-700 dark:text-gray-700 font-thin'>{issue.assignedToUserId}</Text>
-
+                <Text className='text-gray-700 dark:text-gray-700 font-thin'>
+                  {issue?.assignedToUser?.name ? issue?.assignedToUser?.name : 'Unassigned'}
+                </Text>
 
               </div>
             </div>
@@ -100,12 +105,15 @@ const ViewIssue = async ({ params }: Props) => {
 
             <div className="space-y-2">
               <Label className='text-1xl font-bold tracking-tighter sm:text-xl ' htmlFor="description">Descriptionnn</Label>
-              <ReactMarkdown className="border  rounded-lg pl-10 pr-10 pt-5 pb-5  dark:border-gray-500 dark:bg-gray-550  leading-6 text-gray-700 dark:text-gray-700 overflow-hidden break-words md:text-base lg:text-lg xl:text-xl">
-                {issue.description}
+              <div>
+               <EditorOutput content={issue.description || ''}  />
+              
 
+    
+  
+</div>
 
-                
-              </ReactMarkdown>
+          
               <h2 className="flex items-center gap-2"> 
 
               <MessageSquare className="w-5 h-5" />

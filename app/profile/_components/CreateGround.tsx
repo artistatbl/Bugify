@@ -1,138 +1,157 @@
 "use client"
-import { Button } from '@/components/components/ui/button'
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/components/ui/dialog'
-import React, { useState, useEffect } from 'react'
-import { Input } from '@/components/components/ui/input'
-import { Label } from '@/components/components/ui/label'
-import { zodResolver } from '@hookform/resolvers/zod';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { createGroundSchema } from '@/app/validationSchemas';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
-import { Toaster, toast } from 'sonner'
-
+import { useRouter } from 'next/navigation'; // Adjust import based on your project structure
+import { createGroundSchema } from '@/app/validationSchemas'; // Adjust import path as necessary
 import { z } from 'zod';
-import Link from 'next/link';
-// import { Spinner } from '../../../components/issues/Spinner';
-import { useRouter } from 'next/navigation'
-// import { toast } from '@/lib/hooks/use-toast'
+import { Button } from '@/components/components/ui/button';
+import { Label } from '@/components/components/ui/label';
+import { Input } from '@/components/components/ui/input';
+import { Loader2 } from "lucide-react"
 
+import {  Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/components/ui/dialog'; // Adjust import paths as necessary
+import { toast } from '@/lib/hooks/use-toast'; // Adjust import path as necessary
 
-
-type IssueForm = z.infer<typeof createGroundSchema>;
+type GroundForm = z.infer<typeof createGroundSchema>;
 
 const CreateGround = () => {
   const router = useRouter();
-  const { register, handleSubmit, formState: {  errors }  } = useForm<IssueForm>({
-    resolver: zodResolver(createGroundSchema)
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  // const [isSubmitting, setSubmitting] = useState(false);
+
+  const { register, handleSubmit, formState: { errors }, reset } = useForm({
+    resolver: zodResolver(createGroundSchema),
   });
 
-  // const [delayedNameError, setDelayedNameError] = useState('');
-  const [error, setError] = useState('');
-  const [isSubmitting, setSubmitting] = useState(false);
-
-  // useEffect(() => {
-  //   let timer;
-  //   if (errors.name) {
-  //     // Set a timer to display the error after 3 seconds
-  //     timer = setTimeout(() => {
-  //       setDelayedNameError(errors.name.message);
-  //     }, 3000);
-  //   } else {
-  //     // If there's no error, clear the delayed error message
-  //     setDelayedNameError('');
-  //   }
-
-  //   // Cleanup function to clear the timer if the component unmounts
-  //   // or if the error changes before the timer completes
-  //   return () => clearTimeout(timer);
-  // }, [errors.name]); // Depend on errors.name to re-run when it changes
-
-
- 
-
-
- 
- 
-
-  const onSubmit = async (data: IssueForm) => {
-    if (!data) {
-      console.error("Null pointer exception: data is null");
-      return;
+  useEffect(() => {
+    if (Object.keys(errors).length) {
+      for (const [_key, value] of Object.entries(errors)) {
+        value
+        toast({
+      title: 'Something went wrong.',
+      description: (value as { message: string }).message,
+      variant: 'destructive',
+       })
+      }
     }
+     }, [errors])
 
-    try {
-      setSubmitting(true);
-      await axios.post('/api/ground/', data).catch(error => {
-        console.error(error);
-        setError('An unexpected error occurred. Please try again.');
-      });
+     const createGroundMutation = useMutation({
+      mutationFn: async (groundData: GroundForm) => {
+        const response = await axios.post('/api/ground/', groundData);
+        return response.data;
+      },
+      
+      onSuccess: () => {
+        setIsLoading(false);
+        toast({
+          title: 'Ground created successfully.',
+          description: 'Your ground has been created.',
+          variant: 'default',   
+        });
+        reset();
+        // Add any additional success logic here, e.g., redirecting the user
+      },
+      onError: (error) => {
+        setIsLoading(false); // Ensure loading is set to false on error as well
+        if (axios.isAxiosError(error)) {
+          // Check for the specific error response from your API
+          const serverResponse = error.response?.data?.message;
+          if (error.response?.status === 403 && serverResponse.includes("limit of free grounds")) {
+            toast({
+              title: 'Limit Reached',
+              description: serverResponse,
+              variant: 'destructive',
+            });
+          } else {
+            // Handle other errors
+            toast({
+              title: 'Error creating ground.',
+              description: serverResponse || 'An unexpected error occurred. Please try again.',
+              variant: 'destructive',
+            });
+          }
+        } else {
+          // Handle non-Axios errors
+          toast({
+            title: 'Error',
+            description: 'An unexpected error occurred. Please try again.',
+            variant: 'destructive',
+          });
+        }
+      }
+    });
+    
+    
 
-      toast.success('Ground created successfully!');
-      router.refresh(); // Optional: Reset form state
-      // router.push('/profile'); If you want to navigate after closing the modal, do it here
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setSubmitting(false);
-    }
+  const onSubmit = (data: GroundForm) => {
+    createGroundMutation.mutate(data);
   };
-
 
   return (
     <>
-    <Dialog> 
-      <DialogTrigger asChild>
-      <Button  className='bg-black dark:bg-white hover:bg-zinc-500 dark:text-black dark:hover:bg-zinc-900 dark:hover:text-white text-white font-bold py-2 px-4 rounded'>
-    Create a Ground
-  </Button>
-      
-      
-      </DialogTrigger>
-      <Toaster richColors/>
-    
-
-      <DialogContent className="max-w-[415px] sm:max-w-[450px] md:max-w-2xl 2xl:max-w-3xl">
-        <DialogHeader>
-          <DialogTitle className="text-2xl font-semibold border-b pl-6 border-stone-950 mb-5">
+      <Dialog>
+        <DialogTrigger asChild>
+          <Button className='bg-black hover:bg-zinc-500 text-white font-bold py-2 px-4 rounded'>
             Create a Ground
-          </DialogTitle>
-          <DialogDescription>
+          </Button>
+        </DialogTrigger>
 
-            Ground names including capitalization cannot be changed.
-          </DialogDescription>
-        </DialogHeader>
+        <DialogContent className='max-w-[415px] sm:max-w-[450px] max-h-[50vh] md:max-w-2xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl'>
+          <DialogHeader>
+            <DialogTitle className="text-2xl font-semibold border-b pl-6 border-stone-950  mb-5">
+              Create a Ground
+            </DialogTitle>
+            <DialogDescription>
+              Ground names including capitalization cannot be changed.
+            </DialogDescription>
+          </DialogHeader>
 
-        <form onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={handleSubmit(onSubmit)}>
 
-
-          <div className="grid gap-4 py-4">
-            <div className='relative dark:text-black '>
+            <div className="grid gap-4 py-4  ">
+              <div className='relative dark:text-black'>
+             
               <Label className='absolute text-sm left-0 w-8 inset-y-0 grid place-items-center text-zinc-400'>G/</Label>
 
-              <Input
-                {...register('name')} // Use the 'register' function for integrating the input with react-hook-form
-                className='pl-9 col-span-5'
-                placeholder="Enter ground name"
+
+              <Input id="name" {...register('name')}
+              className='pl-9 w-full col-span-5'
+              placeholder='Ground Name'
               />
             </div>
-        
 
-          
-            {errors.name && <p className="text-red-500">{errors.name.message}</p>}
+            </div>
 
-          </div>
-          {error && <p className="text-red-500">{error}</p>}
-          <DialogFooter>
-            <Button type="submit" disabled={isSubmitting} className="w-full">
-              {isSubmitting ? 'Creating...' : 'Create Ground'}
+            <DialogFooter>
+              <Button 
+              type="submit"
+               variant="outline" 
+              disabled={isLoading}
+
+              
+               className="w-full">
+
+
+{isLoading ? (
+    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+  ) : null}
+
+
+                Create Ground
+             
             </Button>
-          </DialogFooter>
-        </form>
-      </DialogContent>
-    </Dialog>
+
+            </DialogFooter>
+          </form>
+        </DialogContent>
+      </Dialog>
     </>
   );
-}
+};
 
 export default CreateGround;
-

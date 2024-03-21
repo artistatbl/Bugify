@@ -26,7 +26,7 @@ const IssuesPage = async () => {
   
     const issues = await prisma.issue.findMany({
       where: {
-       // userId: session?.user?.id, // Use the userId to filter issues
+        userId: session?.user?.id, // Use the userId to filter issues
       }
     });
   
@@ -52,11 +52,11 @@ const IssuesPage = async () => {
             <Table.Root variant="surface">
               <Table.Header>
                 <Table.Row>
-                  <Table.ColumnHeaderCell className='text-center'>Title</Table.ColumnHeaderCell>
-                  <Table.ColumnHeaderCell className="  hidden md:table-cell text-center">Description</Table.ColumnHeaderCell>
-                  <Table.ColumnHeaderCell className="hidden md:table-cell text-right md:text-justify md:justify-center">Priority</Table.ColumnHeaderCell>
+                  <Table.ColumnHeaderCell className='text-center'>title</Table.ColumnHeaderCell>
+                  <Table.ColumnHeaderCell className=" hidden md:table-cell text-center">status</Table.ColumnHeaderCell>
+                  <Table.ColumnHeaderCell className="hidden md:table-cell  text-justify justify-items-center ">Priority</Table.ColumnHeaderCell>
 
-                  <Table.ColumnHeaderCell className="text-center justify-center">Status</Table.ColumnHeaderCell>
+                  <Table.ColumnHeaderCell className="text-center justify-center">Issue</Table.ColumnHeaderCell>
 
                 </Table.Row>
               </Table.Header>
@@ -66,27 +66,26 @@ const IssuesPage = async () => {
 
                 {issues.map((issue) => (
                   <Table.Row key={issue.id}>
-                    <Table.Cell className=' text-center'>
-                  
-
-                       {/* <Link href={`/issues/${issue.id}`} legacyBehavior>
-                        {`${issue.title}`}
-                      </Link>  */}
-                      <ViewIssue
-                        params={{
-                          id: issue.id,
-                        }}
-                      />
+                   
+                    <Table.Cell className=" text-center">
+                      {issue.title}
                     </Table.Cell>
-                    <Table.Cell className=" hidden md:table-cell text-center">
-                      {issue.description}
-                    </Table.Cell>
-                    <Table.Cell className="hidden md:table-cell  mr-5 text-center ">
-                      <IssuePriorityBadge  className=" text-center" priority={issue.priority} />
-                    </Table.Cell>
-                    <Table.Cell className=" text-center ">
+                    <Table.Cell className=" text-center hidden md:table-cell ">
                       <IssueStatusBadge status={issue.status} />
                     </Table.Cell>
+                    <Table.Cell className="hidden md:table-cell">
+                      <IssuePriorityBadge priority={issue.priority} />
+                    </Table.Cell>
+                   
+
+                    <Table.Cell className=' text-center justify-center'>
+                  
+                 <ViewIssue
+                   params={{
+                     id: issue.id,
+                   }}
+                 />
+               </Table.Cell>
                    
                   </Table.Row>
                 ))}
