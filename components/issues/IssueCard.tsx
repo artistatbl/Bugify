@@ -2,6 +2,7 @@ import React from 'react';
 import {Issue} from '@/../../types';
 import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} from '@/components/components/ui/card';
 import {Avatar, AvatarFallback, AvatarImage} from '@/components/components/ui/avatar';
+import EditorOutput from '@/components/issues/EditorOutput';
 
 import Link from "next/link";
 //import Priorities from "@/app/components/PrioritySignals";
@@ -47,7 +48,10 @@ const IssueCard: React.FC<IssueCardProps> = async ({issue}) => {
                   {issue.title}
                 </Link>
               </CardTitle>
-              <CardDescription className="mr-10 truncate">{issue.description}</CardDescription>
+              <CardDescription className="mr-10 truncate">
+              <EditorOutput content={issue.description || ''}  />
+
+              </CardDescription>
               {issue.assignedToUser ? (
                   <Popover>
                     <PopoverTrigger asChild>

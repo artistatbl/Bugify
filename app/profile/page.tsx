@@ -137,7 +137,9 @@ const page = async () => {
                   )}
                   {user.assignedIssues && user.assignedIssues.map((issue) => (
 
-                    <IssueCard key={issue.id} issue={issue} />
+                    // <IssueCard key={issue.id} issue={issue}/>
+                    <IssueCard key={issue.id} issue={{...issue, description: String(issue.description)}} />
+
                   ))}
 
                 </div>
