@@ -21,7 +21,7 @@ const CreateIssue = () => {
   return (
 	<Dialog  >
 	<DialogTrigger asChild>
-	  <Button variant="outline">Create aaaaaa Issue</Button>
+	  <Button variant="outline">Create a Issue</Button>
 	</DialogTrigger>
         <DialogContent className="max-w-[415px] sm:max-w-[450px] md:max-w-2xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl min-h-[50vh] border-zinc-900 border-b-2">
 

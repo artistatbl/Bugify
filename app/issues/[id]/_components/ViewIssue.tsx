@@ -62,9 +62,9 @@ const ViewIssue = async ({ params }: Props) => {
         <DialogContent className="max-w-[415px] sm:max-w-[650px]  md:max-w-3xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl 3xl:max-w-7xl  border-zinc-900 border-b-2">
 
 
-          <div className="z-10 px-2 sm:px-4 md:px-6 lg:px-8  space-y-5 ">
+          <div className="z-10 px-2 sm:px-4 md:px-6 lg:px-8 space-y-5 ">
             <div className=" relative  ">
-            <Text className='font-bold tracking-tighter text-2xl  sm:text-md'>{issue.title}</Text>
+            <Text className='font-bold tracking-tighter text-3xl  sm:text-4xl'>{issue.title}</Text>
 
               <p className='text-gray-500 dark:text-gray-500 font-light '>
 
@@ -79,7 +79,7 @@ const ViewIssue = async ({ params }: Props) => {
 
 
               <div className=" space-x-10">
-                <Label className='text-1xl font-bold tracking-tighter sm:text-lg' htmlFor="status">Status</Label>
+                <Label className='text-2xl font-bold tracking-tighter sm:text-xl' htmlFor="status">Status</Label>
 
 
 
@@ -88,12 +88,12 @@ const ViewIssue = async ({ params }: Props) => {
               </div>
 
               <div className='space-x-10 flex items-center'>
-                <Label className='text-1xl font-bold tracking-tighter sm:text-lg relative' htmlFor="priority">Priority</Label>
+                <Label className='text-2xl font-bold tracking-tighter sm:text-xl relative' htmlFor="priority">Priority</Label>
                 <IssuePriorityBadge priority={issue.priority}  />
 
               </div>
               <div className='space-x-5'>
-                <Label className='text-1xl font-bold tracking-tighter sm:text-lg font' htmlFor="assignee">Assignee</Label>
+                <Label className='text-2xl font-bold tracking-tighter sm:text-xl ' htmlFor="assignee">Assignee</Label>
 
                 <Text className='text-gray-700 dark:text-gray-700 font-thin'>
                   {issue?.assignedToUser?.name ? issue?.assignedToUser?.name : 'Unassigned'}
@@ -103,9 +103,9 @@ const ViewIssue = async ({ params }: Props) => {
             </div>
 
 
-            <div className="space-y-2">
-              <Label className='text-1xl font-bold tracking-tighter sm:text-xl ' htmlFor="description">Descriptionnn</Label>
-              <div>
+            <div className="space-y-2 ">
+              <Label className='text-1xl font-bold tracking-tighter sm:text-xl ' htmlFor="description">Description</Label>
+              <div className="space-y-2 bg-zinc-200 dark:bg-zinc-800 p-2 pl-6 border border-black dark:border-white rounded-2xl ">
                <EditorOutput content={issue.description || ''}  />
               
 
