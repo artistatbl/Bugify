@@ -2,16 +2,15 @@ import { text } from 'stream/consumers';
 import { z } from 'zod';
 
 export const createIssueSchema = z.object({
-  title: z.string(),
-  description: z.string(),
+  title: z.string().min(3, "Title must be longer than 3 characters.").max(128, "Title must be at most 228 characters."),
+  description: z.any(),
   status: z.enum(["OPEN", "IN_PROGRESS", "CLOSED", "REOPENED", "OVERDUE", "COMPLETED", "CANCELLED", "NOT_STARTED"]),
   priority: z.enum(["LOW", "MEDIUM", "HIGH", "NORMAL", "CRITICAL"]),
   organizationId: z.string().optional(),
   userId: z.string().optional(),
   user: z.string().optional(),
   assignedToUserId: z.string().optional(),
-  // organizationId: z.string().optional(),
-  // userId: z.string().optional(),
+  assignedToUser: z.string().optional(),
 
 });
 
@@ -38,7 +37,7 @@ export const createGroundSchema = z.object({
   name: z
     .string()
     .min(3, "Name is required.")
-    .max(255)
+    .max(255, "Name is too long.")
     .optional(),
 });
 

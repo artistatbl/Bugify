@@ -1,5 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 const plugin = require("tailwindcss/plugin");
+import { withUt } from "uploadthing/tw";
+
 
 const defaultTheme = require("tailwindcss/defaultTheme");
  

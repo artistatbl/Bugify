@@ -11,6 +11,7 @@ import { Button } from '@/components/components/ui/button';
 import IssuePriorityBadge from '@/components/issues/IssuesPriorityBadge';
 import CreateComment from '../../comment/_component/CreateComment';
 import ViewComment from '@/app/comment/_component/ViewComment';
+import EditorOutput from '@/components/issues/EditorOutput';
 import { getServerSession } from 'next-auth';
 import  authOptions  from "@/app/auth/authOptions";
 import Header from '@/components/layout/issues-header';
@@ -32,6 +33,14 @@ const IssueDetailPage = async ({ params }: Props) => {
  const session = await getServerSession(authOptions);
   const issue = await prisma.issue.findUnique({
     where: { id: params.id },
+    include: {
+      _count: {
+        select: {
+          comments: true,
+        },
+      },
+      assignedToUser: true,
+    }
   });
   if (!issue) notFound();
   await delay(500);
@@ -76,7 +85,7 @@ const IssueDetailPage = async ({ params }: Props) => {
             <Label className='text-1xl font-bold tracking-tighter sm:text-lg font' htmlFor="assignee">Assignee</Label>
 
             {/* <p> {issue.assignedToUserId}</p> */}
-           <Text className=' text-gray-700 dark:text-gray-700 font-thin'>{issue.assignedToUserId}</Text>
+           <Text className=' text-gray-700 dark:text-gray-700 font-thin'>{issue.assignedToUser?.name}</Text>
            
 
           </div>
@@ -85,17 +94,9 @@ const IssueDetailPage = async ({ params }: Props) => {
 
         <div className="space-y-2">
           <Label  className ='text-1xl font-bold tracking-tighter sm:text-xl ' htmlFor="description">Description</Label>
-          <ReactMarkdown className="border  rounded-lg pl-10 pr-10 pt-5 pb-5  dark:border-gray-500 dark:bg-gray-550  leading-6 text-gray-700 dark:text-gray-700 overflow-hidden break-words md:text-base lg:text-lg xl:text-xl">
-            {issue.description}
-          </ReactMarkdown>
+          <EditorOutput content={issue.description || ''}  />
+
         </div>
-
-	   {/* <CreateComment  issueId={issue.id}/> */}
-     {/* @ts-expect-error Async Server Component */}
-     <ViewComment issueId={issue?.id ?? issue.id}/>
-
-
-
 
         <div className="flex flex-col gap-2 min-[400px]:flex-row justify-center sm:justify-end">
           <Button className="w-[140px]" variant="outline">
@@ -105,6 +106,13 @@ const IssueDetailPage = async ({ params }: Props) => {
             Delete
           </Button>
         </div>
+     {/* @ts-expect-error Async Server Component */}
+     <ViewComment issueId={issue?.id ?? issue.id} />
+
+
+
+
+    
 
 
 

@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -16,15 +13,14 @@ model Account {
   type              String
   provider          String
   providerAccountId String
-  refresh_token     String? @db.Text
-  access_token      String? @db.Text
+  refresh_token     String?
+  access_token      String?
   expires_at        Int?
   token_type        String?
   scope             String?
-  id_token          String? @db.Text
+  id_token          String?
   session_state     String?
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
 }
@@ -37,36 +33,49 @@ model Session {
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
-model User {
-  id             String        @id @default(cuid())
-  name           String?
-  email          String        @unique
-  username       String?       @unique
-  emailVerified  DateTime?
-  image          String?
-  lastLogin      DateTime?
-  role           Role          @default(USER)
-  organizationId String?
-  organization   Organization? @relation(fields: [organizationId], references: [id], name: "UserOrganization")
-  createdIssues  Issue[]       @relation("IssueCreator")
-  assignedIssues Issue[]       @relation("IssueAssignee")
-  comments       Comment[]
-  accounts       Account[]
-  sessions       Session[]
+model Organization {
+  id          String       @id @default(cuid())
+  name        String
+  creatorId   String
+  creator     User         @relation("OrganizationCreator", fields: [creatorId], references: [id])
+  invitations Invitation[]
+  issues      Issue[]
+  users       User[]       @relation("UserOrganization")
 }
+
+model User {
+  id                 String          @id @default(cuid())
+  name               String?
+  email              String          @unique
+  username           String?         @unique
+  emailVerified      DateTime?
+  image              String?
+  lastLogin          DateTime?
+  role               Role            @default(USER)
+  organizationId     String?
+  accounts           Account[]
+  comments           Comment[]
+  assignedIssues     Issue[]         @relation("IssueAssignee")
+  createdIssues      Issue[]         @relation("IssueCreator")
+  sessions           Session[]
+  organization       Organization?   @relation("UserOrganization", fields: [organizationId], references: [id])
+  createdOrganizations Organization[] @relation("OrganizationCreator") // New field
+}
+
+
 
 model Comment {
   id        String    @id @default(uuid())
   text      String
   issueId   String
-  issue     Issue     @relation(fields: [issueId], references: [id])
   userId    String
-  user      User      @relation(fields: [userId], references: [id])
   replyToId String?
+  commentId String?
+  createdAt DateTime  @default(now())
+  issue     Issue     @relation(fields: [issueId], references: [id])
   replyTo   Comment?  @relation("ReplyTo", fields: [replyToId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   replies   Comment[] @relation("ReplyTo")
-  commentId String?
-
+  user      User      @relation(fields: [userId], references: [id])
 
   @@index([issueId])
   @@index([userId])
@@ -75,45 +84,44 @@ model Comment {
 model Issue {
   id               String        @id @default(uuid())
   title            String
-  description      String
+  description      Json
   status           Status        @default(OPEN)
   priority         Priority      @default(MEDIUM)
   createdAt        DateTime      @default(now())
   updatedAt        DateTime      @updatedAt
   organizationId   String?
-  organization     Organization? @relation(fields: [organizationId], references: [id])
-  userId           String
-  user             User          @relation(fields: [userId], references: [id], name: "IssueCreator")
+  userId           String?
   assignedToUserId String?
-  assignedToUser   User?         @relation(fields: [assignedToUserId], references: [id], name: "IssueAssignee")
   comments         Comment[]
+  assignedToUser   User?         @relation("IssueAssignee", fields: [assignedToUserId], references: [id])
+  organization     Organization? @relation(fields: [organizationId], references: [id])
+  user             User?       @relation("IssueCreator", fields: [userId], references: [id])
 }
 
-model Organization {
-  id          String       @id @default(cuid())
-  name        String
-  users       User[]       @relation("UserOrganization")
-  issues      Issue[]
-  invitations Invitation[]
-}
+
+
 
 model Invitation {
   id             String       @id @default(cuid())
   email          String
-  organizationId String // Changed type from Int to String
-  organization   Organization @relation(fields: [organizationId], references: [id])
+  organizationId String
   code           String       @unique
   accepted       Boolean      @default(false)
   createdAt      DateTime     @default(now())
+  organization   Organization @relation(fields: [organizationId], references: [id])
 }
 
-// Assuming definitions for Account and Session models.
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
 
-// Enum definitions assumed based on your schema's usage.
+  @@unique([identifier, token])
+}
+
 enum Role {
   USER
   ADMIN
-  // Add other roles as needed
 }
 
 enum Status {
@@ -125,7 +133,6 @@ enum Status {
   CANCELLED
   REOPENED
   NOT_STARTED
-  // Add other statuses as needed
 }
 
 enum Priority {
@@ -134,13 +141,4 @@ enum Priority {
   HIGH
   MORNAL
   CRITICAL
-  // Add other priorities as needed
-}
-
-model VerificationToken {
-  identifier String
-  token      String   @unique
-  expires    DateTime
-
-  @@unique([identifier, token])
 }

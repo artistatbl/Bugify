@@ -2,8 +2,15 @@ import { NextRequest, NextResponse } from "next/server";
 import prisma from "../../../prisma/client";
 import { createIssueSchema } from "../../validationSchemas";
 import { v4 as uuidv4 } from 'uuid';
+import { getServerSession } from "next-auth";
+import authOptions from "@/app/auth/authOptions";
 
 export async function POST(request: NextRequest) {
+	// Create a new issue
+	const session = await getServerSession(authOptions);
+
+	if (!session) return NextResponse.json({}, { status: 401 });
+	
 	const body = await request.json();
 	const validation = createIssueSchema.safeParse(body);
    
@@ -21,7 +28,7 @@ export async function POST(request: NextRequest) {
 		   status: body.status, // Assumes 'status' is included in the request body
 		   priority: body.priority, // Assumes 'priority' is included in the request body
 		   organizationId: body.organizationId || null, // Handle optional organizationId
-		   userId: body.userId || null, // Handle optional userId
+		   userId: session?.user.id, // Handle optional userId
 		   assignedToUserId: body.assignedToUserId || null,
 		   // Assumes 'userId' is provided in the request body
 	    },

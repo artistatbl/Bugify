@@ -39,6 +39,7 @@ const ViewComment = async ({issueId}: CommentsSectionProps) => {
 			replies: {
 				include: {
 					user: true
+
 				},
 			},
 		},
@@ -50,7 +51,7 @@ const ViewComment = async ({issueId}: CommentsSectionProps) => {
     
 		<CreateComment issueId={issueId} />
     
-		<div className='flex flex-col gap-y-6 mt-4 bg-white dark:bg-zinc-800 dark:text-white p-10'>
+		<div className='flex flex-col gap-y-6 mt-4  dark:bg-zinc-800 dark:text-white p-10'>
 		  {comments
 		    .filter((comment) => !comment.replyToId)
 		    .map((topLevelComment) => {
@@ -58,7 +59,7 @@ const ViewComment = async ({issueId}: CommentsSectionProps) => {
 			
 			 return (
 			   <div key={topLevelComment.id} className='flex flex-col dark:text-white'>
-				<div className='mb-2'>
+				<div className='mb-2 py-2 pl-2 bg-slate-200'>
 				  <PostComment
 				    comment={topLevelComment}
 				   
@@ -72,13 +73,18 @@ const ViewComment = async ({issueId}: CommentsSectionProps) => {
 				  .map((reply) => (
 					 <div
 					   key={reply.id}
-					   className='ml-2 py-2 pl-4 border-l-2 border-zinc-200'>
+					   className='ml-4 py-2 pl-4 border-l-2 border-zinc-400  dark:border-white dark:bg-zinc-700 gap-x-12 '>
+						   
+
+
+						<div className=' bg-zinc-200 py-2 pl-4 '>
 					   <PostComment
 					     comment={reply}
 
 						issueId={issueId}
 					
 					   />
+						</div>
 					 </div>
 				    ))}
 			   </div>
