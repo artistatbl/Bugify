@@ -21,3 +21,6 @@
 
 ## [March, 17, 2024 04:01:09] - Changes made by artistatbl
 - [29935eb](https://github.com/artistatbl/Bugify/commit/29935eb3b9029701e7ba9ad519867295514c1aa4) - Merge branch 'main' of https://github.com/artistatbl/Bugify
+
+## [March, 21, 2024 17:38:06] - Changes made by artistatbl
+- [b13da93](https://github.com/artistatbl/Bugify/commit/b13da93a5b35a43fe1f2525d3b0a462faa0a8c68) - upt - creaion of the issues /  comment update
