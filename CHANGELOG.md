@@ -24,3 +24,6 @@
 
 ## [March, 21, 2024 17:38:06] - Changes made by artistatbl
 - [b13da93](https://github.com/artistatbl/Bugify/commit/b13da93a5b35a43fe1f2525d3b0a462faa0a8c68) - upt - creaion of the issues /  comment update
+
+## [March, 21, 2024 17:52:04] - Changes made by artistatbl
+- [b57319b](https://github.com/artistatbl/Bugify/commit/b57319b983cd3b7430fc195cc09169c8af935748) - fix - error with issueCard on profile page
