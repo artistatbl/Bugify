@@ -33,3 +33,6 @@
 
 ## [March, 21, 2024 21:16:38] - Changes made by artistatbl
 - [e80d3f7](https://github.com/artistatbl/Bugify/commit/e80d3f7fe5e1d83bd173c4f7c1a66fbed868a7a0) - upt - viewissue style update / creaseissue
+
+## [March, 25, 2024 22:53:58] - Changes made by artistatbl
+- [1484aec](https://github.com/artistatbl/Bugify/commit/1484aec82318e3eafdf9bb60e7f88ea75f4641fd) - upt - view issue modal update and create ground
