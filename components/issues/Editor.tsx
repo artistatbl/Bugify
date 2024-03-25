@@ -27,12 +27,18 @@ import { toast } from '../../lib/hooks/use-toast';
 type IssueForm = z.infer<typeof createIssueSchema>;
 
 interface EditorProps {
-	//userId : string
+	handlePostSuccess: () => void;
+
+
 	
  
 
 }
 
+
+const handlePostSuccess = () => {
+	// Placeholder function or actual logic
+   };
   const Editor: React.FC<EditorProps> = ({}) => {
 
 	const {
@@ -56,6 +62,7 @@ interface EditorProps {
   const _titleRef = useRef<HTMLTextAreaElement>(null)
   const router = useRouter()
   const [isMounted, setIsMounted] = useState<boolean>(false)
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
  
    
    const { mutate: createPost } = useMutation({
@@ -86,11 +93,11 @@ interface EditorProps {
 		variant: 'default',
 	   });
 	   reset();
-	   router.refresh()
-	 
+	   router.refresh();
+	   handlePostSuccess();
     },
  
-  })
+  });
 
 	
 

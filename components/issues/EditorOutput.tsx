@@ -58,8 +58,8 @@ const EditorOutput: React.FC<EditorOutputProps> = ({ content }) => {
           style={style}
           className="text-sm"
           renderers={renderers}
-          // Provide a truncated or simplified version of `content`
-          data={{ blocks: content.blocks.slice(0, 3) }} // Example: show first 3 blocks
+      
+          data={{ blocks: content.blocks.slice(0, 2) }} 
         />
       )}
       {contentIsLarge && (

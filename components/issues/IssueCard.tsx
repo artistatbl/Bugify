@@ -49,7 +49,7 @@ const IssueCard: React.FC<IssueCardProps> = async ({issue}) => {
                 </Link>
               </CardTitle>
               <CardDescription className="mr-10 truncate">
-              <EditorOutput content={issue.description || ''}  />
+              {/* <EditorOutput content={issue.description || ''}  /> */}
 
               </CardDescription>
               {issue.assignedToUser ? (

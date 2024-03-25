@@ -21,8 +21,7 @@ const CreateGround = () => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  // const [isSubmitting, setSubmitting] = useState(false);
-
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
   const { register, handleSubmit, formState: { errors }, reset } = useForm({
     resolver: zodResolver(createGroundSchema),
   });
@@ -47,6 +46,8 @@ const CreateGround = () => {
       },
       
       onSuccess: () => {
+        //setIsDialogOpen(false); // Close the dialog
+
         setIsLoading(false);
         toast({
           title: 'Ground created successfully.',
@@ -54,6 +55,10 @@ const CreateGround = () => {
           variant: 'default',   
         });
         reset();
+        setTimeout(() => {
+          setIsDialogOpen(false);
+        }, 700)
+
         // Add any additional success logic here, e.g., redirecting the user
       },
       onError: (error) => {
@@ -94,12 +99,15 @@ const CreateGround = () => {
 
   return (
     <>
-      <Dialog>
-        <DialogTrigger asChild>
-          <Button className='bg-black hover:bg-zinc-500 text-white font-bold py-2 px-4 rounded'>
-            Create a Ground
-          </Button>
-        </DialogTrigger>
+      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+      <DialogTrigger asChild>
+  <Button
+    className='bg-black hover:bg-zinc-500 text-white font-bold py-2 px-4 rounded'
+    onClick={() => setIsDialogOpen(true)}
+  >
+    Create a Ground
+  </Button>
+</DialogTrigger>
 
         <DialogContent className='max-w-[415px] sm:max-w-[450px] max-h-[50vh] md:max-w-2xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl'>
           <DialogHeader>

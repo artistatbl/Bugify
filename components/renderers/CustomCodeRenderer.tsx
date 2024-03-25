@@ -1,6 +1,11 @@
 'use client'
 
-import React from 'react';
+
+import React, { CSSProperties } from 'react';
+
+
+type OverflowX = 'visible' | 'hidden' | 'scroll' | 'auto' | 'initial' | 'inherit';
+
 
 function CustomCodeRenderer({ data }: any) {
   const style = {
@@ -8,24 +13,21 @@ function CustomCodeRenderer({ data }: any) {
       backgroundColor: '#333',
       borderRadius: '0.5rem',
       padding: '1rem',
-      //overflowX: 'auto',
-	 overflowX: 'auto' as 'auto',
-
+      overflowX: 'auto' as OverflowX,
     },
     code: {
       color: '#fff',
       fontSize: '0.875rem',
     },
     
-    // Add more styles for responsiveness based on screen sizes using media queries
     '@media (max-width: 768px)': {
       pre: {
         padding: '0.5rem',
       },
       code: {
         fontSize: '0.75rem',
-	   lineHeight: '1rem',
-	   with: '10%',
+        lineHeight: '1rem',
+        width: '10%',
       },
     },
   };

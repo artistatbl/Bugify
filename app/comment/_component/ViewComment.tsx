@@ -59,7 +59,7 @@ const ViewComment = async ({issueId}: CommentsSectionProps) => {
 			
 			 return (
 			   <div key={topLevelComment.id} className='flex flex-col dark:text-white'>
-				<div className='mb-2 py-2 pl-2 bg-slate-200'>
+				<div className='mb-2 py-2 pl-2 bg-slate-200 dark:bg-zinc-700'>
 				  <PostComment
 				    comment={topLevelComment}
 				   
@@ -77,7 +77,7 @@ const ViewComment = async ({issueId}: CommentsSectionProps) => {
 						   
 
 
-						<div className=' bg-zinc-200 py-2 pl-4 '>
+						<div className=' bg-zinc-200 dark:bg-zinc-700 py-2 pl-4 '>
 					   <PostComment
 					     comment={reply}
 

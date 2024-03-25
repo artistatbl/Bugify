@@ -75,7 +75,7 @@ const IssueComment: FC<IssueCommentProps> = ({
 			return res.data;
 		},
 		onSuccess: () => {
-			toast.success('Comment');
+			toast.success('Comment created successfully');
 			setIsReplying(false);
 			router.refresh();
 		},
@@ -99,7 +99,7 @@ const IssueComment: FC<IssueCommentProps> = ({
 				
 				/>
 				<div className='ml-2 flex items-center gap-x-2'>
-					<p className='text-sm font-medium'>@{comment.user.name}</p>
+					<p className='text-sm font-medium text-blue-700'>@{comment.user.name}</p>
 					<p className='max-h-40 mt-1 truncate text-xs text-zinc-500'>{formatDistanceToNow(new Date(comment.createdAt))} ago</p>
           
 					
@@ -136,7 +136,7 @@ const IssueComment: FC<IssueCommentProps> = ({
 								setInput(e.target.value);
 							}}
 							rows={1}
-					
+					          className='text-red-500'
 							placeholder={`@${comment.user.name} `}
 							/>
 							<div className='mt-2 flex justify-end gap-2'>
@@ -150,7 +150,7 @@ const IssueComment: FC<IssueCommentProps> = ({
 
 							<button 
 							type='submit'
-							className='font-extralight bg-blue-500 hover:bg-blue-600 text-white  text-xs rounded-lg py-2 px-5'
+							className='font-extralight bg-blue-500 hover:bg-blue-600 text-white  text-xs dark:text-white rounded-lg py-2 px-5'
 							
 						
 							onClick={() => {
