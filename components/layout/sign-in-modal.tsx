@@ -31,11 +31,11 @@ const SignInModal = ({
        
     await signIn("google", { callbackUrl: "/issuespage" });
 
-    // toast({
-    //   title: 'Logged in',
-    //   description: 'You have successfully logged in.',
-    //   duration: 2000,
-    //  }) 
+    toast({
+      title: 'Logged in',
+      description: 'You have successfully logged in.',
+      duration: 2000,
+     }) 
   
    
     // No need to manually set signInClicked to false here since the page will redirect
