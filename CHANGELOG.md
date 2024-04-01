@@ -54,3 +54,6 @@
 
 ## [April, 01, 2024 18:30:22] - Changes made by artistatbl
 - [c55038a](https://github.com/artistatbl/Bugify/commit/c55038a3c6960b071ce5f97c417d6a0ff001e526) - Error - Deployment User cant Sign
+
+## [April, 01, 2024 18:37:51] - Changes made by artistatbl
+- [7c9eac2](https://github.com/artistatbl/Bugify/commit/7c9eac29ebd783e9240cc860d39bd25aa915b19a) - Error - Production sign in
