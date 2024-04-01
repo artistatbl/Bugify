@@ -15,7 +15,7 @@ const authOptions: NextAuthOptions = {
     strategy: 'jwt',
   },
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user, account }) {
       // If user is defined, this is a sign-in
       if (user?.email) {
         const dbUser = await prisma.user.findUnique({
@@ -30,6 +30,15 @@ const authOptions: NextAuthOptions = {
           token.organizationId = dbUser.organizationId || null; // Ensuring null if undefined
           token.email = dbUser.email;
           token.lastLogin = new Date(); // Store as ISO string for consistency across various databases and timezone handling
+
+           await prisma.session.create({
+             data: {
+               userId: dbUser.id,
+               expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30), // 30 days
+               sessionToken: require('crypto').randomBytes(32).toString('hex'), // Generate a secure token
+
+             },
+           })
         }
       }
       return token;
@@ -41,7 +50,6 @@ const authOptions: NextAuthOptions = {
         session.user.role = token.role;
         session.user.organizationId = token.organizationId;
         session.user.lastLogin = token.lastLogin ? new Date(token.lastLogin) : new Date(); // Convert back to Date object or use current date
-        // Since email, name, and image are already part of the session object, only override if necessary
         session.user.email = token.email ?? session.user.email;
         session.user.name = token.name ?? session.user.name;
         session.user.image = token.image ?? session.user.image;

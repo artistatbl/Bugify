@@ -16,21 +16,27 @@ declare module 'next-auth/jwt' {
     name: string
     image: string
     picture: string;
+    emailVerified: boolean;
+    organizationId: string | null;
+    //user?: User
   }
 }
 
 
 declare module 'next-auth' {
   interface Session {
-    user: {
+    user: User & {
       id: userId;
       lastLogin: Date;
       role: Role
       email: string
       name: string
       image: string
-      user?: User
+      picture: string;
+      emailVerified: boolean;
+      organizationId: string | null;
+     // user?: User
 
-    } & DefaultSession['user'];
+    } 
   }
 }
