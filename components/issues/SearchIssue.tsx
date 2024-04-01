@@ -4,15 +4,10 @@
 import { Prisma, Issue } from '@prisma/client';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import { debounce } from 'lodash';
 import { usePathname, useRouter } from 'next/navigation';
 import { FC, useEffect, useState, useRef } from 'react';
-import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/components/ui/command';
 import { useOnClickOutside } from '../../lib/hooks/use-on-click-outside';
 import { TicketSlash } from 'lucide-react';
-import authOptions from '@/app/auth/authOptions';
-import { getServerSession } from 'next-auth/next';
-import { useSession } from "next-auth/react"; // Import useSession from next-auth
 
 
 const SearchBar:  FC<{}> = () => {
