@@ -81,3 +81,6 @@
 
 ## [April, 01, 2024 20:30:14] - Changes made by artistatbl
 - [b68cdc8](https://github.com/artistatbl/Bugify/commit/b68cdc8dafb134fb8f82cbc873137b7cd63c2f38) - Fix - authNext
+
+## [April, 01, 2024 22:34:32] - Changes made by artistatbl
+- [7e87841](https://github.com/artistatbl/Bugify/commit/7e878413ac7c601a57f08b32ce4851236f8a7f50) - fix - mobile responviness for view issue
