@@ -69,3 +69,6 @@
 
 ## [April, 01, 2024 19:22:39] - Changes made by artistatbl
 - [051d5a8](https://github.com/artistatbl/Bugify/commit/051d5a8d1974a922932d11c634067a429bd6809b) - upt - pnpm-lock.yaml file update
+
+## [April, 01, 2024 19:32:45] - Changes made by artistatbl
+- [48461f1](https://github.com/artistatbl/Bugify/commit/48461f1cb27925a2013b7526d4068eaf43f745dc) - Fix - checking if user can sign in
