@@ -51,3 +51,6 @@
 
 ## [April, 01, 2024 18:26:08] - Changes made by artistatbl
 - [021da78](https://github.com/artistatbl/Bugify/commit/021da78d7aa03466bafd7a369a3a2321ea216684) - Error - Deployment Failed
+
+## [April, 01, 2024 18:30:22] - Changes made by artistatbl
+- [c55038a](https://github.com/artistatbl/Bugify/commit/c55038a3c6960b071ce5f97c417d6a0ff001e526) - Error - Deployment User cant Sign
