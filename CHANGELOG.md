@@ -63,3 +63,6 @@
 
 ## [April, 01, 2024 19:05:01] - Changes made by artistatbl
 - [cd0dc89](https://github.com/artistatbl/Bugify/commit/cd0dc89ee5d74886b1e72747a862d8b1e7154953) - Fix - Middleware with sign in
+
+## [April, 01, 2024 19:15:12] - Changes made by artistatbl
+- [19d8093](https://github.com/artistatbl/Bugify/commit/19d8093b462d255e4d4e1542beeaa44346cc8882) - Error - production sign in
