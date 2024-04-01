@@ -62,7 +62,7 @@ const ViewIssue = async ({ params }: Props) => {
 
         </DialogTrigger>
 
-        <DialogContent className="max-w-[415px] sm:max-w-[600px] md:max-w-[800px] lg:max-w-[1000px] xl:max-w-[1200px] 2xl:max-w-[1400px] 3xl:max-w-[1400px] border-zinc-900 border-b-2">
+        <DialogContent className="max-w-[450px] sm:max-w-[600px] md:max-w-[800px] lg:max-w-[1000px] xl:max-w-[1200px] 2xl:max-w-[1400px] 3xl:max-w-[1400px] border-zinc-900 border-b-2">
          <DialogHeader>
           <DialogTitle className="text-3xl font-semibold border-b pl-6 border-stone-950 ">View Issue</DialogTitle>
           <DialogDescription className=''>
@@ -128,7 +128,7 @@ const ViewIssue = async ({ params }: Props) => {
             <Label className='text-xl  md:text-xl lg:text-2xl font-bold tracking-tighter sm:text-xl' htmlFor="description">Description</Label>
 
 
-<div className='relative bg-zinc-100 dark:bg-zinc-800 p-10 pl-6 border border-black dark:border-white rounded-xl max-w-[350px] sm:max-w-[600px] md:max-w-[1000px] lg:max-w-[1000px] xl:max-w-[1200px] 2xl:max-w-[1400px] 3xl:max-w-[1400px]'>
+<div className='relative bg-zinc-100 dark:bg-zinc-800 p-10 pl-6 border border-black dark:border-white rounded-xl max-w-[400px] sm:max-w-[550px] md:max-w-[700px] lg:max-w-[900px] xl:max-w-[1100px] 2xl:max-w-[1300px] 3xl:max-w-[1300px]'>
 
               <EditorOutput content={issue.description} />
               {typeof issue.description === 'string' && issue.description.length > 160 && (

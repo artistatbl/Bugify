@@ -72,11 +72,11 @@ const handlePostSuccess = () => {
 	 description,
 	 userId
 
-    }: CreateIssueSchema) => {
+    }: CreateIssueSchema & {onSuccessTitle: string}) => {
      //  const payload: CreateIssueSchema = { title, description, userId }
 	const payload: CreateIssueSchema = { title, description, userId,  status: 'OPEN', priority: 'LOW' }
       const { data } = await axios.post('/api/issues', payload)
-      return data
+      return { data , onSuccessTitle: title }
     },
     onError: () => {
 	return toast({
@@ -86,10 +86,12 @@ const handlePostSuccess = () => {
 	   })
     },
 
-    onSuccess: () => {
+    onSuccess: (data) => {
 	  toast({
-		title: 'Your post was published.',
-		description: 'Your post has been published.',
+		// title: 'Post published.',
+		// description: 'Your post has been published.',
+		description: `Your post "${data.onSuccessTitle}" has been published.`,
+
 		variant: 'default',
 	   });
 	   reset();
@@ -204,11 +206,14 @@ const handlePostSuccess = () => {
    async function onSubmit(data: IssueForm) {
 	const blocks = await ref.current?.save()
  
-	const payload: CreateIssueSchema = {
-	  title: data.title,
-	  description: blocks,
-	  status: data.status,
-	  priority: data.priority,
+
+	const payload: CreateIssueSchema & { onSuccessTitle: string } = {
+		title: data.title,
+		description: blocks,
+		status: data.status,
+		priority: data.priority,
+		onSuccessTitle: data.title, //
+
 
 	
 	}

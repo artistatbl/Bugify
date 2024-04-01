@@ -88,7 +88,7 @@ const IssueDetailPage = async ({ params }: Props) => {
             <Label className='font-bold tracking-tighter xl:text-2xl lg:text-1xl md:text-1xl xs:text-1xl sm:text-xl' htmlFor="assignee">Assignee</Label>
 
             {/* <p> {issue.assignedToUserId}</p> */}
-           <Text className=' text-gray-700 dark:text-gray-700 font-thin'>{issue.assignedToUser?.name}</Text>
+           <Text className=' text-gray-700 dark:text-gray-700 font-thin'>{issue.assignedToUser?.name || 'Unassigned'}</Text>
            
 
           </div>
