@@ -13,9 +13,9 @@ export async function middleware(req: NextRequest) {
     
     // Use '__Secure-next-auth.session-token' instead of 'next-auth.session-token' for production?
     if (!token) {
-     // const loginUrl = new URL('/login', req.nextUrl.origin);
-      //loginUrl.searchParams.append('redirected', 'true'); // Append query parameter
-     // return NextResponse.redirect(loginUrl);
+      const loginUrl = new URL('/login', req.nextUrl.origin);
+      loginUrl.searchParams.append('redirected', 'true'); // Append query parameter
+      return NextResponse.redirect(loginUrl);
     }
   }
 
