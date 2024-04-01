@@ -60,3 +60,6 @@
 
 ## [April, 01, 2024 18:44:50] - Changes made by artistatbl
 - [7c7fd17](https://github.com/artistatbl/Bugify/commit/7c7fd17cb3d8b11c5d2701bd886d19d5abc622f6) - Error -  Deployment Sign in
+
+## [April, 01, 2024 19:05:01] - Changes made by artistatbl
+- [cd0dc89](https://github.com/artistatbl/Bugify/commit/cd0dc89ee5d74886b1e72747a862d8b1e7154953) - Fix - Middleware with sign in
