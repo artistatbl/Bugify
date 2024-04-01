@@ -75,3 +75,6 @@
 
 ## [April, 01, 2024 19:54:47] - Changes made by artistatbl
 - [3e0bf66](https://github.com/artistatbl/Bugify/commit/3e0bf665417617f858fb224cd3bbff24190f1e9c) - Fix - Search Route
+
+## [April, 01, 2024 19:59:50] - Changes made by artistatbl
+- [13e4026](https://github.com/artistatbl/Bugify/commit/13e4026f23768444061443729ec5b3f10ccbacc9) - Error - Production failed
