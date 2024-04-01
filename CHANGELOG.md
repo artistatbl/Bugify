@@ -72,3 +72,6 @@
 
 ## [April, 01, 2024 19:32:45] - Changes made by artistatbl
 - [48461f1](https://github.com/artistatbl/Bugify/commit/48461f1cb27925a2013b7526d4068eaf43f745dc) - Fix - checking if user can sign in
+
+## [April, 01, 2024 19:54:47] - Changes made by artistatbl
+- [3e0bf66](https://github.com/artistatbl/Bugify/commit/3e0bf665417617f858fb224cd3bbff24190f1e9c) - Fix - Search Route
