@@ -14,8 +14,7 @@ const Page = () => {
 
     return (
         <>
-            {/* <NavBar session={session} /> */}
-            // nav bar should be here 
+         
             <SignInModal/>
 
 		 
