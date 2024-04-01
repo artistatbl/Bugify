@@ -57,3 +57,6 @@
 
 ## [April, 01, 2024 18:37:51] - Changes made by artistatbl
 - [7c9eac2](https://github.com/artistatbl/Bugify/commit/7c9eac29ebd783e9240cc860d39bd25aa915b19a) - Error - Production sign in
+
+## [April, 01, 2024 18:44:50] - Changes made by artistatbl
+- [7c7fd17](https://github.com/artistatbl/Bugify/commit/7c7fd17cb3d8b11c5d2701bd886d19d5abc622f6) - Error -  Deployment Sign in
