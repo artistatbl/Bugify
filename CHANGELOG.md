@@ -45,3 +45,6 @@
 
 ## [April, 01, 2024 18:17:36] - Changes made by artistatbl
 - [68c67b5](https://github.com/artistatbl/Bugify/commit/68c67b5e7895863016c0a26cd92b52f503f951e3) - Merge branch 'main' of https://github.com/artistatbl/Bugify
+
+## [April, 01, 2024 18:21:23] - Changes made by artistatbl
+- [02f83cd](https://github.com/artistatbl/Bugify/commit/02f83cdf542f3e4a36a1750c31f188d53630a71b) - Error -  Deployment Failed
