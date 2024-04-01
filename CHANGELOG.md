@@ -78,3 +78,6 @@
 
 ## [April, 01, 2024 19:59:50] - Changes made by artistatbl
 - [13e4026](https://github.com/artistatbl/Bugify/commit/13e4026f23768444061443729ec5b3f10ccbacc9) - Error - Production failed
+
+## [April, 01, 2024 20:30:14] - Changes made by artistatbl
+- [b68cdc8](https://github.com/artistatbl/Bugify/commit/b68cdc8dafb134fb8f82cbc873137b7cd63c2f38) - Fix - authNext
