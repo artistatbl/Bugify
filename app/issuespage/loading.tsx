@@ -7,8 +7,8 @@ import  authOptions  from "@/app/auth/authOptions";
 import { Button } from '@radix-ui/themes';
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
-import Header from '@/components/layout/issues-header';
 import CreateIssue from './_component/CreateIssue';
+import SideNav from '@/components/issues/SideNav';
 
 
 
@@ -22,7 +22,7 @@ const LoadingIssuesPage = async () => {
 	<>
 	
 <Suspense fallback="...">
-<Header {...{ session: session }} />
+<SideNav {...{ session: session }} />
 </Suspense>
 
 

@@ -15,7 +15,7 @@ export const CustomComponents: Partial<Record<string, ComponentType<CustomCompon
   li: ({ children }) => <li className="list-disc text-sm my-1">{children}</li>,
   p: ({ children }) => <p className="my-5">{children}</p>,
   a: ({ children, href }) => (
-    <a className="text-blue-500 text-font-bold hover:underline" href={href}>
+    <a className="text-blue-500 text-font-bold hover:underline " href={href}>
       {children}
     </a>
   ),

@@ -1,6 +1,6 @@
 // app/profile/page.tsx
 
-import Header from '@/components/layout/issues-header'
+
 import React, { useState } from 'react'
 import { getServerSession } from 'next-auth/next'
 import authOptions from "@/app/auth/authOptions";
@@ -18,6 +18,7 @@ import { Dialog, DialogTrigger } from '@/components/components/ui/dialog';
 import { Button } from '@/components/components/ui/button';
 import dynamic from 'next/dynamic';
 import CreateGround from './_components/CreateGround';
+import SideNav from '@/components/issues/SideNav';
 
 
 const page = async () => {
@@ -55,7 +56,8 @@ const page = async () => {
   return (
     <>
     
-      <Header session={session} />
+      {/* <Header session={session} /> */}
+      <SideNav session={session} />
       <div className='z-10 flex flex-col w-full min-h-screen '>
         <main className="flex flex-col w-full pr-5 pl-5 md:pr-10 md:pl-10 lg:pr-20 lg:pl-20 min-h-screen ">
 

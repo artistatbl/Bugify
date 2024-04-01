@@ -8,11 +8,11 @@ import prisma from 'prisma/client';
 import IssueStatusBadge from '@/components/issues/IssuesStatusBadge';
 import IssuePriorityBadge from '@/components/issues/IssuesPriorityBadge';
 import { getServerSession } from 'next-auth';
-import Header from '@/components/layout/issues-header';
 import  authOptions  from "@/app/auth/authOptions";
 import CreateIssue from './_component/CreateIssue';
 import ViewIssue from '../issues/[id]/_components/ViewIssue';
 import { Dialog, DialogTrigger } from '@/components/components/ui/dialog';
+import SideNav from '@/components/issues/SideNav';
 
 
 
@@ -35,7 +35,7 @@ const IssuesPage = async () => {
     return (
       <>
         <Suspense fallback="...">
-          <Header session={session} />
+          <SideNav session={session} />
         </Suspense>
 
       

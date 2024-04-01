@@ -14,8 +14,8 @@ import ViewComment from '@/app/comment/_component/ViewComment';
 import EditorOutput from '@/components/issues/EditorOutput';
 import { getServerSession } from 'next-auth';
 import  authOptions  from "@/app/auth/authOptions";
-import Header from '@/components/layout/issues-header';
 import ShareIssue from './_components/ShareIssue';
+import SideNav from '@/components/issues/SideNav';
 
 
 
@@ -53,7 +53,7 @@ const IssueDetailPage = async ({ params }: Props) => {
 
   return (
     <>
-     <Header session={session}  />
+     <SideNav session={session}  />
 
 
       <div className="z-10 flex flex-col w-full min-h-screen max-w-6xl px-10 sm:px-8  md:px-10 lg:px-14 xl space-y-10  bg-white/100 dark:bg-zinc-800 p-10  rounded-2xl ">

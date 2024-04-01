@@ -49,35 +49,8 @@ export default function UserDropdown({ session }: { session: Session }) {
                 {session?.user?.email}
               </p>
             </div>
-            <button
-              className="relative flex w-full cursor-not-allowed items-center  justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 "
-            >
-         
-              <a
-                href="/dashboard"
-                className="inline-flex w-full cursor-pointer items-center  border-b-2  border-black dark:border-white justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100 dark:hover:bg-gray-600"
-                role="button" // Add role="button" for accessibility
-              >
-       
-                <TextAlignMiddleIcon className="h-4 w-4" />
-                <span className="text-sm">Create Organization</span> {/* Use <span> instead of <p> for inline elements */}
-              </a>
-            </button>
+          
 
-            <button
-              className="relative flex w-full cursor-not-allowed items-center  justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 "
-            >
-         
-              <a
-                href="/issuespage"
-                className="inline-flex w-full cursor-pointer items-center  border-b-2  border-black dark:border-white justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100 dark:hover:bg-gray-600"
-                role="button" // Add role="button" for accessibility
-              >
-       
-                <TextAlignMiddleIcon className="h-4 w-4" />
-                <span className="text-sm">View Issues</span> {/* Use <span> instead of <p> for inline elements */}
-              </a>
-            </button>
 
 
             <button
@@ -104,20 +77,7 @@ export default function UserDropdown({ session }: { session: Session }) {
 
 
 
-            <button
-              className="relative flex w-full cursor-not-allowed items-center justify-start space-x-2 rounded-md p-2 text-left  text-sm transition-all duration-75 "
-            >
-         
-              <a
-                href="/dashboard"
-                className="inline-flex w-full cursor-pointer items-center justify-start space-x-2 rounded-md p-2  border-b-2  border-black dark:border-white text-left text-sm transition-all duration-75 hover:bg-gray-100 dark:hover:bg-gray-600"
-                role="button" // Add role="button" for accessibility
-              >
-       
-                <LayoutDashboard className="h-4 w-4" />
-                <span className="text-sm">Dashboard</span> {/* Use <span> instead of <p> for inline elements */}
-              </a>
-            </button>
+           
 
            
 

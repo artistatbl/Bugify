@@ -18,27 +18,32 @@ const ChangelogPage = () => {
 
   return (
     <>
-      <Dialog>
+
+      <Dialog >
         <DialogTrigger asChild>
-          {/* <Button variant="outline">View Changelog</Button> */}
-          {/* <h1>View Changelog</h1> */}
-          <Code size='2'> v1.0</Code>
+
+        
+          <Code size='2'> v0.1.0</Code>
 
         </DialogTrigger>
-        <DialogContent className="max-w-[415px] sm:max-w-[450px] min-h-[50vh] md:max-w-2xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl">
+
+        <DialogContent className="max-w-[415px] sm:max-w-[450px] min-h-[50vh] md:max-w-2xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl ">
+
           <DialogHeader>
             <DialogTitle className="text-lg sm:text-xl md:text-2xl font-semibold">Changelog</DialogTitle>
             <DialogDescription>
               Here's what's new.
             </DialogDescription>
           </DialogHeader>
-          <div className="mt-4 px-4 py-2 overflow-auto">
+          <div className="mt-4 px-4 py-2 overflow-y-auto overflow-x-hidden">
             <ReactMarkdown components={CustomComponents}>
               {changelogContent}
             </ReactMarkdown>
           </div>
         </DialogContent>
+
       </Dialog>
+     
     </>
   );
 };

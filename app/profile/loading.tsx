@@ -7,10 +7,10 @@ import {Skeleton} from "@/components/components/ui/skeleton";
 
 
 import {HomeIcon, SignalHighIcon} from "lucide-react";
-import Header from '@/components/layout/issues-header';
 import { getServerSession } from 'next-auth';
 import authOptions from '../auth/authOptions';
 import CreateGround from './_components/CreateGround';
+import SideNav from '@/components/issues/SideNav';
 
 const UserProfileSkeleton = async () => {
 
@@ -49,7 +49,7 @@ const UserProfileSkeleton = async () => {
   };
   return (
     <>
-    <Header session={session} />
+    <SideNav session={session} />
     <div className='z-10 flex flex-col w-full min-h-screen'>
     <main className="z-10 flex flex-col w-full pr-5 pl-5 md:pr-10 md:pl-10 lg:pr-20 lg:pl-20 min-h-screen ">
 
