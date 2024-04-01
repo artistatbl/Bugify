@@ -39,3 +39,6 @@
 
 ## [April, 01, 2024 18:07:44] - Changes made by artistatbl
 - [bb76687](https://github.com/artistatbl/Bugify/commit/bb76687f651e801e90576ec629fba94047b3e2c1) - feat new NavBar & search Issues
+
+## [April, 01, 2024 18:11:16] - Changes made by artistatbl
+- [edab412](https://github.com/artistatbl/Bugify/commit/edab4125e29cc5e543210590cd5006af560d67d8) - Error - Production push
