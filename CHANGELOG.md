@@ -36,3 +36,6 @@
 
 ## [March, 25, 2024 22:53:58] - Changes made by artistatbl
 - [1484aec](https://github.com/artistatbl/Bugify/commit/1484aec82318e3eafdf9bb60e7f88ea75f4641fd) - upt - view issue modal update and create ground
+
+## [April, 01, 2024 18:07:44] - Changes made by artistatbl
+- [bb76687](https://github.com/artistatbl/Bugify/commit/bb76687f651e801e90576ec629fba94047b3e2c1) - feat new NavBar & search Issues
