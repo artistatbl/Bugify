@@ -87,6 +87,7 @@ const page = async () => {
                   <div className="mt-3 ">
                     <div>
                       {user!.accounts.map(acc => (
+                        console.log(acc.id),
                         <div className="flex " key={acc.id}>
                           <div className="flex items-center gap-2 ">
                             <p className="text-sm text-muted-foreground">Account Logged by</p>

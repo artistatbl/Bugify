@@ -13,13 +13,16 @@ import CreateIssue from './_component/CreateIssue';
 import ViewIssue from '../issues/[id]/_components/ViewIssue';
 import { Dialog, DialogTrigger } from '@/components/components/ui/dialog';
 import SideNav from '@/components/issues/SideNav';
+import Image from 'next/image';
+import EditorOutput from '@/components/issues/EditorOutput';
 
 
 
 const IssuesPage = async () => {
 
     const session = await getServerSession(authOptions);
-  
+    const {email, image } = session?.user || {};
+
   
   
     console.log("Logged in user:", session?.user?.id);
@@ -27,7 +30,10 @@ const IssuesPage = async () => {
     const issues = await prisma.issue.findMany({
       where: {
         userId: session?.user?.id, // Use the userId to filter issues
-      }
+      },
+      include: { 
+        user: true,
+      },
     });
   
     await delay(800);
@@ -53,10 +59,13 @@ const IssuesPage = async () => {
               <Table.Header>
                 <Table.Row>
                   <Table.ColumnHeaderCell className='text-center'>title</Table.ColumnHeaderCell>
+
                   <Table.ColumnHeaderCell className=" hidden md:table-cell text-center">status</Table.ColumnHeaderCell>
+
                   <Table.ColumnHeaderCell className="hidden md:table-cell  text-justify justify-items-center ">Priority</Table.ColumnHeaderCell>
 
-                  <Table.ColumnHeaderCell className="text-center justify-center">Issue</Table.ColumnHeaderCell>
+                  <Table.ColumnHeaderCell className="flex items-center  justify-end ">Issue</Table.ColumnHeaderCell>
+
 
                 </Table.Row>
               </Table.Header>
@@ -64,31 +73,36 @@ const IssuesPage = async () => {
 
               <Table.Body>
 
-                {issues.map((issue) => (
-                  <Table.Row key={issue.id}>
-                   
-                    <Table.Cell className=" text-center">
-                      {issue.title}
-                    </Table.Cell>
-                    <Table.Cell className=" text-center hidden md:table-cell ">
-                      <IssueStatusBadge status={issue.status} />
-                    </Table.Cell>
-                    <Table.Cell className="hidden md:table-cell">
-                      <IssuePriorityBadge priority={issue.priority} />
-                    </Table.Cell>
-                   
+              {issues.map((issue) => (
+  <Table.Row key={issue.id}>
+   
+    <Table.Cell className="text-center">
+      {issue.title}
+    </Table.Cell>
 
-                    <Table.Cell className=' text-center justify-center'>
-                  
-                 <ViewIssue
-                   params={{
-                     id: issue.id,
-                   }}
-                 />
-               </Table.Cell>
-                   
-                  </Table.Row>
-                ))}
+    <Table.Cell className="text-center hidden md:table-cell ">
+      <IssueStatusBadge status={issue.status} />
+    </Table.Cell>
+    <Table.Cell className="hidden md:table-cell">
+      <IssuePriorityBadge priority={issue.priority} />
+    </Table.Cell>
+    <Table.Cell className='text-end justify-center ' >
+      <div className="flex items-end justify-end gap-2">
+        <ViewIssue
+          params={{
+            id: issue.id,
+          }}
+        />
+        <Image alt="User Avatar" src={image || `https://ui-avatars.com/api/?name=${email}.svg`} 
+          className='rounded-full mb-1'
+          width={25} height={25} />
+      </div>
+    </Table.Cell>
+
+  </Table.Row>
+))}
+
+
               </Table.Body>
 
               

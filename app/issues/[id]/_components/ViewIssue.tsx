@@ -134,6 +134,9 @@ const ViewIssue = async ({ params }: Props) => {
               {typeof issue.description === 'string' && issue.description.length > 160 && (
                 <div className='absolute bottom-0 left-0 h-24 w-full bg-gradient-to-t from-black to-transparent'></div>
                 )}
+
+
+                
                 </div>
 
 

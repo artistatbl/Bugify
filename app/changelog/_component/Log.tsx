@@ -50,7 +50,7 @@ export function TracingBeamDemo() {
 const dummyContent = [
   {
     title: "Mar 12, 2024",
-    description: `Changed the format for the changelog. This change was made to improve the readability and organization of the changelog. <a href='https://github.com/artistatbl/Bugify/commit/8e2ee3959305dd0b97e9e3c27d8ffaabbee0ca33'>8e2ee39</a>`,
+    description: `Changed the format for the changelog. This change was made to improve the readability and organization of the changelog. <a href='https://github.com/artistatbl/Bugify/commit/8e2ee3959305dd0b97e9e3c27d8ffaabbee0ca33'>  (#8e2ee39) </a>`,
     description1: "Removed the old changelog. The old changelog was no longer relevant and was causing confusion.",
     description3: "Added pop up changelog. This change was made to provide a more user-friendly way to view the changelog.",
     badge: "Changelog v0.1.0",

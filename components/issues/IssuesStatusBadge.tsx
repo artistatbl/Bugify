@@ -108,3 +108,5 @@ const Statues: React.FC<StatuesProps> = ({ status, className }) => {
 };
 
 export default Statues;
+
+

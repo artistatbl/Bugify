@@ -13,8 +13,9 @@ const ChangelogPage = () => {
   <DialogTrigger asChild>
     <Code size='2'> v0.1.0</Code>
   </DialogTrigger>
+  <DialogContent className="max-w-[450px] sm:max-w-[600px] md:max-w-[800px] lg:max-w-[1000px] xl:max-w-[1200px] 2xl:max-w-[1400px] 3xl:max-w-[1400px] border-zinc-900 border-b-2">
 
-  <DialogContent className="max-w-[415px] sm:max-w-[450px] min-h-[50vh] md:max-w-2xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl ">
+
     <DialogHeader>
       <DialogTitle className="text-lg sm:text-xl md:text-2xl font-semibold">Changelog</DialogTitle>
       <DialogDescription>

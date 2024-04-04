@@ -26,6 +26,8 @@ const style = {
   paragraph: {
     fontSize: '0.875rem',
     lineHeight: '1.25rem',
+    marginBottom: '0.5rem',
+    spacing: '0.025rem',
   },
   // Additional styles omitted for brevity...
 };
