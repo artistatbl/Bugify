@@ -14,7 +14,6 @@ import { ThemeProvider } from "@/components/components/ui/theme-provider";
 import { Toaster } from "@/components/components/ui/toaster";
 import { ModeToggle } from "@/components/components/ui/darkmode";
 import Providers from "./Providers";
-import SideNav from "@/components/issues/SideNav";
 
 
 
@@ -57,7 +56,6 @@ export default async function RootLayout({
         <Providers>
 
        
-
         
           <main className=" flex min-h-screen  flex-col  py-32  w-full dark:bg-black  dark:bg-dot-white/[0.3] bg-dot-black/[0.3]  items-center justify-center">
 
