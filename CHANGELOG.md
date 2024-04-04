@@ -90,3 +90,6 @@
 
 ## [April, 04, 2024 19:40:33] - Changes made by artistatbl
 - [34bcf28](https://github.com/artistatbl/Bugify/commit/34bcf28a95552693d4a172d04ec80eb2bc59bc99) - upt- Pnpn Packgage update
+
+## [April, 04, 2024 23:22:10] - Changes made by artistatbl
+- [e9117d5](https://github.com/artistatbl/Bugify/commit/e9117d58a68caac209ee7ee0a7e9dbb392713978) - Deploy - ready
