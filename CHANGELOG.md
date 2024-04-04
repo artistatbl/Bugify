@@ -84,3 +84,6 @@
 
 ## [April, 01, 2024 22:34:32] - Changes made by artistatbl
 - [7e87841](https://github.com/artistatbl/Bugify/commit/7e878413ac7c601a57f08b32ce4851236f8a7f50) - fix - mobile responviness for view issue
+
+## [April, 04, 2024 19:35:19] - Changes made by artistatbl
+- [0b38e4a](https://github.com/artistatbl/Bugify/commit/0b38e4a0192633bff9b64800b8157648be538069) - upt -  Changlog style
