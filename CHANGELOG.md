@@ -87,3 +87,6 @@
 
 ## [April, 04, 2024 19:35:19] - Changes made by artistatbl
 - [0b38e4a](https://github.com/artistatbl/Bugify/commit/0b38e4a0192633bff9b64800b8157648be538069) - upt -  Changlog style
+
+## [April, 04, 2024 19:40:33] - Changes made by artistatbl
+- [34bcf28](https://github.com/artistatbl/Bugify/commit/34bcf28a95552693d4a172d04ec80eb2bc59bc99) - upt- Pnpn Packgage update
