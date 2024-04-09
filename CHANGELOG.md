@@ -96,3 +96,6 @@
 
 ## [April, 09, 2024 01:21:57] - Changes made by artistatbl
 - [8e8b0e7](https://github.com/artistatbl/Bugify/commit/8e8b0e798cc70b015a6436b37cf1b8e511551276) - feat - Ground selection
+
+## [April, 09, 2024 01:24:55] - Changes made by artistatbl
+- [d6dcae7](https://github.com/artistatbl/Bugify/commit/d6dcae726c2f358c805e11173483dccacb38edca) - prod - deploy to vercel
