@@ -93,3 +93,6 @@
 
 ## [April, 04, 2024 23:22:10] - Changes made by artistatbl
 - [e9117d5](https://github.com/artistatbl/Bugify/commit/e9117d58a68caac209ee7ee0a7e9dbb392713978) - Deploy - ready
+
+## [April, 09, 2024 01:21:57] - Changes made by artistatbl
+- [8e8b0e7](https://github.com/artistatbl/Bugify/commit/8e8b0e798cc70b015a6436b37cf1b8e511551276) - feat - Ground selection
