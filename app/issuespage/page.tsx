@@ -94,7 +94,7 @@ const IssuesPage = async () => {
           }}
         />
         <Image alt="User Avatar" src={image || `https://ui-avatars.com/api/?name=${email}.svg`} 
-          className='rounded-full mb-1'
+          className='rounded-full mb-1 hidden md:table-cell'
           width={25} height={25} />
       </div>
     </Table.Cell>

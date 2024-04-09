@@ -44,8 +44,10 @@ const CreateGround = () => {
         const response = await axios.post('/api/ground/', groundData);
         return response.data;
       },
+
+
       
-      onSuccess: () => {
+      onSuccess: (data) => {
         //setIsDialogOpen(false); // Close the dialog
 
         setIsLoading(false);
@@ -54,7 +56,7 @@ const CreateGround = () => {
           description: 'Your ground has been created.',
           variant: 'default',   
         });
-        reset();
+        router.push(`/ground/${data.id}`);
         setTimeout(() => {
           setIsDialogOpen(false);
         }, 700)

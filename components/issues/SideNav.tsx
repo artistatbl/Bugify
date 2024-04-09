@@ -5,6 +5,7 @@ import Link from "next/link"
 import { Button } from "@/components/components/ui/button"
 import { ModeToggle } from "../components/ui/darkmode";
 
+import { SelectGround } from "@/app/ground/[id]/_components/SelectGround";
 import UserDropdown from "@/components/layout/user-dropdown";
 
 
@@ -71,14 +72,7 @@ export default function SideNav ({session }: { session: Session | null }) {
       >
         Issue
       </Link>
-      <Link
-        href="/team"
-        className={classnames(
-          currentPath === "/team" ? "text-foreground text-md font-semibold md:text-base" : "text-muted-foreground text-md font-semibold md:text-base",
-        )}
-      >
-        Team
-      </Link>
+   
       <Link
         href="/profile"
         className={classnames(
@@ -87,6 +81,8 @@ export default function SideNav ({session }: { session: Session | null }) {
       >
         Profile
       </Link>
+
+      <SelectGround />
    
     </nav>
  
@@ -159,6 +155,7 @@ export default function SideNav ({session }: { session: Session | null }) {
 
 
 <div className="mx-4"> {/* This div wraps ModeToggle and applies margin on both sides */}
+
               <ModeToggle />
             </div>
 		  
