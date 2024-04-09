@@ -8,7 +8,7 @@ export async function middleware(request: NextRequest) {
   const isProtectedRoute = protectedRoutes.includes(request.nextUrl.pathname) || /\/issues\/\d+/.test(request.nextUrl.pathname);
 
   if (isProtectedRoute) {
-    const session = request.cookies.get('next-auth.session-token'); 
+    const session = request.cookies.get('__Secure-next-auth.session-token'); 
     // const token =  await  getToken({ req });
     
     // Use '__Secure-next-auth.session-token' instead of 'next-auth.session-token' for production?
