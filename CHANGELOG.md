@@ -99,3 +99,6 @@
 
 ## [April, 09, 2024 01:24:55] - Changes made by artistatbl
 - [d6dcae7](https://github.com/artistatbl/Bugify/commit/d6dcae726c2f358c805e11173483dccacb38edca) - prod - deploy to vercel
+
+## [April, 12, 2024 21:18:31] - Changes made by artistatbl
+- [67be8a8](https://github.com/artistatbl/Bugify/commit/67be8a86c47b45179c09e56e7cf5e95f36dde67c) - feat - ground/organization up
