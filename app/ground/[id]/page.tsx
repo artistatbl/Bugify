@@ -15,17 +15,16 @@ interface Props {
 const page =  async ( { params }: Props) => {
 
 	const session = await getServerSession(authOptions)
-	const ground = await prisma.organization.findUnique({
+	
+	const issues = await prisma.issue.findMany({
 		where: {
-			id: params.id
+			organizationId: params.id
 		},
 		include: {
-			//grounds: true
-			
+			user: true
 		}
-	});
-	if (!ground) return notFound()
-	console.log(ground)
+	})
+	
 
 
 
@@ -35,7 +34,12 @@ const page =  async ( { params }: Props) => {
     
 	 
         <div className='grid grid-cols-1 md:grid-cols-3 gap-y-4 md:gap-x-4 py-6'>
-		{/* <ul className=''> {children}</ul> */}
+
+		<div className='col-span-2'>
+			<p> {issues.length} issues </p>
+
+		</div>
+		
 
 
 	   </div>

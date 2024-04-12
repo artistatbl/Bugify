@@ -20,11 +20,8 @@ export async function POST(request: NextRequest) {
         const formattedErrors = validation.error.flatten();
         return NextResponse.json({ errors: formattedErrors }, { status: 400 });
     }
-
-    // Here, you'd typically extract the user's ID from the request,
-    // which might be in a session token or an authorization header.
-    // This example assumes `userId` is part of the request body for simplicity.
-    const userId = body.userId; // This needs to be obtained from your authentication logic
+    // const userId = session?.user?.id; // This needs to be obtained from your authentication logic
+    // if (!userId) return NextResponse.json({}, { status: 401 });
 
     // First, count the existing grounds created by this user
     const count = await prisma.organization.count({
@@ -50,6 +47,15 @@ export async function POST(request: NextRequest) {
             creatorId: session.user.id, // This should match the column name in your database
         },
     });
+    // create aslo has to be subscribe to the ground
+    await prisma.subscription.create({
+        data: {
+            organizationId: newGround.id,
+            userId: session.user.id,
+        },
+    })
+
+   
 
     const responsePayload = {
         id: newGround.id,

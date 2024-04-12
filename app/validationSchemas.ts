@@ -47,8 +47,12 @@ export const createCommentSchema = z.object({
   replyToId: z.string().optional(),
 })
 
+export const organizationSubscriptionSchema = z.object({
+  organizationId: z.string(),
+})
 
 export type CreateIssueSchema = z.infer<typeof createIssueSchema>;
 export type PatchIssueSchema = z.infer<typeof patchIssueSchema>;
 export type CreateGroundSchema = z.infer<typeof createGroundSchema>;
 export type CreateCommentSchema = z.infer<typeof createCommentSchema>;
+export type OrganizationSubscriptionSchema = z.infer<typeof organizationSubscriptionSchema>;

@@ -40,7 +40,18 @@ model Organization {
   creator     User         @relation("OrganizationCreator", fields: [creatorId], references: [id])
   invitations Invitation[]
   issues      Issue[]
-  users       User[]       @relation("UserOrganization")
+  subscribers Subscription[]
+
+  @@index([name])
+}
+
+model Subscription {
+  organizationId String
+  userId        String
+  organization   Organization @relation(fields: [organizationId], references: [id])
+  user         User       @relation(fields: [userId], references: [id])
+
+  @@id([organizationId, userId])
 }
 
 model User {
@@ -52,13 +63,12 @@ model User {
   image              String?
   lastLogin          DateTime?
   role               Role            @default(USER)
-  organizationId     String?
   accounts           Account[]
   comments           Comment[]
   assignedIssues     Issue[]         @relation("IssueAssignee")
   createdIssues      Issue[]         @relation("IssueCreator")
   sessions           Session[]
-  organization       Organization?   @relation("UserOrganization", fields: [organizationId], references: [id])
+  subscriptions Subscription[] // Add this line
   createdOrganizations Organization[] @relation("OrganizationCreator") // New field
 }
 
