@@ -102,3 +102,6 @@
 
 ## [April, 12, 2024 21:18:31] - Changes made by artistatbl
 - [67be8a8](https://github.com/artistatbl/Bugify/commit/67be8a86c47b45179c09e56e7cf5e95f36dde67c) - feat - ground/organization up
+
+## [April, 13, 2024 18:30:49] - Changes made by artistatbl
+- [551299a](https://github.com/artistatbl/Bugify/commit/551299a8adbab7007d0b9ae1852d4a03b51f1bcb) - upt - ground view layout
