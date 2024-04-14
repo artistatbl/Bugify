@@ -3,7 +3,7 @@ import { getServerSession } from "next-auth";
 import authOptions from "@/app/auth/authOptions";
 import prisma from '../../../../prisma/client'; // Adjust this import path to where your Prisma client is initialized
 
-export  async function handler( request: NextRequest,) {
+export  async function GET( request: NextRequest,) {
 
  
 
