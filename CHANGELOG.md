@@ -114,3 +114,6 @@
 
 ## [April, 14, 2024 23:54:40] - Changes made by artistatbl
 - [8114bad](https://github.com/artistatbl/Bugify/commit/8114bad441ddbe8865222e48dfc4664096e85e22) - upt - prisma pro update
+
+## [April, 14, 2024 23:59:49] - Changes made by artistatbl
+- [e556d0d](https://github.com/artistatbl/Bugify/commit/e556d0dfb4091d9bc1367b80668a6e1f003ac63b) - error - fix ground handler
