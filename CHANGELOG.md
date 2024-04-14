@@ -105,3 +105,6 @@
 
 ## [April, 13, 2024 18:30:49] - Changes made by artistatbl
 - [551299a](https://github.com/artistatbl/Bugify/commit/551299a8adbab7007d0b9ae1852d4a03b51f1bcb) - upt - ground view layout
+
+## [April, 14, 2024 23:49:47] - Changes made by artistatbl
+- [f4b58dd](https://github.com/artistatbl/Bugify/commit/f4b58dd4cddb0738a44ba40dbe9818df94e56dd4) - upt - Ground select/ ground Layout
