@@ -4,24 +4,24 @@ import { getServerSession } from 'next-auth/next'
 import  authOptions  from "@/app/auth/authOptions";
 import prisma from 'prisma/client'
 import { notFound } from 'next/navigation';
+import ViewIssue from '@/app/ground/[slug]/_components/ViewIssue';
 
 
 interface Props {
 	params: {
-		id: string;
+		slug: string;
 	};	
 }
 
 const page =  async ( { params }: Props) => {
-
-	const session = await getServerSession(authOptions)
+    const {slug} = params
 	
-	const issues = await prisma.issue.findMany({
+	const ground = await prisma.organization.findFirst({
 		where: {
-			organizationId: params.id
+			name: slug,
 		},
 		include: {
-			user: true
+			issues: true
 		}
 	})
 	
@@ -30,25 +30,21 @@ const page =  async ( { params }: Props) => {
 
   return (
 	<>
-	<SideNav session={session} />
-    
+	
+     <h1 className='font-bold text-3xl md:text-4xl h-14'>
+        r/{ground?.name ?? ''}
+      </h1>
+<ViewIssue params={{ slug: ground?.name ?? '' }}/>
+
+    </>
 	 
-        <div className='grid grid-cols-1 md:grid-cols-3 gap-y-4 md:gap-x-4 py-6'>
-
-		<div className='col-span-2'>
-			<p> {issues.length} issues </p>
-
-		</div>
-		
-
-
-	   </div>
+      
 
 
 	
 
  
-	</>
+	
   )
 }
 

@@ -14,8 +14,11 @@ export  async function GET(request: NextRequest) {
  
 	const userGrounds = await prisma.organization.findMany({
 	  where: {
-	    creatorId: session.user.id,
+	    creatorId: session?.user?.id,
 	  },
+	  include: {
+		  issues: true,
+	  }
 	});
 	
 	return NextResponse.json(userGrounds, { status: 200 });

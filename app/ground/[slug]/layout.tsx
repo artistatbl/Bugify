@@ -1,3 +1,4 @@
+
 import { getServerSession } from 'next-auth/next'
 import authOptions from "@/app/auth/authOptions";
 import React from 'react'; 
@@ -6,27 +7,32 @@ import Link from 'next/link';
 import prisma from 'prisma/client';
 import SubscribeLeaveToggle from '@/components/ground/SubscribeLeaveToggle';
 import { notFound } from 'next/navigation';
-import ViewIssue from '@/app/ground/[id]/_components/ViewIssue';
+import ViewIssue from '@/app/ground/[slug]/_components/ViewIssue';
 import ToFeedButton from '@/components/issues/ToFeedButton';
+import { useEffect } from 'react';
 
 // Ensure React is imported for JSX
 
-const Layout = async ( { children, params }: { children: React.ReactNode, params: { id: string } }) => {
+const Layout = async ( { children, params: { slug } }: { children: React.ReactNode, params: { slug: string } }) => {
+
+	
   const session = await getServerSession(authOptions);
 
   const ground = await prisma.organization.findFirst({
-    where: {
-	 id: params.id
-    },
-    include: {
-	 _count: {
-	  select: {
-	   issues: true,
+	where: { name: slug },
+	include: {
+	  issues: {
+	    include: {
+		 user: true,
+	    },
+	  },
+	  _count: {
+	    select: {
+		 issues: true, // Count the issues here
+	    }
 	  }
-
 	}
-    }
-  })
+   })
  
   const subcription = !session?.user ? undefined : await prisma.subscription.findFirst({
     where: {
@@ -50,7 +56,7 @@ const Layout = async ( { children, params }: { children: React.ReactNode, params
 	 }
     }
   })
- 
+
   
  
 		
@@ -58,16 +64,27 @@ const Layout = async ( { children, params }: { children: React.ReactNode, params
   return (
 	<>
 	  <Sidebar session={session} />
-	  <div className="z-10 flex flex-col mb-20 w-full pr-5 pl-5 md:pr-5 md:pl-5 lg:pr-10 lg:pl-10 min-h-screen ">
-	    <div className='container max-w-7xl mx-auto h-full pt-4 sm:pt-12 bg-white/80 p-4 sm:p-10'>
+	  <div className="z-10 flex flex-col mb-20 w-full pr-5 pl-5 md:pr-5 md:pl-5 lg:pr-10 lg:pl-10 min-h-screen bg-white/100 ">
+	    <div className='container max-w-8xl mx-auto pt-12 bg-white/80 '>
     
 		<ToFeedButton />
-		<div className='flex flex-col md:grid md:grid-cols-2 gap-y-4 md:gap-x-4 py-6 '>
-		  {/* About section first for mobile, on the right for larger screens */}
-		  <div className='md:order-2'>
-		   <div className='px-6 py-4 border-b border-gray-900 bg-white/100 dark:bg-zinc-500'>
+
+		<div className='grid grid-cols-1 md:grid-cols-3 gap-y-4 md:gap-x-4 py-6'>
+          <ul className='flex flex-col col-span-2 space-y-6'>{children}</ul>
+
+          <div className='overflow-hidden h-fit rounded-lg border border-gray-200 order-first md:order-last'>
+     
+
+	<div className='px-6 py-4'>
+
+
 			<p className='font-semibold py-3 dark:text-white'>About r/{ground?.name ?? 'defaultname'}</p>
-		   </div>
+
+	</div>
+
+
+
+
 		   <dl className='divide-y divide-gray-100 dark:divide-gray-700 px-6 py-4 text-sm leading-6 dark:bg-white/100 bg-black/100 text-white'>
 			<div className='flex justify-between gap-x-4 py-3 text-white'>
 			  <dt className='text-white dark:text-black'>Created</dt>
@@ -87,8 +104,8 @@ const Layout = async ( { children, params }: { children: React.ReactNode, params
 			{ground?.creatorId !== session?.user?.id && (
 			  <SubscribeLeaveToggle
 			   isSubscribed={isSubscribed}
-			   organizationId={ground?.id ?? ''}
-			   organizationName={ground?.name ?? ''}
+			   organizationId={ground.id ?? ''}
+			   organizationName={ground.name ?? ''}
 			  />
 			)}
 			<Link
@@ -98,13 +115,10 @@ const Layout = async ( { children, params }: { children: React.ReactNode, params
 			</Link>
 		   </dl>
 		  </div>
-		  {/* ViewIssue component on the left for larger screens, below About section on mobile */}
-		  <div className='md:order-1'>
-		   <ViewIssue organizationId={ground?.id ?? ''} />
 		  </div>
+
 		</div>
 	    </div>
-	  </div>
 	</>
    );
 

@@ -26,7 +26,7 @@ const SubscribeLeaveToggle = ({
   const { mutate: subscribe } = useMutation({
     mutationFn: async () => {
       const payload: OrganizationSubscriptionSchema = {
-       organizationId,
+        organizationSlug: organizationName,
       }
 
       const { data } = await axios.post('/api/ground/subscribe', payload)
@@ -61,7 +61,7 @@ const SubscribeLeaveToggle = ({
   const { mutate: unsubscribe} = useMutation({
     mutationFn: async () => {
       const payload: OrganizationSubscriptionSchema = {
-       organizationId,
+        organizationSlug: organizationName,
       }
 
       const { data } = await axios.post('/api/ground/unsubscribe', payload)

@@ -4,7 +4,7 @@ import { createGroundSchema } from "../../validationSchemas";
 import { v4 as uuidv4 } from 'uuid';
 import { getServerSession } from "next-auth";
 import authOptions from "@/app/auth/authOptions";
-
+import slugify from 'slugify';
 export async function POST(request: NextRequest) {
 
 
@@ -38,11 +38,14 @@ export async function POST(request: NextRequest) {
         }, { status: 403 });
     }
 
+    const slug = slugify(body.name, { lower: true, strict: true });
+
     // Proceed to create a new ground if under the limit
     const newGround = await prisma.organization.create({
         data: {
             id: uuidv4(),
             name: body.name,
+            slug: slug,
             // Make sure to associate the ground with its creator
             creatorId: session.user.id, // This should match the column name in your database
         },

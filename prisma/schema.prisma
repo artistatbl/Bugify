@@ -35,7 +35,8 @@ model Session {
 
 model Organization {
   id          String       @id @default(cuid())
-  name        String
+  name        String       @unique
+  slug        String       @unique
   creatorId   String
   creator     User         @relation("OrganizationCreator", fields: [creatorId], references: [id])
   invitations Invitation[]

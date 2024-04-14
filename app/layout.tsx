@@ -29,8 +29,12 @@ export const metadata = {
 
 export default async function RootLayout({
   children, 
+  backgroundColor = 'bg-white', // Default background color
+
 }: {
   children: React.ReactNode;
+  backgroundColor?: string; // Add this line
+
   
 }) {
   return (
@@ -57,8 +61,7 @@ export default async function RootLayout({
 
        
         
-          <main className=" flex min-h-screen  flex-col  py-32  w-full dark:bg-black  dark:bg-dot-white/[0.3] bg-dot-black/[0.3]  items-center justify-center">
-
+        <main className={`flex min-h-screen flex-col py-32 w-full dark:bg-black items-center justify-center ${backgroundColor}`}>
             {children}
             
           </main>

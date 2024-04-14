@@ -5,7 +5,7 @@ import Link from "next/link"
 import { Button } from "@/components/components/ui/button"
 import { ModeToggle } from "../components/ui/darkmode";
 
-import { SelectGround } from "@/app/ground/[id]/_components/SelectGround";
+import { SelectGround } from "@/app/ground/[slug]/_components/SelectGround";
 import UserDropdown from "@/components/layout/user-dropdown";
 
 

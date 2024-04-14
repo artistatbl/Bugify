@@ -48,7 +48,7 @@ export const createCommentSchema = z.object({
 })
 
 export const organizationSubscriptionSchema = z.object({
-  organizationId: z.string(),
+  organizationSlug: z.string(),
 })
 
 export type CreateIssueSchema = z.infer<typeof createIssueSchema>;

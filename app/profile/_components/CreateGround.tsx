@@ -11,6 +11,7 @@ import { Button } from '@/components/components/ui/button';
 import { Label } from '@/components/components/ui/label';
 import { Input } from '@/components/components/ui/input';
 import { Loader2 } from "lucide-react"
+import slugify from 'slugify';
 
 import {  Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/components/ui/dialog'; // Adjust import paths as necessary
 import { toast } from '@/lib/hooks/use-toast'; // Adjust import path as necessary
@@ -56,7 +57,8 @@ const CreateGround = () => {
           description: 'Your ground has been created.',
           variant: 'default',   
         });
-        router.push(`/ground/${data.id}`);
+        const groundSlug = slugify(data.name, { lower: true });
+router.push(`/ground/${groundSlug}`);
         setTimeout(() => {
           setIsDialogOpen(false);
         }, 700)

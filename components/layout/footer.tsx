@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function Footer() {
   return (
-    <div className="absolute w-full py-5 text-center dark:bg-black bg-white   dark:bg-dot-white/[0.2] bg-dot-black/[0.2]    ">
+    <div className="absolute w-full py-5 text-center    ">
     <div className="flex flex-col  relative justify-center  text-center">
       <p className="text-gray-500 text-md  font-light">
          project by{" "}

@@ -30,9 +30,14 @@ module.exports = {
         'gradient-to-br-light': 'linear-gradient(to bottom right, black, #1c1917)', // Light theme gradient
         'gradient-to-br-dark': 'linear-gradient(to bottom right, white, #f5f5f4)', // Dark theme gradient
       },
+      maxWidth: {
+        '9xl': '1920px',
+      },
   
       animation: {
         // Fade up and down
+        spotlight: "spotlight 2s ease .75s 1 forwards",
+
         "fade-up": "fade-up 0.5s",
         "fade-down": "fade-down 0.5s",
         // Tooltip
@@ -87,6 +92,16 @@ module.exports = {
           "100%": {
             opacity: 1,
             transform: "translateY(0px)",
+          },
+        },
+        spotlight: {
+          "0%": {
+            opacity: 0,
+            transform: "translate(-72%, -62%) scale(0.5)",
+          },
+          "100%": {
+            opacity: 1,
+            transform: "translate(-50%,-40%) scale(1)",
           },
         },
         "fade-down": {
