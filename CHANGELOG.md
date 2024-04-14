@@ -108,3 +108,6 @@
 
 ## [April, 14, 2024 23:49:47] - Changes made by artistatbl
 - [f4b58dd](https://github.com/artistatbl/Bugify/commit/f4b58dd4cddb0738a44ba40dbe9818df94e56dd4) - upt - Ground select/ ground Layout
+
+## [April, 14, 2024 23:52:55] - Changes made by artistatbl
+- [f2013e7](https://github.com/artistatbl/Bugify/commit/f2013e7b0e10e3d2c82bb24584bb2d2f9d448541) - upt - yaml update
