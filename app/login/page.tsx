@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { useSignInModal } from '@/components/layout/sign-in-modal';
 import { Button } from '@radix-ui/themes'; // Ensure correct import path
 import { useToast } from '@/lib/hooks/use-toast';
+import Nav from '@/components/layout/nav';
 
 const Page = () => {
     const { SignInModal, setShowSignInModal } = useSignInModal();
@@ -14,7 +15,10 @@ const Page = () => {
 
     return (
         <>
+
+        <Nav/>
          
+
             <SignInModal/>
 
 		 
