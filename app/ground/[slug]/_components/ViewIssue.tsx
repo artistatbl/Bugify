@@ -8,6 +8,8 @@ import EditorOutput from '@/components/issues/EditorOutput';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { formatDistanceToNow } from 'date-fns';
+import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} from '@/components/components/ui/card';
+
 
 interface ViewIssueProps {
   params: {
@@ -48,53 +50,51 @@ const ViewIssue = async ({ params }: ViewIssueProps) => {
     }
 
     return (
-      <div className="p-2 md:p-5 lg:p-5">
-     
+      <Card  className="hover:ring-[0.5px] ring-foreground duration-500  transition-all">
+        <CardHeader className="text-center justify-center">
+          <CardTitle>Issues</CardTitle>
+        </CardHeader>
 
-        <div className="grid gap-8 md:grid grid-cols-1  ">
-          {issues.map((issue) => (
-            <div key={issue.id} className="bg-white shadow-lg rounded-lg p-6 grid grid-cols-8 md:grid-cols-1 gap-6 border border-gray-900">
+    
+         <div className="p-2 md:p-5 xl:p-10">
+  <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 ">
+    {issues.map((issue) => (
+      <div key={issue.id} className="bg-white shadow-lg rounded-lg p-4 md:p-6 border border-gray-900 xs:min-w-[300px] sm:min-w-[620px] md:min-w-[470px] lg:min-w-[600px] xl:min-w-[725px] 2xl:min-w-[900px]">
+        <div className='max-h-40 mt-1 text-xs md:text-sm text-gray-500'>
+          {issue.organization?.name ? (
+            <>
+              <a
+                className='underline text-zinc-900 underline-offset-2'
+                href={`/ground/${issue.organization.name}`}>
+                r/{issue?.organization?.name}
+              </a>
+              <span className='px-1'>•</span>
+            </>
+          ) : null}
+          <span>Logged by u/{issue?.user?.name}</span>{' '}
+          {formatDistanceToNow(new Date(issue.createdAt), { addSuffix: true })}
+        </div>
 
-<div className='max-h-40 mt-1 text-xs text-gray-500'>
-            {issue.organization?.name ? (
-              <>
-                <a
-                  className='underline text-zinc-900 text-sm underline-offset-2'
-                  href={`/ground/${issue.organization.name}`}>
-                  r/{issue?.organization?.name}
-                </a>
-                <span className='px-1'>•</span>
-              </>
-            ) : null}
-            <span>Logged by u/{issue?.user?.name}</span>{' '}
-            {formatDistanceToNow(new Date(issue.createdAt), { addSuffix: true })}
-
-          </div>
-
-              <div className="md:col-span-4 flex">
-
-
-                <h3 className="font-semibold">{issue.title}</h3>
-              </div>
-              <div className="md:col-span-1 flex items-center justify-center">
+        <div className="flex flex-col md:flex-row justify-between">
+          <h3 className="font-semibold text-base md:text-lg">{issue.title}</h3>
+          <div className="flex items-center justify-between mt-2 md:mt-0">
+            <div className="flex items-center">
               <p className="text-sm font-medium text-gray-900 mr-2">Status</p>
-
-                <Link href={`/issuespage/${issue.id}`}>
+              <Link href={`/issues/${issue.id}`}>
                 <IssueStatusBadge status={issue.status} />
-                </Link>
-              </div>
-              <div className="md:col-span-1 flex items-center justify-center">
-                <p className="text-sm font-medium text-gray-900 mr-3 mt-2">Priority</p>
-                <IssuePriorityBadge priority={issue.priority} />
-              </div>
-              <div className="md:col-span-1 flex items-center justify-end">
-                {/* Consider adding actionable items or details here */}
-                <span>Details</span>
-              </div>
+              </Link>
             </div>
-          ))}
+            <div className="flex items-center ml-4">
+              <p className="text-sm font-medium text-gray-900 mr-3">Priority</p>
+              <IssuePriorityBadge priority={issue.priority} />
+            </div>
+          </div>
         </div>
       </div>
+    ))}
+  </div>
+</div>
+      </Card>
     );
   } catch (error) {
     console.error('Error fetching issues:', error);

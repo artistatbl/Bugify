@@ -10,7 +10,7 @@ import { Theme, ThemePanel } from "@radix-ui/themes";
 import '@radix-ui/themes/styles.css';
 import { SessionProvider } from "next-auth/react";
 import { ThemeProvider } from "@/components/components/ui/theme-provider";
-
+import type { Viewport } from "next";
 import { Toaster } from "@/components/components/ui/toaster";
 import { ModeToggle } from "@/components/components/ui/darkmode";
 import Providers from "./Providers";
@@ -24,7 +24,12 @@ export const metadata = {
   description:
     "",
   metadataBase: new URL("https://bugify.vercel.app"),
-  themeColor: "#FFF",
+
+};
+export const viewport: Viewport = {
+  userScalable: false,
+  colorScheme: "light dark",
+ themeColor: "default",
 };
 
 export default async function RootLayout({
