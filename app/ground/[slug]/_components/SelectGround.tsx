@@ -3,18 +3,8 @@
 import * as React from "react"
 import { Check, ChevronsUpDown } from "lucide-react"
 import { useRouter } from "next/navigation";
-import prisma from 'prisma/client';
-import { getServerSession } from "next-auth";
-import authOptions from "@/app/auth/authOptions";
-import { cn } from "@/lib/utils"
 import { Button } from "@/components/components/ui/button"
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-} from "@/components/components/ui/command"
+
 import {
   Popover,
   PopoverContent,
