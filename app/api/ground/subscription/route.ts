@@ -4,7 +4,6 @@ import { getServerSession } from 'next-auth';
 import authOptions from '@/app/auth/authOptions'; // Adjust the import path as necessary
 
 export async function GET(request: NextRequest) {
-  // Only allow GET requests
 
   try {
     // Get the user session

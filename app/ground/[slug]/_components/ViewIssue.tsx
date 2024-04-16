@@ -10,6 +10,7 @@ import Link from 'next/link';
 import { formatDistanceToNow } from 'date-fns';
 import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} from '@/components/components/ui/card';
 
+import { ScrollArea } from "@/components/components/ui/scroll-area"
 
 interface ViewIssueProps {
   params: {
@@ -55,9 +56,13 @@ const ViewIssue = async ({ params }: ViewIssueProps) => {
           <CardTitle>Issues</CardTitle>
         </CardHeader>
 
+        <ScrollArea className="h-[450px] md:h-[580px] w-full rounded-md border border-black">
+
+
     
          <div className="p-2 md:p-5 xl:p-10">
-  <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 ">
+  <div className="grid gap-8 grid-cols-1 sm:grid-cols-1 ">
+
     {issues.map((issue) => (
       <div key={issue.id} className="bg-white shadow-lg rounded-lg p-4 md:p-6 border border-gray-900 xs:min-w-[300px] sm:min-w-[620px] md:min-w-[470px] lg:min-w-[600px] xl:min-w-[725px] 2xl:min-w-[900px]">
         <div className='max-h-40 mt-1 text-xs md:text-sm text-gray-500'>
@@ -76,24 +81,35 @@ const ViewIssue = async ({ params }: ViewIssueProps) => {
         </div>
 
         <div className="flex flex-col md:flex-row justify-between">
-          <h3 className="font-semibold text-base md:text-lg">{issue.title}</h3>
+        <Link href={`/issues/${issue.id}`}>
+        <h3 className="font-semibold text-base md:text-lg">{issue.title}</h3>
+
+               
+               </Link>
           <div className="flex items-center justify-between mt-2 md:mt-0">
             <div className="flex items-center">
               <p className="text-sm font-medium text-gray-900 mr-2">Status</p>
-              <Link href={`/issues/${issue.id}`}>
-                <IssueStatusBadge status={issue.status} />
-              </Link>
+             
+                              <IssueStatusBadge status={issue.status} />
+
             </div>
             <div className="flex items-center ml-4">
               <p className="text-sm font-medium text-gray-900 mr-3">Priority</p>
+              <div className='mb-2'> 
+
+
               <IssuePriorityBadge priority={issue.priority} />
+              </div>
             </div>
+
           </div>
+
         </div>
       </div>
     ))}
   </div>
 </div>
+</ScrollArea>
       </Card>
     );
   } catch (error) {

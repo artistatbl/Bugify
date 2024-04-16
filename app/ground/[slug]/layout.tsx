@@ -75,7 +75,7 @@ const Layout = async ( { children, params: { slug } }: { children: React.ReactNo
           <div className='overflow-hidden h-fit rounded-lg border border-gray-200 order-first md:order-last'>
      
 
-	<div className='px-6 py-4'>
+	<div className='px-6 py-4 bg-gray-100'>
 
 
 			<p className='font-semibold py-3 dark:text-white'>About r/{ground?.name ?? 'defaultname'}</p>

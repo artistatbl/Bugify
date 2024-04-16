@@ -14,6 +14,7 @@ import type { Viewport } from "next";
 import { Toaster } from "@/components/components/ui/toaster";
 import { ModeToggle } from "@/components/components/ui/darkmode";
 import Providers from "./Providers";
+import CookieConsentPopup from "@/components/home/cookie";
 
 
 
@@ -73,6 +74,7 @@ export default async function RootLayout({
           </Providers>
           <Toaster />
           <Footer />
+          <CookieConsentPopup />
         </Theme>
         <Analytics />
         </ThemeProvider >
