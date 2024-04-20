@@ -17,6 +17,7 @@ import IssueStatusBadge from './IssuesStatusBadge';
 import UserIssueFeatures from './UserIssueFeatures';
 import { formatDistanceToNow } from 'date-fns';
 import { Reorder } from 'framer-motion';
+import { ScrollArea } from "@/components/components/ui/scroll-area"
 
 interface IssueCardProps {
   issue: Issue;
@@ -30,10 +31,7 @@ const IssueCard: React.FC<IssueCardProps> = async ({issue}) => {
     return null
   }
 
-  const setIssues = (issues: Issue[]) => {
-    console.log(issues)
-  }
-
+ 
   const isAssignedToCurrentUser = issue.assignedToUserId === session.user.id
   
 
@@ -41,7 +39,8 @@ const IssueCard: React.FC<IssueCardProps> = async ({issue}) => {
     <div>
    
 
-          <Card key={issue.id} className="hover:ring-[0.5px] ring-foreground duration-500  transition-all">
+          <Card key={issue.id} className="hover:ring-[0.5px] ring-foreground duration-500 border-black border-2 dark:border-white transition-all">
+
             <CardHeader className="relative">
               <CardTitle className="mr-12 text-md -mb-1 truncate">
                 <Link href={`/issues/${issue.id}`} className="focus:underline hover:underline">
@@ -49,7 +48,6 @@ const IssueCard: React.FC<IssueCardProps> = async ({issue}) => {
                 </Link>
               </CardTitle>
               <CardDescription className="mr-10 truncate">
-              {/* <EditorOutput content={issue.description || ''}  /> */}
 
               </CardDescription>
               {issue.assignedToUser ? (
@@ -84,15 +82,13 @@ const IssueCard: React.FC<IssueCardProps> = async ({issue}) => {
              )}
 
             </CardHeader>
-            <CardContent>
-              
-            </CardContent>
+
             <CardFooter className="gap-1 justify-between">
               <IssueStatusBadge status={issue.status}/>
             
            
             
-              {/* <p className="text-sm  text-black"> {issue.assignedToUser?.role}</p> */}
+              <p className="text-sm  text-black"> {issue.assignedToUser?.role}</p>
 
               <div className="flex justify-between items-center">
                 <div className="overflow-hidden w-[85%]">
@@ -101,6 +97,8 @@ const IssueCard: React.FC<IssueCardProps> = async ({issue}) => {
               </div>
 
             </CardFooter>
+            
+
           </Card>
     </div>
   );

@@ -106,7 +106,7 @@ router.push(`/ground/${groundSlug}`);
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
       <DialogTrigger asChild>
   <Button
-    className='bg-black hover:bg-zinc-500 text-white font-bold py-2 px-4 rounded'
+    className='bg-black dark:bg-white hover:bg-zinc-500 text-white dark:text-black font-bold py-2 px-4 rounded'
     onClick={() => setIsDialogOpen(true)}
   >
     Create a Ground
@@ -114,11 +114,11 @@ router.push(`/ground/${groundSlug}`);
 </DialogTrigger>
 
         <DialogContent className='max-w-[415px] sm:max-w-[450px] max-h-[50vh] md:max-w-2xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl'>
-          <DialogHeader>
-            <DialogTitle className="text-2xl font-semibold border-b pl-6 border-stone-950  mb-5">
+          <DialogHeader >
+            <DialogTitle className="text-2xl font-semibold border-b pl-6 border-stone-950 dark:border-white mb-5">
               Create a Ground
             </DialogTitle>
-            <DialogDescription>
+            <DialogDescription >
               Ground names including capitalization cannot be changed.
             </DialogDescription>
           </DialogHeader>
@@ -146,7 +146,7 @@ router.push(`/ground/${groundSlug}`);
               disabled={isLoading}
 
               
-               className="w-full">
+               className="w-full dark:text-black">
 
 
 {isLoading ? (

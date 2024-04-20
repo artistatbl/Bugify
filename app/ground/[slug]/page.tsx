@@ -32,7 +32,7 @@ const page =  async ( { params }: Props) => {
 	<>
 	
      <h1 className='font-bold text-3xl md:text-4xl h-14'>
-        r/{ground?.name ?? ''}
+	   G/{ground?.name ?? ''}
       </h1>
 <ViewIssue params={{ slug: ground?.name ?? '' }}/>
 

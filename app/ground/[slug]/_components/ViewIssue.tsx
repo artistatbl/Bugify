@@ -56,7 +56,7 @@ const ViewIssue = async ({ params }: ViewIssueProps) => {
           <CardTitle>Issues</CardTitle>
         </CardHeader>
 
-        <ScrollArea className="h-[450px] md:h-[580px] w-full rounded-md border border-black">
+        <ScrollArea className="h-[450px] md:h-[580px]  bg-gray-200 rounded-md border border-black dark:border-white m-2">
 
 
     
@@ -82,10 +82,10 @@ const ViewIssue = async ({ params }: ViewIssueProps) => {
 
         <div className="flex flex-col md:flex-row justify-between">
         <Link href={`/issues/${issue.id}`}>
-        <h3 className="font-semibold text-base md:text-lg">{issue.title}</h3>
-
-               
-               </Link>
+  <h3 className="font-semibold text-base md:text-lg dark:text-black">
+    {issue.title.length > 25 ? `${issue.title.slice(0, 25)}...` : issue.title}
+  </h3>
+</Link>
           <div className="flex items-center justify-between mt-2 md:mt-0">
             <div className="flex items-center">
               <p className="text-sm font-medium text-gray-900 mr-2">Status</p>

@@ -19,6 +19,7 @@ import { Button } from '@/components/components/ui/button';
 import dynamic from 'next/dynamic';
 import CreateGround from './_components/CreateGround';
 import SideNav from '@/components/issues/SideNav';
+import { ScrollArea } from '@/components/components/ui/scroll-area';
 
 
 const page = async () => {
@@ -124,7 +125,7 @@ const page = async () => {
               </Card>
 
             </div>
-            <Card className="flex flex-col border-b-4 border-b-gray-900 dark:border-gray-200  rounded-md shadow-neutral-950 hover:ring-[0.5px] ring-foreground duration-500 transition-all">
+            <Card className="flex flex-col border-b-4 border-b-gray-900 dark:border-white  border-red-900 rounded-md shadow-neutral-950 hover:ring-[0.5px] ring-foreground duration-500 transition-all ">
               <CardHeader>
                 <CardTitle>Assigned Issues</CardTitle>
                 <div className='flex flex-col font-light text-gray-400'>
@@ -132,8 +133,10 @@ const page = async () => {
                 </div>
               </CardHeader>
 
+              <ScrollArea className="h-[450px] md:h-[550px] bg-gray-200 dark:bg-black rounded-md border border-black dark:border-white  m-2">
+
               <CardContent className="p-3 sm:p-5 ">
-                <div className='flex flex-col gap-3 sm:gap-5'>
+                <div className='flex flex-col gap-3 sm:gap-5 border '>
                   {(user.assignedIssues === null || user.assignedIssues.length === 0) && (
                     <div className="text-gray-500 justify-center text-center">No issues assigned</div>
 
@@ -148,6 +151,7 @@ const page = async () => {
                 </div>
 
               </CardContent>
+              </ScrollArea>
             </Card>
           </div>
         </main>

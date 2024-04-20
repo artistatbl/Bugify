@@ -4,6 +4,7 @@ import prisma from "../../../../prisma/client";
 import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 
+
 export async function PATCH(
   request: NextRequest,
   { params }: { params: { id: string } }
@@ -18,7 +19,8 @@ export async function PATCH(
       status: 400,
     });
 
-  const { assignedToUserId, title, description } = body;
+  // Destructure status and priority along with the existing fields
+  const { assignedToUserId, title, description, status, priority } = body;
 
   if (assignedToUserId) {
     const user = await prisma.user.findUnique({
@@ -40,18 +42,21 @@ export async function PATCH(
       { status: 404 }
     );
 
+  // Update the issue with new fields if provided
   const updatedIssue = await prisma.issue.update({
     where: { id: issue.id },
     data: {
       title,
       description,
-      assignedToUserId
+      assignedToUserId,
+      // Only update status and priority if they are provided in the request
+      ...(status && { status }),
+      ...(priority && { priority }),
     },
   });
 
   return NextResponse.json(updatedIssue);
-}
-
+ }
 export async function DELETE(
   request: NextRequest,
   { params }: { params: { id: string } }

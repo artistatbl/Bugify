@@ -55,16 +55,16 @@ const ViewIssue = async ({ params }: Props) => {
 
 
       <Dialog>
-        <DialogTrigger asChild>
+        <DialogTrigger asChild >
 
           <Button variant="outline" className='font-extralight '>View Issue</Button>
 
 
         </DialogTrigger>
 
-        <DialogContent className="max-w-[450px] sm:max-w-[600px] md:max-w-[800px] lg:max-w-[1000px] xl:max-w-[1200px] 2xl:max-w-[1400px] 3xl:max-w-[1400px] border-zinc-900 border-b-2">
+        <DialogContent className="max-w-[450px] sm:max-w-[600px] md:max-w-[800px] lg:max-w-[1000px] xl:max-w-[1200px] 2xl:max-w-[1400px] 3xl:max-w-[1400px] border-zinc-900 border-b-2 dark:border-white dark:bg-white/100 dark:text-black">
          <DialogHeader>
-          <DialogTitle className="text-3xl font-semibold border-b pl-6 border-stone-950 ">View Issue</DialogTitle>
+          <DialogTitle className="text-3xl font-semibold border-b pl-6 border-stone-950 dark:text-black ">View Issue</DialogTitle>
           <DialogDescription className=''>
             Click on the issue title to view the issue.
 
@@ -79,7 +79,7 @@ const ViewIssue = async ({ params }: Props) => {
 
 
             <Link href={`/issues/${issue.id}`}>
-              <Text className=''>{issue.title}</Text>
+              <Text className='dark:text-black'>{issue.title}</Text>
             </Link>
 
               <p className='text-gray-500 dark:text-gray-500 font-light '>
@@ -95,7 +95,7 @@ const ViewIssue = async ({ params }: Props) => {
 
 
               <div className=" space-x-10">
-              <Label className='text-xl  md:text-xl lg:text-2xl font-bold tracking-tighter sm:text-xl' htmlFor="description">Status</Label>
+              <Label className='text-xl  md:text-xl lg:text-2xl font-bold tracking-tighter sm:text-xl dark:text-black' htmlFor="description">Status</Label>
 
 
 
@@ -106,14 +106,14 @@ const ViewIssue = async ({ params }: Props) => {
 
               <div className='space-x-10 flex items-center'>
                 
-                <Label className='text-xl  md:text-xl lg:text-2xl font-bold tracking-tighter sm:text-xl' htmlFor="description">Priority</Label>
+                <Label className='text-xl  md:text-xl lg:text-2xl font-bold tracking-tighter sm:text-xl dark:text-black' htmlFor="description">Priority</Label>
 
                 
                 <IssuePriorityBadge priority={issue.priority}  />
 
               </div>
               <div className='space-x-5'>
-                <Label className='text-xl  md:text-xl lg:text-2xl font-bold tracking-tighter sm:text-xl' htmlFor="description">Assignee</Label>
+                <Label className='text-xl  md:text-xl lg:text-2xl font-bold tracking-tighter sm:text-xl dark:text-black' htmlFor="description">Assignee</Label>
 
 
                 <Text className='text-gray-700 dark:text-gray-700 font-thin'>
@@ -128,11 +128,11 @@ const ViewIssue = async ({ params }: Props) => {
             <Label className='text-xl  md:text-xl lg:text-2xl font-bold tracking-tighter sm:text-xl' htmlFor="description">Description</Label>
 
 
-<div className='relative bg-zinc-100 dark:bg-zinc-800 p-10 pl-6 border border-black dark:border-white rounded-xl max-w-[400px] sm:max-w-[550px] md:max-w-[700px] lg:max-w-[900px] xl:max-w-[1100px] 2xl:max-w-[1300px] 3xl:max-w-[1300px]'>
+<div className='relative bg-zinc-100 dark:bg-zinc-800 p-10 pl-6 border border-black  dark:text-white rounded-xl max-w-[350px] sm:max-w-[500px] md:max-w-[700px] lg:max-w-[900px] xl:max-w-[1100px] 2xl:max-w-[1300px] 3xl:max-w-[1300px]'>
 
               <EditorOutput content={issue.description} />
               {typeof issue.description === 'string' && issue.description.length > 160 && (
-                <div className='absolute bottom-0 left-0 h-24 w-full bg-gradient-to-t from-black to-transparent'></div>
+                <div className='absolute bottom-0 left-0 h-24 w-full bg-gradient-to-t from-black to-transparent dark:from-white dark:to-transparent'></div>
                 )}
 
 
@@ -141,7 +141,7 @@ const ViewIssue = async ({ params }: Props) => {
 
 
           
-              <h2 className="flex items-center gap-2"> 
+              <h2 className="flex items-center gap-2 dark:text-black"> 
 
               <MessageSquare className="w-5 h-5" />
                 
@@ -152,7 +152,7 @@ const ViewIssue = async ({ params }: Props) => {
 
 
 
-              <button className='bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-700 hover:text-gray-800 dark:hover:text-gray-300 font-light py-2 px-4 rounded'> <Link href={`/issues/${issue.id}`}>Comment</Link>
+              <button className='bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-700 dark:text-white hover:text-gray-800 dark:hover:text-gray-900 font-light py-2 px-4 rounded '> <Link href={`/issues/${issue.id}`}>Comment</Link>
               
                 
                 

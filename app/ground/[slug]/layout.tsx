@@ -10,6 +10,7 @@ import { notFound } from 'next/navigation';
 import ViewIssue from '@/app/ground/[slug]/_components/ViewIssue';
 import ToFeedButton from '@/components/issues/ToFeedButton';
 import { useEffect } from 'react';
+import CreateIssue from '@/app/ground/[slug]/_components/createIssue';
 
 // Ensure React is imported for JSX
 
@@ -64,21 +65,21 @@ const Layout = async ( { children, params: { slug } }: { children: React.ReactNo
   return (
 	<>
 	  <Sidebar session={session} />
-	  <div className="z-10 flex flex-col mb-20 w-full pr-5 pl-5 md:pr-5 md:pl-5 lg:pr-10 lg:pl-10 min-h-screen bg-white/100 ">
-	    <div className='container max-w-8xl mx-auto pt-12 bg-white/80 '>
+	  <div className="z-10 flex flex-col mb-20 w-full pr-5 pl-5 md:pr-5 md:pl-5 lg:pr-10 lg:pl-10 min-h-screen  ">
+	    <div className='container max-w-8xl mx-auto pt-12  '>
     
 		<ToFeedButton />
 
-		<div className='grid grid-cols-1 md:grid-cols-3 gap-y-4 md:gap-x-4 py-6'>
+		<div className='grid grid-cols-1 md:grid-cols-3 gap-y-4 md:gap-x-4 py-6 border-1 border-red-500 '>
           <ul className='flex flex-col col-span-2 space-y-6'>{children}</ul>
 
-          <div className='overflow-hidden h-fit rounded-lg border border-gray-200 order-first md:order-last'>
+          <div className='overflow-hidden h-fit rounded-lg border-2 border-black dark:border-red-800 bg-gray-200 order-first md:order-last'>
      
 
 	<div className='px-6 py-4 bg-gray-100'>
 
 
-			<p className='font-semibold py-3 dark:text-white'>About r/{ground?.name ?? 'defaultname'}</p>
+			<p className='font-semibold py-3 dark:text-black'>About G/{ground?.name ?? 'defaultname'}</p>
 
 	</div>
 
@@ -92,13 +93,13 @@ const Layout = async ( { children, params: { slug } }: { children: React.ReactNo
 			</div>
 			<div className='flex justify-between gap-x-4 py-3 '>
 			  <dt className='text-white dark:text-black'>Members</dt>
-			  <div>{memberCount}</div>
+			  <div className='text-white dark:text-black'>{memberCount}</div>
 			  <dt className='text-white dark:text-black'>Issues</dt>
 			  <dd className='text-white dark:text-black'>{ground?._count?.issues ?? 'Loading...'}</dd>
 			</div>
 			{ground?.creatorId === session?.user?.id && (
 			  <div className='flex justify-between gap-x-4 py-3'>
-			   <dt className='text-gray-500'>You created this community</dt>
+			   <dt className='text-gray-400 font-extralight'>You created this Ground</dt>
 			  </div>
 			)}
 			{ground?.creatorId !== session?.user?.id && (
@@ -108,11 +109,14 @@ const Layout = async ( { children, params: { slug } }: { children: React.ReactNo
 			   organizationName={ground.name ?? ''}
 			  />
 			)}
-			<Link
-			  className='block w-full rounded-lg bg-blue-500 px-5 py-3 text-center text-sm font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'
-			  href={`issues/${ground?.name}`}>
-			  Create Post
-			</Link>
+			
+
+			<div className='flex  gap-x-4 pt-4 text-center justify-center'>
+
+
+			<CreateIssue organizationId={ground.id ?? ''} />
+			</div>
+
 		   </dl>
 		  </div>
 		  </div>

@@ -4,6 +4,8 @@ import * as React from "react"
 import { Check, ChevronsUpDown } from "lucide-react"
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/components/ui/button"
+import CreateGround from '@/app/profile/_components/CreateGround';
+
 
 import {
   Popover,
@@ -117,7 +119,17 @@ export function SelectGround() {
   </div>
 ))}
         </div>
+
+        <div className="flex flex-col w-full border-b  text-gray-800 dark:text-white  px-5 py-5">
+
+        <CreateGround />
+
+        </div>
+
+
       </PopoverContent>
+
+
     </Popover>
   )
 }
