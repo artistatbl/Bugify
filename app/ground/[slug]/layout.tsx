@@ -11,6 +11,7 @@ import ViewIssue from '@/app/ground/[slug]/_components/ViewIssue';
 import ToFeedButton from '@/components/issues/ToFeedButton';
 import { useEffect } from 'react';
 import CreateIssue from '@/app/ground/[slug]/_components/createIssue';
+import ShareGround from './_components/shareGround';
 
 // Ensure React is imported for JSX
 
@@ -111,11 +112,12 @@ const Layout = async ( { children, params: { slug } }: { children: React.ReactNo
 			)}
 			
 
-			<div className='flex  gap-x-4 pt-4 text-center justify-center'>
+			<div className='flex flex-col md:flex-row gap-x-2 sm:gap-x-3 md:gap-x-4 lg:gap-x-5 xl:gap-x-6 gap-y-2 pt-4 text-center justify-center'>
+  <CreateIssue organizationId={ground.id ?? ''} />
+  <ShareGround name={ground.name ?? ''} slug={ground.name ?? ''} />
+  
+</div>
 
-
-			<CreateIssue organizationId={ground.id ?? ''} />
-			</div>
 
 		   </dl>
 		  </div>

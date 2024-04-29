@@ -36,6 +36,7 @@ const page =  async ( { params }: Props) => {
       </h1>
 <ViewIssue params={{ slug: ground?.name ?? '' }}/>
 
+
     </>
 	 
       

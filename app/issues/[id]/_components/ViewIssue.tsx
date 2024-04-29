@@ -4,7 +4,6 @@ import { notFound } from 'next/navigation';
 import delay from 'delay';
 import { Button, Text } from '@radix-ui/themes';
 import IssueStatusBadge from '@/components/issues/IssuesStatusBadge';
-import ReactMarkdown from 'react-markdown';
 import { Label } from '@/components/components/ui/label';
 import { formatDistanceToNow } from 'date-fns';
 import IssuePriorityBadge from '@/components/issues/IssuesPriorityBadge';
@@ -157,6 +156,8 @@ const ViewIssue = async ({ params }: Props) => {
                 
                 
                 </button>
+
+
 
 
 

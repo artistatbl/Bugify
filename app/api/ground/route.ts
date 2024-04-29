@@ -4,6 +4,8 @@ import { createGroundSchema } from "../../validationSchemas";
 import { v4 as uuidv4 } from 'uuid';
 import { getServerSession } from "next-auth";
 import authOptions from "@/app/auth/authOptions";
+
+
 import slugify from 'slugify';
 export async function POST(request: NextRequest) {
 
@@ -20,8 +22,7 @@ export async function POST(request: NextRequest) {
         const formattedErrors = validation.error.flatten();
         return NextResponse.json({ errors: formattedErrors }, { status: 400 });
     }
-    // const userId = session?.user?.id; // This needs to be obtained from your authentication logic
-    // if (!userId) return NextResponse.json({}, { status: 401 });
+   
 
     // First, count the existing grounds created by this user
     const count = await prisma.organization.count({

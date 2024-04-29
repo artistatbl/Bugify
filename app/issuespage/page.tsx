@@ -28,6 +28,7 @@ const IssuesPage = async () => {
     console.log("Logged in user:", session?.user?.id);
   
     const issues = await prisma.issue.findMany({
+      orderBy: { createdAt: 'desc' },
       where: {
         userId: session?.user?.id, // Use the userId to filter issues
       },

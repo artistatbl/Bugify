@@ -1,4 +1,3 @@
-
 import prisma from 'prisma/client';
 import { notFound } from 'next/navigation';
 import delay from 'delay';
@@ -16,7 +15,8 @@ import { getServerSession } from 'next-auth';
 import  authOptions  from "@/app/auth/authOptions";
 import ShareIssue from './_components/ShareIssue';
 import SideNav from '@/components/issues/SideNav';
-
+import DeleteIssueButton from './_components/DeleteIssueButton';
+import UpdateIssue from './_components/UpdateIssue';
 
 
 
@@ -27,6 +27,7 @@ interface Props {
    
   };
 }
+
 
 const IssueDetailPage = async ({ params }: Props) => {
  
@@ -109,18 +110,12 @@ const IssueDetailPage = async ({ params }: Props) => {
 
         </div>
 
+
+
         <div className="flex flex-col gap-2 min-[400px]:flex-row justify-center sm:justify-end">
-          <Button className="w-[140px] dark:text-black" variant="outline">
-            Edit
-          </Button>
           <ShareIssue title={issue.title} url={`http://localhost:3000/issues/${issue.id}`} />
-
-          
-         
-
-          <Button className="w-[140px] dark:text-black" variant="outline">
-            Delete
-          </Button>
+         <DeleteIssueButton issueId={issue.id} />
+         {/* <UpdateIssue issueId={issue.id} /> */}
         </div>
      {/* @ts-expect-error Async Server Component */}
      <ViewComment issueId={issue?.id ?? issue.id} />

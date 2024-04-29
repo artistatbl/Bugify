@@ -1,8 +1,8 @@
-import { describe, expect, it, jest } from '@jest/globals';
+// import { describe, expect, it, jest } from '@jest/globals';
 import { NextRequest } from 'next/server';
-import { POST } from '../app/api/ground/route';
+import { POST } from '../../app/api/ground/route';
 import { Prisma } from '@prisma/client';
-import prismaMock from '@/app/singleton';  
+import prismaMock from '../../app/singleton';  
 // Assuming you have a mock setup for Prisma
 
 // Mocking getServerSession and NextResponse for the tests
@@ -19,9 +19,8 @@ jest.mock('next/server', () => ({
 }));
 
 const { getServerSession } = require('next-auth');
-const { NextResponse } = require('next/server');
 
-describe('POST /api/ground', () => {
+describe('POST /api/ground/', () => {
   it('should create a new ground if under the limit', async () => {
     // Mock session and prisma response
     getServerSession.mockResolvedValue({ user: { id: 'user123' } });
@@ -29,10 +28,10 @@ describe('POST /api/ground', () => {
     prismaMock.organization.create.mockResolvedValue({
       id: 'ground123',
       name: 'New Ground',
+      slug: 'new-ground', // Add a slug property
       creatorId: 'user123',
     });
-
-    const request = new NextRequest('http://localhost/api/ground', {
+    const request = new NextRequest('http://localhost/api/ground/', {
       method: 'POST',
       body: JSON.stringify({ name: 'New Ground', userId: 'user123' }),
     });
@@ -50,7 +49,7 @@ describe('POST /api/ground', () => {
     getServerSession.mockResolvedValue({ user: { id: 'user123' } });
     prismaMock.organization.count.mockResolvedValue(3); // At the limit
 
-    const request = new NextRequest('http://localhost/api/ground', {
+    const request = new NextRequest('http://localhost/api/ground/', {
       method: 'POST',
       body: JSON.stringify({ name: 'Another Ground', userId: 'user123' }),
     });
