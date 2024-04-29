@@ -132,3 +132,6 @@
 
 ## [April, 20, 2024 22:13:21] - Changes made by artistatbl
 - [0f284b8](https://github.com/artistatbl/Bugify/commit/0f284b801ecdb4e61438eb96e752cde3a3d530c1) - upt -  Create issues within ground / Layout upt
+
+## [April, 29, 2024 19:54:09] - Changes made by artistatbl
+- [72825a1](https://github.com/artistatbl/Bugify/commit/72825a1a833419e228a075286944488fa385d179) - feat - dashboard layout / tools
