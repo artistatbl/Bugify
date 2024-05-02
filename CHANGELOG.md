@@ -145,3 +145,6 @@
 ## [April, 29, 2024 20:03:50] - Changes made by artistatbl
 - [7aa4a3b](https://github.com/artistatbl/Bugify/commit/7aa4a3b8214cd1f84f85ce140613055b35d986fd) - upt - ready for deploy
 
+
+## [May, 02, 2024 22:43:19] - Changes made by artistatbl
+- [afa1830](https://github.com/artistatbl/Bugify/commit/afa1830742d6af110514f13821dd641f28ddfcb9) - upt -  readme upt - feat dashboard layout
