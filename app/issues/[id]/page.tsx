@@ -3,12 +3,9 @@ import { notFound } from 'next/navigation';
 import delay from 'delay';
 import {  Text } from '@radix-ui/themes';
 import IssueStatusBadge from '@/components/issues/IssuesStatusBadge';
-import ReactMarkdown from 'react-markdown';
 import { Label } from '@/components/components/ui/label';
 import {formatDistanceToNow} from 'date-fns'
-import { Button } from '@/components/components/ui/button';
 import IssuePriorityBadge from '@/components/issues/IssuesPriorityBadge';
-import CreateComment from '../../comment/_component/CreateComment';
 import ViewComment from '@/app/comment/_component/ViewComment';
 import EditorOutput from '@/components/issues/EditorOutput';
 import { getServerSession } from 'next-auth';
@@ -16,8 +13,9 @@ import  authOptions  from "@/app/auth/authOptions";
 import ShareIssue from './_components/ShareIssue';
 import SideNav from '@/components/issues/SideNav';
 import DeleteIssueButton from './_components/DeleteIssueButton';
-import UpdateIssue from './_components/UpdateIssue';
-
+import UserIssueFeatures from '@/components/issues/UserIssueFeatures';
+import AssigneeSelect from './_components/AssigneeSelect';
+import ToFeedButton from '@/components/issues/ToFeedButton';
 
 
 
@@ -57,11 +55,14 @@ const IssueDetailPage = async ({ params }: Props) => {
      <SideNav session={session}  />
 
 
+
       <div className="z-10 flex flex-col w-full min-h-screen max-w-6xl px-10 sm:px-8  md:px-10 lg:px-14 xl space-y-10  bg-white/100 dark:bg-zinc-800 p-10  rounded-2xl ">
    
+      <ToFeedButton/>
 
 
         <div className="grid gap-4 md:grid-cols-1">
+
           <div className="">
             <Text className='font-bold tracking-tighter xl:text-6xl lg:text-5xl md:text-4xl xs:text-3xl sm:text-3xl '>{issue.title}</Text>
             <p className='text-gray-500 dark:text-gray-500 font-light'>
@@ -77,6 +78,7 @@ const IssueDetailPage = async ({ params }: Props) => {
 
 
             <IssueStatusBadge status={issue.status} />
+            
 
           </div>
 
@@ -90,7 +92,7 @@ const IssueDetailPage = async ({ params }: Props) => {
 
             {/* <p> {issue.assignedToUserId}</p> */}
            <Text className=' text-gray-700 dark:text-gray-700 font-thin'>{issue.assignedToUser?.name || 'Unassigned'}</Text>
-           
+
 
           </div>
         </div>
@@ -107,19 +109,26 @@ const IssueDetailPage = async ({ params }: Props) => {
     
   
 </div>
+<UserIssueFeatures issue={{ ...issue, description: String(issue?.description) }} />
+
+{/* <AssigneeSelect issueId={issue.id} ={issue.organizationId || ''} /> */}
+<AssigneeSelect issueId={issue.id} organizationSlug={issue.organizationId || ''} />
+
 
         </div>
 
 
 
         <div className="flex flex-col gap-2 min-[400px]:flex-row justify-center sm:justify-end">
+
+
           <ShareIssue title={issue.title} url={`http://localhost:3000/issues/${issue.id}`} />
+
          <DeleteIssueButton issueId={issue.id} />
          {/* <UpdateIssue issueId={issue.id} /> */}
         </div>
      {/* @ts-expect-error Async Server Component */}
      <ViewComment issueId={issue?.id ?? issue.id} />
-
 
 
 

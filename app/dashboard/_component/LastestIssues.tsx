@@ -7,9 +7,24 @@ import authOptions from "@/app/auth/authOptions";
 import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/components/ui/card';
 import Image from 'next/image';
-import { User2Icon } from 'lucide-react';
+import { User2Icon, MoreVertical, DeleteIcon } from 'lucide-react';
 import UserPopover from '@/components/user/UserPopover';
+import AssigneeSelect from '@/app/issues/[id]/_components/AssigneeSelect';
+import UserIssueFeatures from '@/components/issues/UserIssueFeatures';
+import {
+	DropdownMenu, DropdownMenuContent,
+	
+	DropdownMenuLabel,
 
+	DropdownMenuSeparator,
+	
+	DropdownMenuTrigger,
+} from '@/components/components/ui/dropdown-menu';
+
+import { Button } from '@/components/components/ui/button';
+import ViewIssue from '@/app/issues/[id]/_components/ViewIssue';
+import DeleteIssueButton from '@/app/ground/[slug]/_components/DeleteissueButton';
+import CreateIssue from '@/app/issuespage/_component/CreateIssue';
 
 
 const LatestIssues = async () => {
@@ -32,11 +47,19 @@ const LatestIssues = async () => {
 
 
 	return (
-		<Card className="hover:ring-[0.5px] ring-foreground duration-500  transition-all">
+		<Card className="hover:ring-[0.5px] ring-foreground duration-500  transition-all border-b-8 border-gray-900 dark:border-white ro">
 			<CardHeader className="text-center justify-center">
 				<CardTitle className=" tracking-tighter text-left mb-2">Latest Issues</CardTitle>
 				<p className="text-sm font-medium text-gray-500 text-left">Get a quick overview of your recent issues</p>
 			</CardHeader>
+			<div className="p-2 md:p-5 xl:p-10">
+                {issues.length === 0 ? (
+                    <div className="text-center mt-24">
+                        <p className="text-xl font-semibold tracking-tighter mb-2 text-center justify-center">No recent issues here yet. create some .</p>
+				    <CreateIssue />
+                    </div>
+                ) : (
+			
 
 
 
@@ -45,7 +68,7 @@ const LatestIssues = async () => {
 				<div className="grid gap-8 grid-cols-1 sm:grid-cols-1 ">
 
 					{issues.map((issue) => (
-						<div key={issue.id} className="bg-white shadow-lg rounded-lg p-4 md:p-6 border border-gray-900 xs:min-w-[200px] sm:min-w-[450px] md:min-w-[600px] lg:min-w-[200px] xl:min-w-[500px] 2xl:min-w-[600px]">
+						<div key={issue.id} className="bg-white shadow-lg rounded-lg p-4 md:p-6 border border-gray-900 xs:min-w-[200px] sm:min-w-[400px] md:min-w-[600px] lg:min-w-[200px] xl:min-w-[450px] 1xl:min-w-[500px] 2xl:min-w-[600px]">
 							<div className='max-h-40 mt-1 text-xs md:text-sm text-gray-500'>
 
 								<span>Logged by u/{issue?.user?.name}</span>{' '}
@@ -73,10 +96,16 @@ const LatestIssues = async () => {
 
 
 											<IssuePriorityBadge priority={issue.priority} />
+
 										</div>
+
+
 										{issue.assignedToUser ? (
-											<div className="">
+											<div className=" ml-2">
+
 												{issue.assignedToUser && <UserPopover user={issue.assignedToUser!} />}
+												{/* <AssigneeSelect issueId={issue.id} organizationId={issue.organizationId || ''} /> */}
+
 
 											</div>
 										) : (
@@ -84,6 +113,45 @@ const LatestIssues = async () => {
 											</div>
 										)}
 									</div>
+						
+									<DropdownMenu>
+										<DropdownMenuTrigger asChild>
+											<MoreVertical />
+
+										</DropdownMenuTrigger>
+										<DropdownMenuContent className="w-56 text-sm pl-3">
+											<DropdownMenuLabel>Edit</DropdownMenuLabel>
+											<button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-0 px-4 rounded">
+											<UserIssueFeatures issue={{ ...issue, description: String(issue?.description) }} />
+											</button>
+
+											<DropdownMenuSeparator />
+											<DropdownMenuLabel >Issue</DropdownMenuLabel>
+											<button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-0 px-4 rounded">
+
+											<ViewIssue
+												params={{
+													id: issue.id,
+												}}
+												/>
+												</button>
+												
+												<button className="bg-red-500 hover:bg-red-600 text-white font-bold py-0.5 px-3 rounded mt-2">
+													<DeleteIssueButton issueId={issue.id} />
+												</button>
+
+											<DropdownMenuSeparator />
+
+
+
+
+
+										</DropdownMenuContent>
+
+
+
+									</DropdownMenu>
+
 
 								</div>
 
@@ -91,9 +159,16 @@ const LatestIssues = async () => {
 						</div>
 					))}
 				</div>
+				
 			</div>
+		)}
+			
+			</div>
+	
 
 		</Card>
+
+												
 
 	);
 };

@@ -16,25 +16,25 @@ export const projectPriorities: ProjectPriority[] = [
   {
     value: 'LOW',
     label: 'Low Priority',
-    icon: <SignalLowIcon className="text-blue-600 dark:text-blue-500" strokeWidth={3}/>,
+    icon: <SignalLowIcon className="text-blue-600 dark:text-blue-500" strokeWidth={2}/>,
     className: "text-blue-600 dark:text-blue-500"
   },
   {
     value: 'MEDIUM',
-    label: 'Normal Priority',
-    icon: <SignalMediumIcon className="text-green-600 dark:text-green-500" strokeWidth={3}/>,
+    label: 'Medium Priority',
+    icon: <SignalMediumIcon className="text-green-600 dark:text-green-500" strokeWidth={2}/>,
     className: "text-green-600 dark:text-green-500"
   },
   {
     value: 'HIGH',
     label: 'High Priority',
-    icon: <SignalHighIcon className="text-amber-600 dark:text-amber-500" strokeWidth={3}/>,
+    icon: <SignalHighIcon className="text-yellow-500 dark:text-yeallow-500" strokeWidth={2}/>,
     className: "text-amber-600 dark:text-amber-500"
   },
   {
     value: 'MORNAL',
-    label: 'Critical Priority',
-    icon: <SignalIcon className="text-red-600 dark:text-red-500" strokeWidth={3}/>,
+    label: 'Mornal Priority',
+    icon: <SignalIcon className="text-orange-500 dark:text-orange-500" strokeWidth={2}/>,
     className: "text-red-600 dark:text-red-500"
   },
 
@@ -42,7 +42,7 @@ export const projectPriorities: ProjectPriority[] = [
   {
     value: 'CRITICAL',
     label: 'Critical Priority',
-    icon: <SignalIcon className="text-red-600 dark:text-red-500" strokeWidth={3}/>,
+    icon: <SignalIcon className="text-red-500 dark:text-red-600" strokeWidth={2}/>,
     className: "text-red-600 dark:text-red-500"
   },
 

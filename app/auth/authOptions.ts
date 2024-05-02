@@ -24,6 +24,12 @@ const authOptions: NextAuthOptions = {
         });
 
         if (dbUser) {
+          // Update lastLogin in the database
+          await prisma.user.update({
+            where: { id: dbUser.id },
+            data: { lastLogin: new Date() },
+          });
+
           // Add custom claims to JWT. These will be persisted across sessions
           token.id = dbUser.id;
           token.role = dbUser.role;
@@ -31,14 +37,13 @@ const authOptions: NextAuthOptions = {
           token.email = dbUser.email;
           token.lastLogin = new Date(); // Store as ISO string for consistency across various databases and timezone handling
 
-           await prisma.session.create({
-             data: {
-               userId: dbUser.id,
-               expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30), // 30 days
-               sessionToken: require('crypto').randomBytes(32).toString('hex'), // Generate a secure token
-
-             },
-           })
+          await prisma.session.create({
+            data: {
+              userId: dbUser.id,
+              expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30), // 30 days
+              sessionToken: require('crypto').randomBytes(32).toString('hex'), // Generate a secure token
+            },
+          });
         }
       }
       return token;
@@ -48,7 +53,7 @@ const authOptions: NextAuthOptions = {
       if (token) {
         session.user.id = token.id;
         session.user.role = token.role;
-       // session.user.organizationId = token.organizationId;
+        // session.user.organizationId = token.organizationId;
         session.user.lastLogin = token.lastLogin ? new Date(token.lastLogin) : new Date(); // Convert back to Date object or use current date
         session.user.email = token.email ?? session.user.email;
         session.user.name = token.name ?? session.user.name;

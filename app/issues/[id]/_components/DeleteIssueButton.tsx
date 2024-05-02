@@ -34,7 +34,7 @@ const DeleteIssueButton = ({ issueId }: { issueId: string }) => {
 	  await axios.delete(`/api/issues/${encodeURIComponent(issueId)}`);
 	  // Delay success actions by 2 seconds
 	  setTimeout(() => {
-	    router.push('/issuespage');
+	    router.push('/issuespage/list');
 	    toast({
 		 title: 'Success',
 		 description: 'Issue deleted successfully.',

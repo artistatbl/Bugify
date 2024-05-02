@@ -9,8 +9,29 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { formatDistanceToNow } from 'date-fns';
 import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} from '@/components/components/ui/card';
+import { MoreVertical } from 'lucide-react';
 
 import { ScrollArea } from "@/components/components/ui/scroll-area"
+import UserIssueFeatures from '@/components/issues/UserIssueFeatures';
+import {
+	DropdownMenu, DropdownMenuContent,
+	DropdownMenuGroup,
+	DropdownMenuItem,
+	DropdownMenuLabel,
+	DropdownMenuPortal,
+	DropdownMenuSeparator,
+	DropdownMenuShortcut,
+	DropdownMenuSub,
+	DropdownMenuSubContent,
+	DropdownMenuSubTrigger,
+	DropdownMenuTrigger,
+} from '@/components/components/ui/dropdown-menu';
+
+// import ViewIssue from '@/app/issues/[id]/_components/ViewIssue';
+import ViewIssues from '@/app/issues/[id]/_components/ViewIssue';
+
+
+import DeleteIssueButton from '@/app/ground/[slug]/_components/DeleteissueButton';
 
 interface ViewIssueProps {
   params: {
@@ -40,6 +61,9 @@ const ViewIssue = async ({ params }: ViewIssueProps) => {
         _count: true,
         organization: true
       },
+      orderBy: {
+        createdAt: 'desc'
+      }
     });
 
     if (issues.length === 0) {
@@ -101,6 +125,43 @@ const ViewIssue = async ({ params }: ViewIssueProps) => {
               <IssuePriorityBadge priority={issue.priority} />
               </div>
             </div>
+            <DropdownMenu>
+										<DropdownMenuTrigger asChild>
+											<MoreVertical />
+
+										</DropdownMenuTrigger>
+										<DropdownMenuContent className="w-56 text-sm pl-3">
+											<DropdownMenuLabel>Edit</DropdownMenuLabel>
+											<button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-0 px-4 rounded">
+											<UserIssueFeatures issue={{ ...issue, description: String(issue?.description) }} />
+											</button>
+
+											<DropdownMenuSeparator />
+											<DropdownMenuLabel >Issue</DropdownMenuLabel>
+											<button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-0 px-4 rounded">
+
+											<ViewIssues
+												params={{
+													id: issue.id,
+												}}
+												/>
+												</button>
+												
+												<button className="bg-red-500 hover:bg-red-600 text-white font-bold py-0.5 px-3 rounded mt-2">
+													<DeleteIssueButton issueId={issue.id} />
+												</button>
+
+											<DropdownMenuSeparator />
+
+
+
+
+
+										</DropdownMenuContent>
+
+
+
+									</DropdownMenu>
 
           </div>
 

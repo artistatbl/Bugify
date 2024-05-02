@@ -65,9 +65,9 @@ export default function SideNav ({session }: { session: Session | null }) {
         Dashboard
       </Link>
       <Link
-        href="/issuespage"
+        href="/issuespage/list"
         className={classnames(
-          currentPath === "/issuespage" ? "text-foreground text-md font-semibold md:text-base" : "text-muted-foreground text-md font-semibold md:text-base",
+          currentPath === "/issuespage/list" ? "text-foreground text-md font-semibold md:text-base" : "text-muted-foreground text-md font-semibold md:text-base",
         )}
       >
         Issue
@@ -109,33 +109,22 @@ export default function SideNav ({session }: { session: Session | null }) {
             <Package2 className="h-6 w-6" />
             <span className="sr-only">Bugify</span>
           </Link>
-          <Link href="#" className="hover:text-foreground">
+          <Link href="/dashboard" className="hover:text-foreground">
             Dashboard
           </Link>
           <Link
-            href="#"
+            href="/issuespage/list"
             className="text-muted-foreground hover:text-foreground"
             >
-            Orders
+            Issues
           </Link>
           <Link
-            href="#"
+            href="/profile"
             className="text-muted-foreground hover:text-foreground"
             >
-            Products
+            Profile
           </Link>
-          <Link
-            href="#"
-            className="text-muted-foreground hover:text-foreground"
-            >
-            Customers
-          </Link>
-          <Link
-            href="#"
-            className="text-muted-foreground hover:text-foreground"
-            >
-            Analytics
-          </Link>
+         
         </nav>
       </SheetContent>
     </Sheet>
