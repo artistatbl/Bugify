@@ -154,3 +154,6 @@
 
 ## [May, 03, 2024 18:55:27] - Changes made by artistatbl
 - [1d6474c](https://github.com/artistatbl/Bugify/commit/1d6474c3ea8d2147b52a687c528b40ed4bd549cf) - upt- not ready for deployment yet
+
+## [May, 03, 2024 18:58:13] - Changes made by artistatbl
+- [5186028](https://github.com/artistatbl/Bugify/commit/518602877969ef6d994ad6a50fe8a0e32524485a) - feat -  ready for deplyoment
