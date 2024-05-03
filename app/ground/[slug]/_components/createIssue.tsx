@@ -16,7 +16,8 @@ const CreateIssue: React.FC<CreateIssueProps> = ({ organizationId }) => {
       <DialogTrigger asChild>
         <Button variant="outline" onClick={() => setIsDialogOpen(true)}>Create an Issue</Button>
       </DialogTrigger>
-      <DialogContent>
+      <DialogContent className="max-w-[415px] sm:max-w-[450px] md:max-w-2xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl min-h-[50vh] border-zinc-900 border-b-2">
+
         <DialogHeader>
           <DialogTitle>Create an Issue</DialogTitle>
           <DialogDescription>

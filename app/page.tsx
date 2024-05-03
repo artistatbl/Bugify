@@ -60,7 +60,9 @@ export default async function Home() {
           className="animate-fade-up text-center text-gray-500 opacity-0 [text-wrap:balance] md:text-xl dark:text-gray-400 "
           style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
           >
-          Bugify is the best way to track,log and manage your software development bugs. Let your team focus on shipping features insteadof managing insfrastructure with automated CI/CD.
+            The greatest tool for tracking, logging, and managing software development bugs is called Bugify. With automated CI/CD, your team can concentrate on delivering features rather than maintaining infrastructure.
+
+
         </p>
         <div
           className="mx-auto mt-6 flex animate-fade-up items-center justify-center space-x-5 opacity-0"

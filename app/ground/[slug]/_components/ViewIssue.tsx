@@ -4,11 +4,9 @@ import IssueStatusBadge from '@/components/issues/IssuesStatusBadge';
 import IssuePriorityBadge from '@/components/issues/IssuesPriorityBadge';
 import { getServerSession } from 'next-auth';
 import authOptions from "@/app/auth/authOptions";
-import EditorOutput from '@/components/issues/EditorOutput';
-import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { formatDistanceToNow } from 'date-fns';
-import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} from '@/components/components/ui/card';
+import {Card,CardHeader, CardTitle} from '@/components/components/ui/card';
 import { MoreVertical } from 'lucide-react';
 
 import { ScrollArea } from "@/components/components/ui/scroll-area"
@@ -27,10 +25,7 @@ import {
 	DropdownMenuTrigger,
 } from '@/components/components/ui/dropdown-menu';
 
-// import ViewIssue from '@/app/issues/[id]/_components/ViewIssue';
 import ViewIssues from '@/app/issues/[id]/_components/ViewIssue';
-
-
 import DeleteIssueButton from '@/app/ground/[slug]/_components/DeleteissueButton';
 
 interface ViewIssueProps {
@@ -69,7 +64,7 @@ const ViewIssue = async ({ params }: ViewIssueProps) => {
     if (issues.length === 0) {
       return (
        
-          <p className="text-xl font-bold tracking-tighter mt-72 text-center justify-center">No issues found for this organizationn.</p>
+          <p className="text-xl font-bold tracking-tighter mt-72 text-center justify-center">No issues found for this organization.</p>
     
       );
     }

@@ -1,23 +1,11 @@
 "use client"
 import React from 'react'
-import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/components/ui/button"
 import { ModeToggle } from "../components/ui/darkmode";
 
 import { SelectGround } from "@/app/ground/[slug]/_components/SelectGround";
 import UserDropdown from "@/components/layout/user-dropdown";
-
-
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/components/ui/dropdown-menu"
-import { Input } from "@/components/components/ui/input"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/components/ui/sheet"
 import {
 
@@ -25,6 +13,7 @@ import {
   Package2,
   Menu,
   CircleUser,
+  BugIcon,
   Search,
  
 } from "lucide-react"
@@ -50,10 +39,10 @@ export default function SideNav ({session }: { session: Session | null }) {
        
     <nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
       <Link
-        href="#"
+        href="/"
         className="flex items-center gap-2 text-lg font-semibold md:text-base"
       >
-        <Package2 className="h-6 w-6" />
+        <BugIcon className="h-8 w-8" />
         <span className="sr-only">Bugify</span>
       </Link>
       <Link
@@ -103,10 +92,10 @@ export default function SideNav ({session }: { session: Session | null }) {
       <SheetContent side="left">
         <nav className="grid gap-6 text-lg font-medium">
           <Link
-            href="#"
+            href="/"
             className="flex items-center gap-2 text-lg font-semibold"
             >
-            <Package2 className="h-6 w-6" />
+            <BugIcon className="h-6 w-6" />
             <span className="sr-only">Bugify</span>
           </Link>
           <Link href="/dashboard" className="hover:text-foreground">

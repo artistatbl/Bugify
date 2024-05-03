@@ -3,10 +3,10 @@ import Image from "next/image";
 import Link from "next/link";
 import useScroll from "@/lib/hooks/use-scroll";
 import { useSignInModal } from "./sign-in-modal";
-import UserDropdown from "./user-dropdown";
 import { Session } from "next-auth";
 import { Button } from "@radix-ui/themes";
 import { ModeToggle } from "../components/ui/darkmode";
+import { BugIcon } from "lucide-react";
 
 export default function NavBar({ session }: { session: Session | null }) {
   const { SignInModal, setShowSignInModal } = useSignInModal();
@@ -22,15 +22,10 @@ export default function NavBar({ session }: { session: Session | null }) {
       >
         <div className="mx-5 flex h-16 max-w-screen-xl items-center justify-between w-full">
           <Link legacyBehavior href="/" passHref>
-            <a className="flex items-center font-display text-2xl">
-              <Image
-                src="/logo.png"
-                alt="Precedent logo"
-                width="30"
-                height="30"
-                className="mr-2 rounded-sm"
-              />
-              Bugify
+            <a className="flex items-center font-display text-2xl gap-x-2">
+            
+              <BugIcon className="h-8 w-8" />
+              <span className="font-semibold">Bugify</span>
             </a>
           </Link>
           <div className="flex items-center">

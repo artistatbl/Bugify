@@ -25,16 +25,9 @@ import { ScrollArea } from '@/components/components/ui/scroll-area';
 const page = async () => {
 
 
-
-
   const session = await getServerSession(authOptions)
 
 
-
-  // const [isDialogOpen, setIsDialogOpen] = useState(false);
-
-  // // Function to toggle the dialog visibility
-  // const toggleDialog = () => setIsDialogOpen(!isDialogOpen);
 
   const user = await prisma.user.findUnique({
     where: { id: session!.user!.id },
@@ -50,7 +43,7 @@ const page = async () => {
 
 
 
-  await delay(2000);
+  await delay(500);
 
 
 
@@ -112,8 +105,7 @@ const page = async () => {
                   <dl className='-my-3 divide-y divide-gray-100 px-6 py-4 text-sm leading-6 justify-center text-center'>
                     <div className='flex justify-between gap-x-4 py-3'>
                       <p className='text-zinc-500 '>
-                        Your personal page. Come here to check in with your
-                        favorite communities.
+                        Your personal page. Create your own ground to track your issues.
                       </p>
                     </div>
 
@@ -129,7 +121,7 @@ const page = async () => {
               <CardHeader>
                 <CardTitle>Assigned Issues</CardTitle>
                 <div className='flex flex-col font-light text-gray-400'>
-                  <CardDescription>Here are all the projects assigned to you.</CardDescription>
+                  <CardDescription>Here are all the issues assigned to you.</CardDescription>
                 </div>
               </CardHeader>
 
@@ -143,7 +135,6 @@ const page = async () => {
                   )}
                   {user.assignedIssues && user.assignedIssues.map((issue) => (
 
-                    // <IssueCard key={issue.id} issue={issue}/>
                     <IssueCard key={issue.id} issue={{...issue, description: String(issue.description)}} />
 
                   ))}
