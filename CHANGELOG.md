@@ -151,3 +151,6 @@
 
 ## [May, 02, 2024 22:44:36] - Changes made by artistatbl
 - [2cf6073](https://github.com/artistatbl/Bugify/commit/2cf6073deb2680f0ec3148007100087fd10b59e9) - upt -  Readme push to github
+
+## [May, 03, 2024 18:55:27] - Changes made by artistatbl
+- [1d6474c](https://github.com/artistatbl/Bugify/commit/1d6474c3ea8d2147b52a687c528b40ed4bd549cf) - upt- not ready for deployment yet
