@@ -157,3 +157,6 @@
 
 ## [May, 03, 2024 18:58:13] - Changes made by artistatbl
 - [5186028](https://github.com/artistatbl/Bugify/commit/518602877969ef6d994ad6a50fe8a0e32524485a) - feat -  ready for deplyoment
+
+## [May, 03, 2024 19:06:01] - Changes made by artistatbl
+- [9823b53](https://github.com/artistatbl/Bugify/commit/9823b5309bcc0a42f6945c6c106da0e1d5435b54) - error - deployment error
