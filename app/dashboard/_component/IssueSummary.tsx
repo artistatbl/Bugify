@@ -53,10 +53,10 @@ const IssueSummary: React.FC<IssueSummaryProps> = ({ open, inProgress, closed, o
    
 	return (
 		
-		<ScrollArea className='w-full   bg-slate-500 whitespace-nowrap rounded-md border'>
+		<ScrollArea className='w-full  whitespace-nowrap rounded-md border'>
 		<Flex>
 		  {containers.map((container) => (
-		    <Card key={container.label} className='w-full bg-black m-2 p-2 h-28'>
+		    <Card key={container.label} className='w-full m-2 p-2 h-28'>
 			 <Flex direction="column" gap="2">
 			   <Flex align="center" gap="2" className='justify-between w-full'>
 				{container.status ? (
