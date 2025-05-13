@@ -169,3 +169,6 @@
 
 ## [May, 13, 2025 20:06:50] - Changes made by artistatbl
 - [434d73a](https://github.com/artistatbl/Bugify/commit/434d73acaafc8b98c8d27942316ccdc584805605) - Remove Sentry configuration files and dependencies from the project. Updated .gitignore to exclude Sentry config file. Cleaned up next.config.js by removing Sentry integration code and removed Sentry from package.json and package-lock.json.
+
+## [May, 13, 2025 20:12:55] - Changes made by artistatbl
+- [50b7aec](https://github.com/artistatbl/Bugify/commit/50b7aecc4b7ad6dbb3fb0e90e8a298e6fd6556cd) - Remove Sentry client configuration and related imports from the project. Updated global error handling to display a user-friendly message instead of using Sentry for error reporting.
