@@ -172,3 +172,6 @@
 
 ## [May, 13, 2025 20:12:55] - Changes made by artistatbl
 - [50b7aec](https://github.com/artistatbl/Bugify/commit/50b7aecc4b7ad6dbb3fb0e90e8a298e6fd6556cd) - Remove Sentry client configuration and related imports from the project. Updated global error handling to display a user-friendly message instead of using Sentry for error reporting.
+
+## [May, 13, 2025 20:20:11] - Changes made by artistatbl
+- [f2e8022](https://github.com/artistatbl/Bugify/commit/f2e80222fbb074b7a256fd20afa53cbeb397ae97) - Add TypeScript type definitions for Editor.js header
