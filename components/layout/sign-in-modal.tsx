@@ -7,11 +7,12 @@ import {
   SetStateAction,
   useCallback,
   useMemo,
+  useEffect,
 } from "react";
 import { LoadingDots } from "@/components/shared/icons";
 import Image from "next/image";
 import { useToast } from "@/lib/hooks/use-toast";
-
+import { useSearchParams } from "next/navigation";
 
 const SignInModal = ({
   showSignInModal,
@@ -21,24 +22,19 @@ const SignInModal = ({
   setShowSignInModal: Dispatch<SetStateAction<boolean>>;
 }) => {
   const [signInClicked, setSignInClicked] = useState(false);
-  const {toast } = useToast()
+  const { toast } = useToast();
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get('callbackUrl') || '/dashboard';
 
-
-  
   const handleSignInClick = async () => {
     setSignInClicked(true);
-
-       
-    await signIn("google", { callbackUrl: "/dashboard" });
-
+    await signIn("google", { callbackUrl });
+    
     toast({
-      title: 'Logged in',
-      description: 'You have successfully logged in.',
+      title: 'Logging in...',
+      description: 'Please wait while we redirect you.',
       duration: 2000,
-     }) 
-  
-   
-    // No need to manually set signInClicked to false here since the page will redirect
+    });
   };
 
   return (
