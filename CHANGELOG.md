@@ -166,3 +166,6 @@
 
 ## [May, 13, 2025 20:02:17] - Changes made by artistatbl
 - [22233ec](https://github.com/artistatbl/Bugify/commit/22233ec3f6ce664a8176ef665ad3cebd583a0afa) - Enhance middleware for protected routes and update dependencies. Added callback URL handling in sign-in modal and improved session token management. Updated package versions for various dependencies.
+
+## [May, 13, 2025 20:06:50] - Changes made by artistatbl
+- [434d73a](https://github.com/artistatbl/Bugify/commit/434d73acaafc8b98c8d27942316ccdc584805605) - Remove Sentry configuration files and dependencies from the project. Updated .gitignore to exclude Sentry config file. Cleaned up next.config.js by removing Sentry integration code and removed Sentry from package.json and package-lock.json.
