@@ -163,3 +163,6 @@
 
 ## [May, 13, 2025 19:21:42] - Changes made by artistatbl
 - [797adf6](https://github.com/artistatbl/Bugify/commit/797adf673e9203375adeaddb12bc86cd191a929d) - checking
+
+## [May, 13, 2025 20:02:17] - Changes made by artistatbl
+- [22233ec](https://github.com/artistatbl/Bugify/commit/22233ec3f6ce664a8176ef665ad3cebd583a0afa) - Enhance middleware for protected routes and update dependencies. Added callback URL handling in sign-in modal and improved session token management. Updated package versions for various dependencies.
