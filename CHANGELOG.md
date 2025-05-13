@@ -178,3 +178,6 @@
 
 ## [May, 13, 2025 23:48:10] - Changes made by artistatbl
 - [2d0473a](https://github.com/artistatbl/Bugify/commit/2d0473a23bbe352b5b2b9c9390b1e3b348205660) - Refactor subscription route to prevent static rendering errors and enhance login page with Suspense for better loading state management.
+
+## [May, 13, 2025 23:59:52] - Changes made by artistatbl
+- [6171f12](https://github.com/artistatbl/Bugify/commit/6171f120ffcbec4ce356620772c864757305ef39) - Refactor middleware to improve session token handling for protected routes. Updated redirect logic to append a new query parameter and removed unused code for better clarity.
