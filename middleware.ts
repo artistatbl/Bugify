@@ -7,28 +7,19 @@ export async function middleware(request: NextRequest) {
   const protectedRoutes = ['/dashboard', '/issuespage', '/profile'];
   const isProtectedRoute = protectedRoutes.includes(request.nextUrl.pathname) 
     || /\/issues\/\d+/.test(request.nextUrl.pathname)
-    || /\/ground\/[^\/]+/.test(request.nextUrl.pathname);
+    || /\/ground\/[^\/]+/.test(request.nextUrl.pathname); // Add this line
 
   if (isProtectedRoute) {
-    const token = await getToken({ req: request });
+    const session = request.cookies.get('__Secure-next-auth.session-token'); 
+    // const token =  await  getToken({ req });
     
-    if (!token) {
+    // Use '__Secure-next-auth.session-token' instead of 'next-auth.session-token' for production?
+    if (!session) {
       const loginUrl = new URL('/login', request.nextUrl.origin);
-      loginUrl.searchParams.append('callbackUrl', request.nextUrl.pathname);
+      loginUrl.searchParams.append('redirected', 'true'); // Append query parameter
       return NextResponse.redirect(loginUrl);
     }
   }
 
   return NextResponse.next();
 }
-
-// Configure which routes to run middleware on
-export const config = {
-  matcher: [
-    '/dashboard/:path*',
-    '/issuespage/:path*',
-    '/profile/:path*',
-    '/issues/:path*',
-    '/ground/:path*'
-  ]
-};
