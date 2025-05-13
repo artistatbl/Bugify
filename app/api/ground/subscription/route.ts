@@ -3,8 +3,10 @@ import prisma from '../../../../prisma/client'; // Adjust the import path as nec
 import { getServerSession } from 'next-auth';
 import authOptions from '@/app/auth/authOptions'; // Adjust the import path as necessary
 
-export async function GET(request: NextRequest) {
+// Explicitly mark this route as dynamic to prevent the static rendering error
+export const dynamic = 'force-dynamic';
 
+export async function GET() {
   try {
     // Get the user session
     const session = await getServerSession(authOptions);

@@ -1,12 +1,11 @@
 'use client';	
-import React, { useEffect } from 'react';
+import React, { useEffect, Suspense } from 'react';
 import { useSignInModal } from '@/components/layout/sign-in-modal';
 import { Button } from '@radix-ui/themes'; // Ensure correct import path
 import { useToast } from '@/lib/hooks/use-toast';
-import Nav from '@/components/layout/nav';
 import NavBar from '@/components/layout/navbar';
 
-const Page = () => {
+const LoginContent = () => {
     const { SignInModal, setShowSignInModal } = useSignInModal();
     const toast = useToast();
 
@@ -33,6 +32,14 @@ const Page = () => {
                 </div>
             </div>
         </>
+    );
+};
+
+const Page = () => {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <LoginContent />
+        </Suspense>
     );
 };
 
